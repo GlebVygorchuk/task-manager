@@ -16,6 +16,5 @@
     ],
     "rewrites": [
         { "source": "/(.*)", "destination": "/index.html" }
-    ],
-    "rootDirectory": "task-manager"
+    ]
 }
