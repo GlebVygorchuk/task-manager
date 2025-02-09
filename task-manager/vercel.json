@@ -1,13 +1,4 @@
 {
-    "builds": [
-        {
-            "src": "task-manager/package.json",
-            "use": "@vercel/static-build",
-            "config": {
-                "distDir": "task-manager/dist"
-            }
-        }
-    ],
     "rewrites": [
         { "source": "/(.*)", "destination": "/index.html" }
     ]
