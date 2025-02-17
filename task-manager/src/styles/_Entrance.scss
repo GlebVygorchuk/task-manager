@@ -1,0 +1,65 @@
+.entrance {
+    display: flex;
+    justify-content: center;
+
+    &__container {
+        display: flex;
+        padding: 150px 90px;
+        margin-top: 10vh;
+        border-radius: 10px;
+        background: var(--background-gradient);
+        column-gap: 100px;
+        animation: appear 0.5s forwards;
+        opacity: 0;
+    }
+
+    &__greetings {
+        font-size: 50px;
+        animation: appear 0.5s forwards;
+        animation-delay: 0.1s;
+        opacity: 0;
+    }
+
+    &__buttons-wrapper {
+        display: flex;
+        flex-direction: column;
+        row-gap: 10px;
+    }
+
+    &__button {
+        font-size: 40px;
+
+        color: var(--color-text);
+        padding: 17.5px 27.5px;
+        border-radius: 10px;
+    }
+}
+
+.register {
+    background-color: var(--color-text);
+    color: var(--color-background);
+    animation: appear 0.5s forwards;
+    animation-delay: 0.2s;
+    opacity: 0;
+
+    &:hover {
+        background-color: rgb(131, 131, 131);
+    }
+}
+
+.login {
+    background-color: var(--color-accent);
+    width: 100%;
+    animation: appear 0.5s forwards;
+    animation-delay: 0.3s;
+    opacity: 0;
+
+    &:hover {
+        background-color: #106e31;
+        color: rgb(140, 140, 140);
+    }
+}
+
+.highlight {
+    color: var(--color-accent);
+}

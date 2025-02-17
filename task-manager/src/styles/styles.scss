@@ -1,4 +1,25 @@
+@import 
+'./fonts',
+'./Entrance',
+'./Register',
+'./Login',
+'./MainPage',
+'./normalize',
+'./variables';
+
 body {
-    font-weight: 200;
-    font-size: 50px;
+    font-family: 'Comfortaa';
+    background-color: var(--color-background);
+    color: var(--color-text);
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateX(-25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }

@@ -1,4 +1,255 @@
-body {
-  font-weight: 200;
+@font-face {
+  font-family: "Comfortaa";
+  src: url("../assets/Comfortaa-VariableFont_wght.ttf");
+}
+.entrance {
+  display: flex;
+  justify-content: center;
+}
+.entrance__container {
+  display: flex;
+  padding: 150px 90px;
+  margin-top: 10vh;
+  border-radius: 10px;
+  background: var(--background-gradient);
+  -moz-column-gap: 100px;
+       column-gap: 100px;
+  animation: appear 0.5s forwards;
+  opacity: 0;
+}
+.entrance__greetings {
   font-size: 50px;
+  animation: appear 0.5s forwards;
+  animation-delay: 0.1s;
+  opacity: 0;
+}
+.entrance__buttons-wrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+.entrance__button {
+  font-size: 40px;
+  color: var(--color-text);
+  padding: 17.5px 27.5px;
+  border-radius: 10px;
+}
+
+.register {
+  background-color: var(--color-text);
+  color: var(--color-background);
+  animation: appear 0.5s forwards;
+  animation-delay: 0.2s;
+  opacity: 0;
+}
+.register:hover {
+  background-color: rgb(131, 131, 131);
+}
+
+.login {
+  background-color: var(--color-accent);
+  width: 100%;
+  animation: appear 0.5s forwards;
+  animation-delay: 0.3s;
+  opacity: 0;
+}
+.login:hover {
+  background-color: #106e31;
+  color: rgb(140, 140, 140);
+}
+
+.highlight {
+  color: var(--color-accent);
+}
+
+.registration {
+  display: flex;
+  justify-content: center;
+}
+.registration__container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  background: var(--background-gradient);
+  row-gap: 20px;
+  padding: 40px 60px;
+  border-radius: 10px;
+  margin-top: 7.5vh;
+  animation: appear 0.5s forwards;
+}
+.registration__form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+}
+.registration__input {
+  background-color: #505050;
+  padding: 15px 17.5px;
+  font-size: 20px;
+  color: var(--color-text);
+  font-family: "Comfortaa";
+  border-radius: 10px;
+  border: 2px solid transparent;
+  position: relative;
+  transition: 0.3s;
+}
+.registration__input:placeholder {
+  font-family: "Comfortaa";
+}
+.registration__input:focus {
+  border: 2px solid var(--color-accent);
+}
+.registration__button {
+  margin-top: 10px;
+  padding: 15px 25px;
+  border-radius: 10px;
+  font-size: 22.5px;
+  background-color: var(--color-accent);
+  color: var(--color-text);
+}
+.registration__button:hover {
+  opacity: 0.5;
+}
+
+.loading-screen {
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-background);
+  position: fixed;
+  opacity: 0.8;
+  padding-top: 20%;
+  display: none;
+  justify-content: center;
+}
+.loading-screen::after, .loading-screen::before {
+  position: absolute;
+  content: "";
+  width: 17.5px;
+  height: 17.5px;
+  background-color: var(--color-accent);
+  border-radius: 50%;
+  animation: loading 1s infinite ease-in-out;
+}
+@keyframes loading {
+  0% {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+}
+.loading-screen::before {
+  animation-delay: 0.3s;
+}
+
+.load {
+  display: flex;
+}
+
+.input-wrapper {
+  display: flex;
+  position: relative;
+}
+
+.svg-eye {
+  position: absolute;
+  background-color: #696969;
+  cursor: pointer;
+  left: 86.5%;
+  top: 14%;
+  transition: 0.2s;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.active {
+  background-color: var(--color-background);
+  fill: var(--color-accent);
+}
+
+.advice {
+  position: absolute;
+  background: var(--background-gradient);
+  padding: 17.5px;
+  width: 47.5%;
+  border-radius: 10px;
+  left: 105%;
+  top: -35%;
+  box-shadow: 0px 0px 20px var(--color-background);
+  z-index: 2;
+  opacity: 0;
+  transform: translateX(-10px);
+  text-align: left;
+  transition: 0.3s;
+}
+.advice__list {
+  display: flex;
+  flex-direction: column;
+  list-style: disc;
+  padding-left: 10px;
+  margin: 0;
+  row-gap: 10px;
+}
+
+.visible {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.repeat {
+  color: var(--color-accent);
+  cursor: pointer;
+}
+.repeat:hover {
+  text-decoration: underline;
+}
+
+p, h1, h2, h3, h4, h5 {
+  margin: 0;
+}
+
+button {
+  font-family: "Comfortaa";
+  border: none;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+ul {
+  list-style: none;
+}
+
+input {
+  outline: none;
+  border: none;
+}
+
+:root {
+  --color-main: #292929;
+  --color-text: white;
+  --color-accent: #1DB954;
+  --color-background: #121212;
+  --background-gradient: linear-gradient(to bottom,#262626, #171717) ;
+}
+
+body {
+  font-family: "Comfortaa";
+  background-color: var(--color-background);
+  color: var(--color-text);
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateX(-25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }/*# sourceMappingURL=styles.css.map */
