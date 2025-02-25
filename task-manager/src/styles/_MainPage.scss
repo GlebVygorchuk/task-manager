@@ -1,0 +1,159 @@
+body {
+    margin: 0;
+}
+
+.main {
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px 50px;
+        border-bottom: 1px solid rgb(35, 35, 35);
+        user-select: none;
+
+        &__name {
+            display: flex;
+            column-gap: 15px;
+
+            svg {
+                @keyframes rotate {
+                    50% {
+                        transform: rotate(180deg);
+                    }
+                    100% {
+                        transform: rotate(360deg);
+                    }
+                }
+
+                align-self: center;
+                fill: var(--color-accent);
+                animation: rotate 3s infinite;
+            }
+        }
+
+        &__title {
+            color: var(--color-text);
+            align-self: center;
+            font-size: 30px;
+        }
+
+        &__profile {
+            align-self: center;
+            cursor: pointer;
+            transition: 0.2s;
+
+            svg {
+                fill: var(--color-accent);
+            }
+
+            &:hover {
+                opacity: 0.5
+            }
+        }
+
+        &__logout-btn {
+            @include signInUpButtonStyles();
+            margin-top: 0;
+            font-size: 20px;
+            padding: 12.5px 17.5px;
+        }
+
+        &__info {
+            position: absolute;
+            visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            transition: 0.3s;
+            transform: translateY(10px);
+            row-gap: 15px;
+            background: var(--background-gradient);
+            padding: 25px 35px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px var(--color-background);
+            right: 50px;
+            top: 70px;
+            font-size: 17.5px;
+        }
+    }
+}
+
+.profile-information {
+    display: flex;
+    column-gap: 20px;
+}
+
+.username {
+    align-self: center;
+    font-weight: 100;
+    font-size: 21px;
+    color: var(--color-text);
+}
+
+.show-profile {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.info-field {
+    color: var(--color-accent);
+    user-select: text;
+}
+
+.confirmation {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background-color: var(--color-background);
+    transition: 0.3s;
+    top: 0
+}
+
+.show-modal {
+    opacity: 1!important;
+    pointer-events: all!important;
+    transform: scale(1, 1)!important;
+    z-index: 50;
+}
+
+.dark {
+    opacity: 0.95;
+}
+
+.make-sure {
+    @include formContainerStyles();
+    position: absolute;
+    padding: 30px 30px;
+    width: 25%;
+    row-gap: 10px;
+    max-width: 350px;
+    margin-top: 14%;
+    opacity: 0;
+    pointer-events: none;
+    animation: none;
+    transition: 0.3s;
+    transform: scale(0.85, 0.85);
+    background-color: white;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    column-gap: 10px;
+}
+
+#sure, #not-sure {
+    @include signInUpButtonStyles();
+    padding: 10px 15px;
+    width: 50%;
+}
+
+#sure {
+    color: var(--color-main);
+    background-color: var(--color-text);
+}

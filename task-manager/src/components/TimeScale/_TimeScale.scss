@@ -1,0 +1,40 @@
+.time-scale {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+
+    div {
+        display: flex;
+    }
+}
+
+.date {
+    display: flex;
+    justify-content: center;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 15px;
+    background: var(--background-gradient);
+}
+
+.arrow {
+    padding: 15px 20px;
+    border-radius: 10px;
+    background-color: var(--color-accent);
+    font-size: 20px;
+    font-weight: 1000;
+    color: var(--color-background);
+    transition: 0.2s;
+    margin-inline: 10px;
+
+    &:hover {
+        opacity: 0.5;
+    }
+}
+
+.react-horizontal-scrolling-menu--scroll-container {
+    overflow: hidden;
+    display: flex;
+    column-gap: 5px;
+    width: 402px;
+}

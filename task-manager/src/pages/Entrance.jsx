@@ -5,16 +5,16 @@ export default function Entrance() {
         <section className="entrance">
             <div className="entrance__container">
 
-                <h1 className="entrance__greetings">Добро пожаловать<br /> в <span className="highlight">task-manager</span>!<br />За работу!</h1>
+                <h1 className="entrance__greetings">Добро пожаловать в <span className="highlight">Chronos</span> - инструмент управления временем</h1>
 
                 <div className="entrance__buttons-wrapper">
 
                     <Link to="/register">
-                        <button className="entrance__button register">Регистрация</button>
+                        <button className="entrance__button register-btn">Регистрация</button>
                     </Link>
 
                     <Link to="/login">
-                        <button className="entrance__button login">Войти</button>
+                        <button className="entrance__button login-btn">Войти</button>
                     </Link>
 
                 </div>

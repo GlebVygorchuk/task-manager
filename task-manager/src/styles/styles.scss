@@ -1,11 +1,14 @@
 @import 
+'./mixins',
 './fonts',
 './Entrance',
 './Register',
 './Login',
 './MainPage',
 './normalize',
-'./variables';
+'./variables',
+'../components/TimeScale/TimeScale';
+
 
 body {
     font-family: 'Comfortaa';
@@ -23,3 +26,5 @@ body {
         transform: translateX(0);
     }
 }
+
+

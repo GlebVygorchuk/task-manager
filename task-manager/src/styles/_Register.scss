@@ -3,15 +3,7 @@
     justify-content: center;
     
     &__container {
-        display: flex;
-        flex-direction: column;
-        text-align: center;
-        background: var(--background-gradient);
-        row-gap: 20px;
-        padding: 40px 60px;
-        border-radius: 10px;
-        margin-top: 7.5vh;
-        animation: appear 0.5s forwards;
+        @include formContainerStyles()
     }
 
     &__form {
@@ -21,36 +13,11 @@
     }
 
     &__input {
-        background-color: #505050;
-        padding: 15px 17.5px;
-        font-size: 20px;
-        color: var(--color-text);
-        font-family: 'Comfortaa';
-        border-radius: 10px;
-        border: 2px solid transparent;
-        position: relative;
-        transition: 0.3s;
-
-        &:placeholder {
-            font-family: 'Comfortaa';
-        }
-
-        &:focus {
-            border: 2px solid var(--color-accent);
-        }
+        @include inputStyles()
     }
 
     &__button {
-        margin-top: 10px;
-        padding: 15px 25px;
-        border-radius: 10px;
-        font-size: 22.5px;
-        background-color: var(--color-accent);
-        color: var(--color-text);
-
-        &:hover {
-            opacity: 0.5;
-        }
+        @include signInUpButtonStyles()
     }
 }
 
@@ -63,6 +30,7 @@
     padding-top: 20%;
     display: none;
     justify-content: center;
+    z-index: 100;
 
     &::after, &::before {
         position: absolute;

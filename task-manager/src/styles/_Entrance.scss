@@ -1,41 +1,46 @@
 .entrance {
     display: flex;
     justify-content: center;
+    padding-inline: 300px;
 
     &__container {
         display: flex;
-        padding: 150px 90px;
+        flex-direction: column;
         margin-top: 10vh;
-        border-radius: 10px;
         background: var(--background-gradient);
-        column-gap: 100px;
+        padding: 40px;
+        border-radius: 10px;
         animation: appear 0.5s forwards;
+        row-gap: 30px;
         opacity: 0;
     }
 
     &__greetings {
-        font-size: 50px;
+        font-size: 45px;
+        align-self: center;
         animation: appear 0.5s forwards;
         animation-delay: 0.1s;
         opacity: 0;
+        text-align: center;
+        line-height: 1.3;
     }
 
     &__buttons-wrapper {
         display: flex;
         flex-direction: column;
+        align-self: center;
         row-gap: 10px;
     }
 
     &__button {
         font-size: 40px;
-
         color: var(--color-text);
         padding: 17.5px 27.5px;
         border-radius: 10px;
     }
 }
 
-.register {
+.register-btn {
     background-color: var(--color-text);
     color: var(--color-background);
     animation: appear 0.5s forwards;
@@ -47,7 +52,7 @@
     }
 }
 
-.login {
+.login-btn {
     background-color: var(--color-accent);
     width: 100%;
     animation: appear 0.5s forwards;
@@ -55,7 +60,7 @@
     opacity: 0;
 
     &:hover {
-        background-color: #106e31;
+        background-color: #00597c;
         color: rgb(140, 140, 140);
     }
 }

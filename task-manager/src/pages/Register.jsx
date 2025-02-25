@@ -1,11 +1,12 @@
 import { auth } from "../firebase"
-import { createUserWithEmailAndPassword, sendEmailVerification, onAuthStateChanged, getAuth} from "firebase/auth"
+import { createUserWithEmailAndPassword, sendEmailVerification, onAuthStateChanged, getAuth, updateCurrentUser, updateProfile} from "firebase/auth"
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 
 export default function Register() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [nickname, setNickname] = useState('')
     const [passwordCheck, setPasswordCheck] = useState('')
     const [visiblePasswords, setVisiblePasswords] = useState({
         original: false,
@@ -30,7 +31,7 @@ export default function Register() {
                     setTimeout(() => {
                         navigate("/main")
                         clearInterval(interval)
-                    }, 2000)
+                    }, 1000)
                 } 
             }
         }, 5000)
@@ -58,11 +59,14 @@ export default function Register() {
                 const userData = await createUserWithEmailAndPassword(auth, email, password)
                 const user = userData.user
                 await sendEmailVerification(user)
+
+                await updateProfile(user, {
+                    displayName: nickname
+                })
             } catch (error) {
                 alert(error.message)
             }
         }
-
         startCountdown()
     }
 
@@ -109,14 +113,21 @@ export default function Register() {
     }
 
     return (
-        <>
         <section className="registration">
 
             <div className="registration__container">
 
                 <h1 style={{fontSize: '50px'}}>Регистрация</h1>
 
-                <form className="registration__form" action="">
+                <form className="registration__form">
+
+                   <input
+                    className="registration__input" 
+                    value={nickname}
+                    placeholder="Ваше имя"
+                    onInput={(e) => setNickname(e.target.value)}
+                    type="text"
+                    maxLength={20} />
 
                     <input
                     className="registration__input" 
@@ -130,19 +141,22 @@ export default function Register() {
                         className="registration__input"
                         onFocus={() => setAdviceVisible(true)} 
                         onBlur={() => setAdviceVisible(false)} 
+                        onInput={(e) => setPassword(e.target.value)}
                         placeholder="Ваш пароль"
                         style={{width: "100%"}}
-                        onInput={(e) => setPassword(e.target.value)}
+                        maxLength={25}
                         value={password} 
                         type={visiblePasswords.original ? "text" : "password"} />
 
                         <svg onClick={() => showPassword('eye')} id="eye" className="svg-eye" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path d="M12.015 7c4.751 0 8.063 3.012 9.504 4.636-1.401 1.837-4.713 5.364-9.504 5.364-4.42 0-7.93-3.536-9.478-5.407 1.493-1.647 4.817-4.593 9.478-4.593zm0-2c-7.569 0-12.015 6.551-12.015 6.551s4.835 7.449 12.015 7.449c7.733 0 11.985-7.449 11.985-7.449s-4.291-6.551-11.985-6.551zm-.015 5c1.103 0 2 .897 2 2s-.897 2-2 2-2-.897-2-2 .897-2 2-2zm0-2c-2.209 0-4 1.792-4 4 0 2.209 1.791 4 4 4s4-1.791 4-4c0-2.208-1.791-4-4-4z"/></svg>
+
                         <div id="advice" className={adviceVisible ? 'advice visible' : 'advice'}>
                             <ul className="advice__list">
                                 <li>8-25 символов</li>
                                 <li>Запрещены: "&lt;", "&gt;", "$", "&", "/", "*"</li>
                             </ul>
                         </div>
+                        
                     </div>
 
                     <div className="input-wrapper">
@@ -175,11 +189,7 @@ export default function Register() {
 
                 </form>
             </div>
-            <div className={loading ? "loading-screen load" : "loading-screen"}>
-                
-            </div>
+            <div className={loading ? "loading-screen load" : "loading-screen"}></div>
         </section>
-
-        </>
     )
 }
