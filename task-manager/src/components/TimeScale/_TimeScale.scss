@@ -1,6 +1,6 @@
 .time-scale {
-    margin-top: 20px;
     display: flex;
+    margin: 20px;
     justify-content: center;
 
     div {
@@ -11,24 +11,42 @@
 .date {
     display: flex;
     justify-content: center;
-    padding: 15px;
-    border-radius: 10px;
+    padding: 12px;
+    min-width: 50px;
+    border-radius: 20px;
+    border: 1.5px solid var(--color-background);
     font-size: 15px;
     background: var(--background-gradient);
+    cursor: pointer;
+    user-select: none;
+    transition: 0.3s;
+
+    &:hover {
+        border: 1.5px solid var(--color-accent)
+    }
+}
+
+.chosen {
+    background-color: var(--color-accent);
+    border: 1.5px solid var(--color-accent);
+
+    p {
+        color: var(--color-background);
+    }
 }
 
 .arrow {
-    padding: 15px 20px;
-    border-radius: 10px;
+    padding: 12.5px 17.5px;
+    border-radius: 20px;
     background-color: var(--color-accent);
     font-size: 20px;
     font-weight: 1000;
     color: var(--color-background);
-    transition: 0.2s;
+    transition: opacity 0.2s;
     margin-inline: 10px;
 
     &:hover {
-        opacity: 0.5;
+        opacity: 0.7;
     }
 }
 
@@ -36,5 +54,17 @@
     overflow: hidden;
     display: flex;
     column-gap: 5px;
-    width: 402px;
+    width: 567px;
+}
+
+.day-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.day {
+    color: var(--color-accent);
+    font-weight: 1000;
+    font-size: 20px;
 }

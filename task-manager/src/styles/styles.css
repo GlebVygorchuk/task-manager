@@ -13,7 +13,7 @@
   margin-top: 10vh;
   background: var(--background-gradient);
   padding: 40px;
-  border-radius: 10px;
+  border-radius: 5px;
   animation: appear 0.5s forwards;
   row-gap: 30px;
   opacity: 0;
@@ -37,7 +37,7 @@
   font-size: 40px;
   color: var(--color-text);
   padding: 17.5px 27.5px;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 .register-btn {
@@ -79,7 +79,7 @@
   background: var(--background-gradient);
   row-gap: 20px;
   padding: 40px 60px;
-  border-radius: 10px;
+  border-radius: 20px;
   margin-top: 7.5vh;
   animation: appear 0.5s forwards;
 }
@@ -94,7 +94,7 @@
   font-size: 20px;
   color: var(--color-text);
   font-family: "Comfortaa";
-  border-radius: 10px;
+  border-radius: 20px;
   border: 2px solid transparent;
   position: relative;
   transition: 0.3s;
@@ -111,11 +111,10 @@
 .registration__button {
   margin-top: 10px;
   padding: 15px 25px;
-  border-radius: 10px;
+  border-radius: 20px;
   font-size: 22.5px;
   background-color: var(--color-accent);
   color: var(--color-text);
-  font-weight: 1000;
 }
 .registration__button:hover {
   opacity: 0.5;
@@ -175,7 +174,7 @@
   top: 14%;
   transition: 0.2s;
   padding: 5px;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 .active {
@@ -232,7 +231,7 @@
   background: var(--background-gradient);
   row-gap: 20px;
   padding: 40px 60px;
-  border-radius: 10px;
+  border-radius: 20px;
   margin-top: 7.5vh;
   animation: appear 0.5s forwards;
 }
@@ -247,7 +246,7 @@
   font-size: 20px;
   color: var(--color-text);
   font-family: "Comfortaa";
-  border-radius: 10px;
+  border-radius: 20px;
   border: 2px solid transparent;
   position: relative;
   transition: 0.3s;
@@ -264,11 +263,10 @@
 .login__button {
   margin-top: 10px;
   padding: 15px 25px;
-  border-radius: 10px;
+  border-radius: 20px;
   font-size: 22.5px;
   background-color: var(--color-accent);
   color: var(--color-text);
-  font-weight: 1000;
 }
 .login__button:hover {
   opacity: 0.5;
@@ -298,7 +296,7 @@
   background: var(--background-gradient);
   row-gap: 20px;
   padding: 40px 60px;
-  border-radius: 10px;
+  border-radius: 20px;
   margin-top: 7.5vh;
   animation: appear 0.5s forwards;
   position: absolute;
@@ -323,8 +321,8 @@
   width: 30px;
   height: 30px;
   position: absolute;
-  top: 2.5px;
-  right: 2.5px;
+  top: 5px;
+  right: 8px;
   border-radius: 10px;
   cursor: pointer;
   transition: 0.2s;
@@ -335,14 +333,14 @@
   width: 20px;
   top: 13px;
   right: 4.5px;
-  height: 2px;
+  height: 2.5px;
   background-color: var(--color-accent);
 }
 .close-button::after {
-  transform: rotate(35deg);
+  transform: rotate(42.5deg);
 }
 .close-button::before {
-  transform: rotate(-35deg);
+  transform: rotate(-42.5deg);
 }
 .close-button:hover {
   opacity: 0.5;
@@ -356,7 +354,7 @@ body {
   display: flex;
   justify-content: space-between;
   padding: 20px 50px;
-  border-bottom: 1px solid rgb(35, 35, 35);
+  border-bottom: 1px solid rgb(232, 232, 232);
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
@@ -369,7 +367,7 @@ body {
 .main__header__name svg {
   align-self: center;
   fill: var(--color-accent);
-  animation: rotate 3s infinite;
+  animation: rotate 4s infinite;
 }
 @keyframes rotate {
   50% {
@@ -398,14 +396,14 @@ body {
 .main__header__logout-btn {
   margin-top: 10px;
   padding: 15px 25px;
-  border-radius: 10px;
+  border-radius: 20px;
   font-size: 22.5px;
   background-color: var(--color-accent);
   color: var(--color-text);
-  font-weight: 1000;
   margin-top: 0;
   font-size: 20px;
   padding: 12.5px 17.5px;
+  color: var(--color-background);
 }
 .main__header__logout-btn:hover {
   opacity: 0.5;
@@ -420,12 +418,13 @@ body {
   transform: translateY(10px);
   row-gap: 15px;
   background: var(--background-gradient);
-  padding: 25px 35px;
-  border-radius: 10px;
+  padding: 22.5px 27.5px;
+  border-radius: 20px;
   box-shadow: 0px 0px 20px var(--color-background);
   right: 50px;
   top: 70px;
   font-size: 17.5px;
+  box-shadow: var(--box-shadow);
 }
 
 .profile-information {
@@ -486,7 +485,7 @@ body {
   background: var(--background-gradient);
   row-gap: 20px;
   padding: 40px 60px;
-  border-radius: 10px;
+  border-radius: 20px;
   margin-top: 7.5vh;
   animation: appear 0.5s forwards;
   position: absolute;
@@ -513,11 +512,10 @@ body {
 #sure, #not-sure {
   margin-top: 10px;
   padding: 15px 25px;
-  border-radius: 10px;
+  border-radius: 20px;
   font-size: 22.5px;
   background-color: var(--color-accent);
   color: var(--color-text);
-  font-weight: 1000;
   padding: 10px 15px;
   width: 50%;
 }
@@ -543,6 +541,8 @@ button {
 
 ul {
   list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 input {
@@ -552,15 +552,16 @@ input {
 
 :root {
   --color-main: #292929;
-  --color-text: white;
-  --color-accent: #00A8E8;
-  --color-background: #0e0e0e;
-  --background-gradient: linear-gradient(to bottom,#1a1a1a, #131313) ;
+  --color-text: #333333;
+  --color-accent: #007bff;
+  --color-background: #FFFFFF;
+  --background-gradient: #f2f2f2;
+  --box-shadow: 0 5px 10px rgba(185, 185, 185, 0.152);
 }
 
 .time-scale {
-  margin-top: 20px;
   display: flex;
+  margin: 20px;
   justify-content: center;
 }
 .time-scale div {
@@ -570,24 +571,42 @@ input {
 .date {
   display: flex;
   justify-content: center;
-  padding: 15px;
-  border-radius: 10px;
+  padding: 12px;
+  min-width: 50px;
+  border-radius: 20px;
+  border: 1.5px solid var(--color-background);
   font-size: 15px;
   background: var(--background-gradient);
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  transition: 0.3s;
+}
+.date:hover {
+  border: 1.5px solid var(--color-accent);
+}
+
+.chosen {
+  background-color: var(--color-accent);
+  border: 1.5px solid var(--color-accent);
+}
+.chosen p {
+  color: var(--color-background);
 }
 
 .arrow {
-  padding: 15px 20px;
-  border-radius: 10px;
+  padding: 12.5px 17.5px;
+  border-radius: 20px;
   background-color: var(--color-accent);
   font-size: 20px;
   font-weight: 1000;
   color: var(--color-background);
-  transition: 0.2s;
+  transition: opacity 0.2s;
   margin-inline: 10px;
 }
 .arrow:hover {
-  opacity: 0.5;
+  opacity: 0.7;
 }
 
 .react-horizontal-scrolling-menu--scroll-container {
@@ -595,7 +614,86 @@ input {
   display: flex;
   -moz-column-gap: 5px;
        column-gap: 5px;
-  width: 402px;
+  width: 567px;
+}
+
+.day-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.day {
+  color: var(--color-accent);
+  font-weight: 1000;
+  font-size: 20px;
+}
+
+.taskboard__write-task {
+  border: 1px solid rgb(210, 210, 210);
+  background: transparent;
+  font-family: "Comfortaa";
+  color: var(--color-text);
+  border-radius: 20px;
+  font-size: 20px;
+  padding: 10px 20px;
+  transition: 0.3s;
+  width: 25%;
+  box-shadow: var(--box-shadow);
+}
+.taskboard__write-task::-moz-placeholder {
+  color: rgb(210, 210, 210);
+}
+.taskboard__write-task::placeholder {
+  color: rgb(210, 210, 210);
+}
+.taskboard__write-task:focus {
+  border: 1px solid var(--color-accent);
+}
+.taskboard__add-task {
+  margin: 0;
+  padding-inline: 20px;
+  font-size: 30px;
+  color: var(--color-background);
+  background-color: var(--color-accent);
+  transition: 0.2s;
+  border-radius: 20px;
+}
+.taskboard__add-task:hover {
+  opacity: 0.7;
+}
+.taskboard__header {
+  display: flex;
+  justify-content: center;
+  -moz-column-gap: 7.5px;
+       column-gap: 7.5px;
+}
+.taskboard__task-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  row-gap: 10px;
+}
+.taskboard__task {
+  background: var(--background-gradient);
+  max-width: 500px;
+  padding: 15px 20px;
+  font-size: 20px;
+  border-radius: 20px;
+  animation: drop 0.3s forwards;
+  box-shadow: var(--box-shadow);
+}
+@keyframes drop {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 body {

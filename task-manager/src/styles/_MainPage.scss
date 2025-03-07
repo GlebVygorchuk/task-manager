@@ -8,7 +8,7 @@ body {
         display: flex;
         justify-content: space-between;
         padding: 20px 50px;
-        border-bottom: 1px solid rgb(35, 35, 35);
+        border-bottom: 1px solid rgb(232, 232, 232);
         user-select: none;
 
         &__name {
@@ -27,7 +27,7 @@ body {
 
                 align-self: center;
                 fill: var(--color-accent);
-                animation: rotate 3s infinite;
+                animation: rotate 4s infinite;
             }
         }
 
@@ -56,6 +56,7 @@ body {
             margin-top: 0;
             font-size: 20px;
             padding: 12.5px 17.5px;
+            color: var(--color-background);
         }
 
         &__info {
@@ -68,12 +69,13 @@ body {
             transform: translateY(10px);
             row-gap: 15px;
             background: var(--background-gradient);
-            padding: 25px 35px;
-            border-radius: 10px;
+            padding: 22.5px 27.5px;
+            border-radius: 20px;
             box-shadow: 0px 0px 20px var(--color-background);
             right: 50px;
             top: 70px;
             font-size: 17.5px;
+            box-shadow: var(--box-shadow);
         }
     }
 }

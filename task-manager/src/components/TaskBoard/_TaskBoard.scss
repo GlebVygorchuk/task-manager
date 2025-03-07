@@ -1,0 +1,73 @@
+.taskboard {
+
+    &__write-task {
+        border: 1px solid rgb(210, 210, 210);
+        background: transparent;
+        font-family: 'Comfortaa';
+        color: var(--color-text);
+        border-radius: 20px;
+        font-size: 20px;
+        padding: 10px 20px;
+        transition: 0.3s;
+        width: 25%;
+        box-shadow: var(--box-shadow);
+
+        &::placeholder {
+            color: rgb(210, 210, 210);
+        }
+
+        &:focus {
+            border: 1px solid var(--color-accent);
+        }
+    }
+
+    &__add-task {
+        margin: 0;
+        padding-inline: 20px;
+        font-size: 30px;
+        color: var(--color-background);
+        background-color: var(--color-accent);
+        transition: 0.2s;
+        border-radius: 20px;
+
+        &:hover {
+            opacity: 0.7;
+        }
+    }
+
+    &__header {
+        display: flex;
+        justify-content: center;
+        column-gap: 7.5px;
+    }
+
+    &__task-list {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+        row-gap: 10px;
+    }
+
+    &__task {
+        @keyframes drop {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        background: var(--background-gradient);
+        max-width: 500px;
+        padding: 15px 20px;
+        font-size: 20px;
+        border-radius: 20px;
+        animation: drop 0.3s forwards;
+        box-shadow: var(--box-shadow);
+    }
+}

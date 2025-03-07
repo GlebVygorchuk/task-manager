@@ -61,8 +61,8 @@
     width: 30px;
     height: 30px;
     position: absolute;
-    top: 2.5px;
-    right: 2.5px;
+    top: 5px;
+    right: 8px;
     border-radius: 10px;
     cursor: pointer;
     transition: 0.2s;
@@ -73,16 +73,16 @@
         width: 20px;
         top: 13px;
         right: 4.5px;
-        height: 2px;
+        height: 2.5px;
         background-color: var(--color-accent);
     }
 
     &::after {
-        transform: rotate(35deg);
+        transform: rotate(42.5deg);
     }
 
     &::before {
-        transform: rotate(-35deg);
+        transform: rotate(-42.5deg);
     }
 
     &:hover {
