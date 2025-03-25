@@ -17,6 +17,7 @@ export default function MainPage() {
         email: ''
     })
     const [currentTasks, setCurrentTasks] = useState([])
+    const [categories, setCategories] = useState([])
     const { selectedDate } = useContext(AppContext)
 
     const auth = getAuth()
@@ -36,44 +37,42 @@ export default function MainPage() {
         return () => unsubscribe()
     }, [])
 
-    async function getData() {
-        const tasksThisDay = []
-
-        const querySnapshot = await getDocs(collection(database, 'users', userID, 'tasks', `${selectedDate}`, 'tasks'))
-        
-        if (!querySnapshot.empty) {
-            const snapshot = querySnapshot.docs.map(doc => ({
-                id: doc.id,
-                task: doc.data().task
-            }))
-    
-            snapshot.forEach(task => {
-                tasksThisDay.push(task)
-            })
-        }
-
-        setCurrentTasks(tasksThisDay)
-    }
-
     useEffect(() => {
         if (userID && selectedDate) {
-            const unsubscribe = onSnapshot(
+
+            const getTasks = onSnapshot(
                 collection(database, 'users', userID, 'tasks', `${selectedDate}`, 'tasks'),
                 (querySnapshot) => {
                     const tasksThisDay = []
                     querySnapshot.forEach(doc => {
                         tasksThisDay.push({
                             id: doc.id,
-                            task: doc.data().task
+                            task: doc.data().task,
+                            status: doc.data().status
                         })
                     })
                     setCurrentTasks(tasksThisDay)
                 }
             )
 
-            console.log(currentTasks)
+            const getCategories = onSnapshot(
+                collection(database, 'users', userID, 'tasks', selectedDate, 'categories'),
+                (querySnapshot) => {
+                    const categoriesThisDay = []
+                    querySnapshot.forEach(doc => {
+                        categoriesThisDay.push({
+                            id: doc.id,
+                            category: doc.data().category
+                        })
+                    })
+                    setCategories(categoriesThisDay)
+                }
+            )
 
-            return () => unsubscribe()
+            return () => {
+                getTasks()
+                getCategories()
+            }
         }
     }, [selectedDate, userID])
 
@@ -115,7 +114,7 @@ export default function MainPage() {
         
         <main className="main">
             <TimeScale />
-            {selectedDate && <TaskBoard date={selectedDate} tasks={currentTasks}/>}
+            {selectedDate && <TaskBoard date={selectedDate} tasks={currentTasks} categories={categories}/>}
         </main>
         
         <div className={showModal ? 'confirmation dark' : 'confirmation'}>

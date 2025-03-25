@@ -1,13 +1,14 @@
 @mixin inputStyles() {
-    background-color: #505050;
+    background-color: var(--color-background);
     padding: 15px 17.5px;
     font-size: 20px;
     color: var(--color-text);
     font-family: 'Comfortaa';
-    border-radius: 20px;
+    border-radius: var(--border-radius);
     border: 2px solid transparent;
     position: relative;
     transition: 0.3s;
+    box-shadow: var(--box-shadow);
 
     &::placeholder {
         font-family: 'Comfortaa';
@@ -38,8 +39,5 @@
     font-size: 22.5px;
     background-color: var(--color-accent);
     color: var(--color-text);
-
-    &:hover {
-        opacity: 0.5;
-    }
+    box-shadow: var(--box-shadow);
 }

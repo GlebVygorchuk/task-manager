@@ -9,7 +9,7 @@
         margin-top: 10vh;
         background: var(--background-gradient);
         padding: 40px;
-        border-radius: 5px;
+        border-radius: var(--border-radius);
         animation: appear 0.5s forwards;
         row-gap: 30px;
         opacity: 0;
@@ -36,32 +36,36 @@
         font-size: 40px;
         color: var(--color-text);
         padding: 17.5px 27.5px;
-        border-radius: 5px;
+        border-radius: var(--border-radius);
     }
 }
 
 .register-btn {
-    background-color: var(--color-text);
-    color: var(--color-background);
+    background-color: var(--color-background);
+    color: var(--color-text);
     animation: appear 0.5s forwards;
     animation-delay: 0.2s;
     opacity: 0;
+    box-shadow: var(--box-shadow);
+    transition: 0.3s;
 
     &:hover {
-        background-color: rgb(131, 131, 131);
+        background-color: rgba(179, 179, 179, 0.711);
     }
 }
 
 .login-btn {
     background-color: var(--color-accent);
+    color: var(--color-background);
     width: 100%;
     animation: appear 0.5s forwards;
     animation-delay: 0.3s;
     opacity: 0;
+    box-shadow: var(--box-shadow);
+    transition: 0.3s;
 
     &:hover {
-        background-color: #00597c;
-        color: rgb(140, 140, 140);
+        background-color: #0055b0;
     }
 }
 

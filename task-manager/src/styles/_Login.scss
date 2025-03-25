@@ -18,6 +18,11 @@
 
     &__button {
         @include signInUpButtonStyles();
+        color: var(--color-background);
+
+        &:hover {
+            background-color: #0055b0;
+        }
     }
 }
 
