@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom"
 import { AppContext } from "../components/AppContext"
 import { useContext } from "react"
 import { database } from "../firebase"
-import { collection, getDocs, onSnapshot } from "firebase/firestore"
+import { collection, onSnapshot } from "firebase/firestore"
 import TimeScale from "../components/TimeScale/TimeScale"
 import TaskBoard from "../components/TaskBoard/TaskBoard"
  
@@ -56,7 +56,7 @@ export default function MainPage() {
             )
 
             const getCategories = onSnapshot(
-                collection(database, 'users', userID, 'tasks', selectedDate, 'categories'),
+                collection(database, 'users', userID, 'tasks', `${selectedDate}`, 'categories'),
                 (querySnapshot) => {
                     const categoriesThisDay = []
                     querySnapshot.forEach(doc => {

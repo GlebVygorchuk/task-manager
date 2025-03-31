@@ -45,11 +45,11 @@
     font-size: 20px;
     font-weight: 1000;
     color: var(--color-background);
-    transition: 0.2s;
+    transition: 0.3s;
     margin-inline: 10px;
 
     &:hover {
-        background-color: #0055b0;
+        opacity: 0.6;
     }
 }
 

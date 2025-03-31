@@ -5,7 +5,6 @@ body {
 .main {
 
     &__header {
-        position: relative;
         display: flex;
         justify-content: space-between;
         padding: 20px 50px;
@@ -33,6 +32,7 @@ body {
         &__profile {
             align-self: center;
             cursor: pointer;
+            position: relative;
             transition: 0.2s;
 
             svg {
@@ -50,9 +50,10 @@ body {
             font-size: 20px;
             padding: 12.5px 17.5px;
             color: var(--color-background);
+            transition: 0.3s;
 
             &:hover {
-                background-color: #0055b0;
+                opacity: 0.6;
             }
         }
 
@@ -72,7 +73,7 @@ body {
             right: 50px;
             top: 70px;
             font-size: 17.5px;
-            z-index: 2;
+            z-index: 1;
         }
     }
 }
@@ -107,6 +108,7 @@ body {
     display: flex;
     justify-content: center;
     position: fixed;
+    z-index: 2;
     opacity: 0;
     width: 100%;
     height: 100%;
@@ -120,7 +122,7 @@ body {
     opacity: 1!important;
     pointer-events: all!important;
     transform: scale(1, 1)!important;
-    z-index: 5;
+    z-index: 3;
 }
 
 .dark {
@@ -155,8 +157,9 @@ body {
     padding: 10px 15px;
     width: 50%;
     color: var(--color-background);
+    transition: 0.3s;
 
     &:hover {
-        background-color: #0055b0;
+        opacity: 0.6;
     }
 }

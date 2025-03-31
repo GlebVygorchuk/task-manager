@@ -5,6 +5,7 @@ import { useEffect } from "react"
 import { doc, deleteDoc, updateDoc } from 'firebase/firestore'
 import TaskItem from "../TaskItem"
 import Category from "../Category"
+import CategoryTasks from "../CategoryTasks"
 
 export default function TaskBoard({ date, tasks, categories }) {
     const [taskValue, setTaskValue] = useState('')
@@ -13,13 +14,15 @@ export default function TaskBoard({ date, tasks, categories }) {
     const [categoriesArray, setCategoriesArray] = useState([])
     const [operatedTask, setOperatedTask] = useState('')
     const [section, setSection] = useState('')
+    const [category, setCategory] = useState('')
+    const [chosenCategoryId, setChosenCategoryId] = useState('')
 
     const userID = auth.currentUser ? auth.currentUser.uid : null
 
     async function addTask() {
         setTaskValue('')
         try {
-            const docRef = await addDoc(collection(database, 'users', userID, 'tasks', `${date}`, 'tasks'), {
+            await addDoc(collection(database, 'users', userID, 'tasks', date, 'tasks'), {
                 task: taskValue,
                 status: 'created'
             })
@@ -31,7 +34,7 @@ export default function TaskBoard({ date, tasks, categories }) {
     async function addCategory() {
         setCategoryValue('')
         try {
-            const docRef = await addDoc(collection(database, 'users', userID, 'tasks', `${date}`, 'categories'), {
+            await addDoc(collection(database, 'users', userID, 'tasks', date, 'categories'), {
                 category: categoryValue
             })
         } catch(error) {
@@ -42,32 +45,6 @@ export default function TaskBoard({ date, tasks, categories }) {
     function handleEnterPress(e, func) {
         if (e.key === 'Enter') {
             func()
-        }
-    }
-
-    async function deleteTask(id) {
-        setOperatedTask('')
-        const item = document.getElementById(id)
-        item.classList.add('deleting')
-
-        setTimeout(() => {
-            deleteDoc(doc(database, 'users', userID, 'tasks', `${date}`, 'tasks', `${id}`))
-        }, 500)
-
-        setTimeout(() => {
-            item.classList.remove('deleting')
-        }, 500)
-    }
-
-    async function handleStatus(id, status) {
-        const docRef = doc(database, 'users', userID, 'tasks', `${date}`, 'tasks', `${id}`)
-        try {
-            await updateDoc(docRef, {
-                status: status
-            })
-        } 
-        catch(error) {
-            console.error(error.message)
         }
     }
 
@@ -82,8 +59,13 @@ export default function TaskBoard({ date, tasks, categories }) {
         setCategoriesArray(categories)
     }, [tasks, categories])
 
+    useEffect(() => {
+        setCategory('')
+    }, [date])
+
     return (
         <div className="taskboard">
+            {category === '' ? <>
             <div className="taskboard__select">
                 <button 
                 onClick={() => setSection('tasks')} 
@@ -119,14 +101,13 @@ export default function TaskBoard({ date, tasks, categories }) {
                                     return (
                                         <TaskItem 
                                         content={task.task}
+                                        index={tasksArray.indexOf(task) + 1}
                                         className={task.status === 'complete' ? "taskboard__task complete" : task.status === 'process' ? 'taskboard__task in-process' : 'taskboard__task'}
                                         status={task.status} 
-                                        onDelete={() => deleteTask(task.id)} 
                                         onSelect={() => toggleOptions(task.id)}
-                                        onFinish={() => handleStatus(task.id, 'complete')}
-                                        onStart={() => handleStatus(task.id, 'process')}
                                         operated={operatedTask}
                                         itemId={task.id}
+                                        section={'tasks'}
                                         date={date}
                                         key={task.id}/>
                                     )
@@ -151,11 +132,16 @@ export default function TaskBoard({ date, tasks, categories }) {
                             <ul className="taskboard__categories-list">
                                 {categoriesArray.map(category => 
                                     <Category 
+                                    onClick={() => {
+                                        setCategory(category.category)
+                                        setChosenCategoryId(category.id)
+                                    }}
                                     key={category.id}
                                     content={category.category}/>
                                 )}
                             </ul>
                         </div> : null}
+            </> : <CategoryTasks categoryId={chosenCategoryId} date={date} title={category} onReturn={() => setCategory('')} />}
         </div>
     )
 }

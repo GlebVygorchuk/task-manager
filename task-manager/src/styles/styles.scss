@@ -15,6 +15,11 @@ body {
     font-family: 'Comfortaa';
     background-color: var(--color-background);
     color: var(--color-text);
+
+    &::selection {
+        background-color: black;
+        color: white;
+    }
 }
 
 @keyframes appear {
