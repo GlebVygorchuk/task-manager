@@ -32,7 +32,6 @@ body {
         &__profile {
             align-self: center;
             cursor: pointer;
-            position: relative;
             transition: 0.2s;
 
             svg {
@@ -131,8 +130,8 @@ body {
 
 .make-sure {
     @include formContainerStyles();
-    position: fixed;
-    z-index: 10;
+    position: absolute;
+    z-index: 4;
     padding: 30px 30px;
     width: 25%;
     row-gap: 10px;

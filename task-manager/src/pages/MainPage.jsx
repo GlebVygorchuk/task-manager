@@ -62,7 +62,8 @@ export default function MainPage() {
                     querySnapshot.forEach(doc => {
                         categoriesThisDay.push({
                             id: doc.id,
-                            category: doc.data().category
+                            category: doc.data().category,
+                            color: doc.data().color
                         })
                     })
                     setCategories(categoriesThisDay)

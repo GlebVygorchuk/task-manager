@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { database, auth } from "../firebase"
 import { updateDoc, doc, deleteDoc } from "firebase/firestore"
 
-export default function TaskItem({ content, className, status, onSelect, operated, itemId, date, section, categoryId, index }) {
+export default function TaskItem({ content, className, status, onSelect, operated, itemId, date, section, categoryId, index, style}) {
     const [taskStatus, setTaskStatus] = useState('')
     const [isRedacting, setIsRedacting] = useState(false)
     const [inputValue, setInputValue] = useState(content)
@@ -113,7 +113,7 @@ export default function TaskItem({ content, className, status, onSelect, operate
         </svg> : null}
         <p className="task-index">{index}.</p>
         <div className="content-wrapper">
-            <li className={className}>
+            <li style={style} className={className}>
                 {isRedacting ? <textarea 
                 onBlur={() => handleEdit(itemId)} 
                 onInput={(e) => setInputValue(e.target.value)}
@@ -130,7 +130,7 @@ export default function TaskItem({ content, className, status, onSelect, operate
                         </p> : null}
                     </div>
                     <div className="button-wrapper">
-                        <div onClick={() => handleStatus(itemId, 'complete')} className="complete-btn">
+                        <div style={status === 'complete' ? {border: '1.5px solid transparent'} : null} onClick={() => handleStatus(itemId, 'complete')} className="complete-btn">
                             {status === 'complete' ? 
                             <svg style={{marginTop: '-5px', marginLeft: '-5px'}} xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" viewBox="0 0 16 16">
                                 <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/>
