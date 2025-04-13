@@ -1,7 +1,7 @@
 .time-scale {
     display: flex;
+    column-gap: 10px;
     margin: 20px;
-    justify-content: center;
     animation: appear 0.5s forwards;
     animation-delay: 0.3s;
     opacity: 0;
@@ -15,23 +15,23 @@
     display: flex;
     justify-content: center;
     padding: 12px;
-    min-width: 50px;
+    min-width: 80px;
     border-radius: var(--border-radius);
-    border: 1.5px solid var(--color-background);
-    font-size: 15px;
+    border: 2px solid var(--color-background);
+    font-size: 20px;
     background: var(--background-gradient);
     cursor: pointer;
     user-select: none;
     transition: 0.3s;
 
     &:hover {
-        border: 1.5px solid var(--color-accent)
+        border: 2px solid var(--color-accent)
     }
 }
 
 .chosen {
     background-color: var(--color-accent);
-    border: 1.5px solid var(--color-accent);
+    border: 2px solid var(--color-accent);
 
     p {
         color: var(--color-background);
@@ -57,7 +57,8 @@
     overflow: hidden;
     display: flex;
     column-gap: 5px;
-    width: 567px;
+    width: 561px;
+    padding-inline: 2px;
 }
 
 .day-wrapper {

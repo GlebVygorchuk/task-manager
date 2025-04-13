@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
 import { database, auth } from "../../firebase"
 import { collection, addDoc, getDoc } from "firebase/firestore"
 import { useEffect } from "react"
@@ -6,19 +6,21 @@ import { doc, deleteDoc, updateDoc } from 'firebase/firestore'
 import TaskItem from "../TaskItem"
 import Category from "../Category"
 import CategoryTasks from "../CategoryTasks"
+import { AppContext } from "../AppContext"
 
-export default function TaskBoard({ date, tasks, categories }) {
+export default function TaskBoard({ date, tasks, categories, loading }) {
     const [taskValue, setTaskValue] = useState('')
     const [categoryValue, setCategoryValue] = useState('')
     const [tasksArray, setTasksArray] = useState([])
     const [categoriesArray, setCategoriesArray] = useState([])
     const [operatedTask, setOperatedTask] = useState('')
-    const [section, setSection] = useState('')
+    // const [section, setSection] = useState('')
     const [category, setCategory] = useState('')
     const [chosenCategoryId, setChosenCategoryId] = useState('')
     const [chooseColor, setChooseColor] = useState(false)
     const [categoryColor, setCategoryColor] = useState('black')
     const [currentColor, setCurrentColor] = useState('')
+    const { section } = useContext(AppContext)
 
     const userID = auth.currentUser ? auth.currentUser.uid : null
 
@@ -69,6 +71,21 @@ export default function TaskBoard({ date, tasks, categories }) {
         setCurrentColor(category.data().color)
     }
 
+    function wipe() {
+        tasksArray.forEach(item => {
+            const taskElement = document.getElementById(item.id)
+            taskElement.classList.add('deleting')
+
+            setTimeout(() => {
+                deleteDoc(doc(database, 'users', userID, 'tasks', date, 'tasks', item.id))
+            }, 500)
+
+            setTimeout(() => {
+                taskElement.classList.remove('deleting')
+            }, 500)
+        })
+    }
+
     useEffect(() => {
         setTasksArray(tasks)
         setCategoriesArray(categories)
@@ -82,18 +99,7 @@ export default function TaskBoard({ date, tasks, categories }) {
         <div className="taskboard">
             {category === '' ? <>
             <div className="taskboard__select">
-                <div className="section-choose">
-                    <button 
-                    onClick={() => setSection('tasks')} 
-                    className={section === 'tasks' ? "taskboard__select_btn selected" : "taskboard__select_btn"}>
-                    Задачи
-                    </button>
-                    <button 
-                    onClick={() => setSection('categories')} 
-                    className={section === 'categories' ? "taskboard__select_btn selected" : "taskboard__select_btn"}>
-                    Категории
-                    </button>
-                </div>
+               
                 {section === 'tasks' ?                         
                 <div className="taskboard__header">
                     <input 
@@ -108,6 +114,7 @@ export default function TaskBoard({ date, tasks, categories }) {
                         disabled={taskValue === ''}
                         onClick={addTask} 
                         className="taskboard__add-task">+</button>
+                    <button onClick={wipe} className="taskboard__wipe">Очистить</button>
                 </div> : null}
                 {section === 'categories' ?                             
                 <div className="taskboard__header">
@@ -138,6 +145,7 @@ export default function TaskBoard({ date, tasks, categories }) {
             </div>
             {section === 'tasks' ? 
                         <div className="taskboard__tasks">
+                        {loading ? <div style={{display: 'flex', justifyContent: 'center'}}><svg style={{position: 'initial', marginTop: '15px'}} className="sandclock" xmlns="http://www.w3.org/2000/svg" fill="black" width="40" height="40" viewBox="0 0 24 24"><path d="M18.513 7.119c.958-1.143 1.487-2.577 1.487-4.036v-3.083h-16v3.083c0 1.459.528 2.892 1.487 4.035l3.086 3.68c.567.677.571 1.625.009 2.306l-3.13 3.794c-.936 1.136-1.452 2.555-1.452 3.995v3.107h16v-3.107c0-1.44-.517-2.858-1.453-3.994l-3.13-3.794c-.562-.681-.558-1.629.009-2.306l3.087-3.68zm-4.639 7.257l3.13 3.794c.652.792.996 1.726.996 2.83h-12c0-1.104.343-2.039.996-2.829l3.129-3.793c1.167-1.414 1.159-3.459-.019-4.864l-3.086-3.681c-.66-.785-1.02-1.736-1.02-2.834h12c0 1.101-.363 2.05-1.02 2.834l-3.087 3.68c-1.177 1.405-1.185 3.451-.019 4.863z"/></svg></div> :
                         <ul className="taskboard__task-list">
                             {Array.isArray(tasksArray) ? (
                                 tasksArray.map(task => {
@@ -157,6 +165,8 @@ export default function TaskBoard({ date, tasks, categories }) {
                                 })
                             ) : null}
                         </ul>
+                        }
+                        
                         </div> : null}
             {section === 'categories' ? 
                         <div className="taskboard-categories">

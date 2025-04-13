@@ -24,7 +24,7 @@ const DateItem = ({ date, onClick, className }) => {
 export default function TimeScale() {
     const [active, setActive] = useState('')
     const [dates, setDates] = useState([])
-    const { setSelectedDate, setTasks, tasks } = useContext(AppContext)
+    const { setSelectedDate, setTasks, setSection, section } = useContext(AppContext)
 
     const FormattedDate = ({ date }) => {
         const months = [
@@ -60,6 +60,10 @@ export default function TimeScale() {
         setDates(generatedDates)
     }, [])
 
+    useEffect(() => {
+        console.log(section)
+    }, [section])
+
     return (
         <div className="time-scale">
             <ScrollMenu 
@@ -80,6 +84,18 @@ export default function TimeScale() {
                 ))}
 
             </ScrollMenu>
+            <div className="section-choose">
+                    <button 
+                    onClick={() => setSection('tasks')} 
+                    className={section === 'tasks' ? "taskboard__select_btn complete" : "taskboard__select_btn"}>
+                    Задачи
+                    </button>
+                    <button 
+                    onClick={() => setSection('categories')} 
+                    className={section === 'categories' ? "taskboard__select_btn complete" : "taskboard__select_btn"}>
+                    Категории
+                    </button>
+            </div>
         </div>
     )
 }

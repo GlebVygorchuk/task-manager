@@ -64,7 +64,7 @@
   transition: 0.3s;
 }
 .login-btn:hover {
-  background-color: #0055b0;
+  background-color: var(--color-hover);
 }
 
 .highlight {
@@ -122,9 +122,10 @@
   color: var(--color-text);
   box-shadow: var(--box-shadow);
   color: var(--color-background);
+  transition: 0.3s;
 }
 .registration__button:hover {
-  background-color: #0055b0;
+  background-color: var(--color-hover);
 }
 
 .loading-screen {
@@ -176,11 +177,11 @@
 .svg-eye {
   position: absolute;
   cursor: pointer;
-  left: 86.5%;
+  left: 86.3%;
   top: 14%;
-  transition: 0.2s;
+  transition: 0.3s;
   padding: 5px;
-  border-radius: var(--border-radius);
+  fill: rgb(127, 127, 127);
 }
 
 .active {
@@ -190,7 +191,7 @@
 .crossline {
   height: 2px;
   width: 35px;
-  background-color: black;
+  background-color: rgb(127, 127, 127);
   position: absolute;
   transform: rotate(45deg);
   top: 26.5px;
@@ -292,9 +293,10 @@
   color: var(--color-text);
   box-shadow: var(--box-shadow);
   color: var(--color-background);
+  transition: 0.3s;
 }
 .login__button:hover {
-  background-color: #0055b0;
+  background-color: var(--color-hover);
 }
 
 .modal-container {
@@ -350,7 +352,7 @@
   right: 8px;
   border-radius: 10px;
   cursor: pointer;
-  transition: 0.2s;
+  transition: 0.3s;
 }
 .close-button::after, .close-button::before {
   position: absolute;
@@ -579,14 +581,16 @@ input {
   --color-accent: black;
   --color-background: #FFFFFF;
   --background-gradient: #f2f2f2;
+  --color-hover: rgba(0, 0, 0, 0.675);
   --box-shadow: 0 5px 10px rgba(185, 185, 185, 0.152);
   --border-radius: 20px;
 }
 
 .time-scale {
   display: flex;
+  -moz-column-gap: 10px;
+       column-gap: 10px;
   margin: 20px;
-  justify-content: center;
   animation: appear 0.5s forwards;
   animation-delay: 0.3s;
   opacity: 0;
@@ -599,10 +603,10 @@ input {
   display: flex;
   justify-content: center;
   padding: 12px;
-  min-width: 50px;
+  min-width: 80px;
   border-radius: var(--border-radius);
-  border: 1.5px solid var(--color-background);
-  font-size: 15px;
+  border: 2px solid var(--color-background);
+  font-size: 20px;
   background: var(--background-gradient);
   cursor: pointer;
   -webkit-user-select: none;
@@ -611,12 +615,12 @@ input {
   transition: 0.3s;
 }
 .date:hover {
-  border: 1.5px solid var(--color-accent);
+  border: 2px solid var(--color-accent);
 }
 
 .chosen {
   background-color: var(--color-accent);
-  border: 1.5px solid var(--color-accent);
+  border: 2px solid var(--color-accent);
 }
 .chosen p {
   color: var(--color-background);
@@ -641,7 +645,8 @@ input {
   display: flex;
   -moz-column-gap: 5px;
        column-gap: 5px;
-  width: 567px;
+  width: 561px;
+  padding-inline: 2px;
 }
 
 .day-wrapper {
@@ -683,13 +688,15 @@ input {
 .taskboard__select_btn {
   background-color: var(--background-gradient);
   padding: 10px 15px;
-  font-size: 20px;
+  font-size: 25px;
+  font-weight: 1000;
   border-radius: var(--border-radius);
-  border: 1.5px solid transparent;
+  border: 2px solid transparent;
   transition: 0.3s;
+  width: 100%;
 }
 .taskboard__select_btn:hover {
-  border: 1.5px solid var(--color-accent);
+  border: 2px solid var(--color-accent);
 }
 .taskboard__select .selected {
   background-color: var(--color-accent);
@@ -727,6 +734,18 @@ input {
 .taskboard__add-task:hover {
   opacity: 0.6;
 }
+.taskboard__wipe {
+  background-color: var(--color-accent);
+  color: white;
+  font-weight: 1000;
+  font-size: 17.5px;
+  border-radius: 10px;
+  transition: 0.3s;
+  padding-inline: 15px;
+}
+.taskboard__wipe:hover {
+  opacity: 0.6;
+}
 .taskboard__header {
   display: flex;
   -moz-column-gap: 5px;
@@ -746,7 +765,7 @@ input {
   flex-direction: column;
   padding-inline: 35%;
   margin-top: 20px;
-  row-gap: 10px;
+  row-gap: 20px;
 }
 .taskboard__task {
   background: var(--background-gradient);
@@ -899,7 +918,7 @@ input {
 .category-tasks__return-btn {
   position: absolute;
   left: 30px;
-  top: 100px;
+  top: 190px;
   margin-top: 0;
   color: var(--color-background);
   background-color: var(--color-accent);
@@ -920,13 +939,13 @@ input {
 }
 
 .deadline-bar {
-  width: 10px;
+  width: 100%;
+  height: 4px;
   background-color: rgb(0, 195, 255);
-  border-radius: 2px;
+  border-radius: 20px;
   align-self: flex-end;
   position: absolute;
-  left: -5%;
-  bottom: 10%;
+  bottom: -24px;
   cursor: pointer;
   transition: 0.3s;
 }
@@ -938,6 +957,7 @@ input {
   display: flex;
   -moz-column-gap: 10px;
        column-gap: 10px;
+  width: 100%;
 }
 
 .complete {
@@ -984,7 +1004,7 @@ input {
 
 .task-index {
   position: absolute;
-  left: -52.5px;
+  left: -35px;
   font-size: 25px;
   font-weight: 1000;
 }
@@ -1000,6 +1020,7 @@ input {
   justify-content: space-between;
   -moz-column-gap: 20px;
        column-gap: 20px;
+  position: relative;
 }
 
 .text-wrapper {
@@ -1115,7 +1136,7 @@ input {
   align-self: center;
   fill: var(--color-accent);
   animation: rotate 1s infinite;
-  left: -120px;
+  left: -100px;
 }
 @keyframes rotate {
   50% {
@@ -1128,7 +1149,7 @@ input {
 
 #confirm-edit {
   position: absolute;
-  left: -72.5px;
+  left: -55px;
   opacity: 0;
   z-index: 10;
   transition: 0.3s;

@@ -65,7 +65,7 @@
     transition: 0.3s;
 
     &:hover {
-        background-color: #0055b0;
+        background-color: var(--color-hover);
     }
 }
 

@@ -19,9 +19,10 @@
     &__button {
         @include signInUpButtonStyles();
         color: var(--color-background);
+        transition: 0.3s;
 
         &:hover {
-            background-color: #0055b0;
+            background-color: var(--color-hover);
         }
     }
 }
@@ -79,11 +80,11 @@
 .svg-eye {
     position: absolute;
     cursor: pointer;
-    left: 86.5%;
+    left: 86.3%;
     top: 14%;
-    transition: 0.2s;
+    transition: 0.3s;
     padding: 5px;
-    border-radius: var(--border-radius);
+    fill: rgb(127, 127, 127);
 }
 .active {
     fill: var(--color-accent);
@@ -92,7 +93,7 @@
 .crossline {
     height: 2px;
     width: 35px;
-    background-color: black;
+    background-color: rgb(127, 127, 127);
     position: absolute;
     transform: rotate(45deg);
     top: 26.5px;

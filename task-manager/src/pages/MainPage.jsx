@@ -18,6 +18,7 @@ export default function MainPage() {
     })
     const [currentTasks, setCurrentTasks] = useState([])
     const [categories, setCategories] = useState([])
+    const [loadingData, setLoadingData] = useState(true)
     const { selectedDate } = useContext(AppContext)
 
     const auth = getAuth()
@@ -38,8 +39,13 @@ export default function MainPage() {
     }, [])
 
     useEffect(() => {
-        if (userID && selectedDate) {
+        getData()
+    }, [selectedDate, userID])
 
+    async function getData() {
+        setLoadingData(true)
+        if (userID && selectedDate) {
+            
             const getTasks = onSnapshot(
                 collection(database, 'users', userID, 'tasks', `${selectedDate}`, 'tasks'),
                 (querySnapshot) => {
@@ -52,6 +58,7 @@ export default function MainPage() {
                         })
                     })
                     setCurrentTasks(tasksThisDay)
+                    setLoadingData(false)
                 }
             )
 
@@ -67,6 +74,7 @@ export default function MainPage() {
                         })
                     })
                     setCategories(categoriesThisDay)
+                    setLoadingData(false)
                 }
             )
 
@@ -75,7 +83,7 @@ export default function MainPage() {
                 getCategories()
             }
         }
-    }, [selectedDate, userID])
+    }
 
     function logOut() {
         signOut(auth)
@@ -115,7 +123,7 @@ export default function MainPage() {
         
         <main className="main">
             <TimeScale />
-            {selectedDate && <TaskBoard date={selectedDate} tasks={currentTasks} categories={categories}/>}
+            {selectedDate && <TaskBoard loading={loadingData} date={selectedDate} tasks={currentTasks} categories={categories}/>}
         </main>
         
         <div className={showModal ? 'confirmation dark' : 'confirmation'}>

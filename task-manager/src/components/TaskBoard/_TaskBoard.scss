@@ -25,13 +25,15 @@
         &_btn {
             background-color: var(--background-gradient);
             padding: 10px 15px;
-            font-size: 20px;
+            font-size: 25px;
+            font-weight: 1000;
             border-radius: var(--border-radius);
-            border: 1.5px solid transparent;
+            border: 2px solid transparent;
             transition: 0.3s;
+            width: 100%;
 
             &:hover {
-                border: 1.5px solid var(--color-accent);
+                border: 2px solid var(--color-accent);
             }
         }
 
@@ -75,6 +77,20 @@
         }
     }
 
+    &__wipe {
+        background-color: var(--color-accent);
+        color: white;
+        font-weight: 1000;
+        font-size: 17.5px;
+        border-radius: 10px;
+        transition: 0.3s;
+        padding-inline: 15px;
+
+        &:hover {
+            opacity: 0.6;
+        }
+    }
+
     &__header {
         @keyframes rev {
             from {
@@ -94,7 +110,7 @@
         flex-direction: column;
         padding-inline: 35%;
         margin-top: 20px;
-        row-gap: 10px;
+        row-gap: 20px;
     }
 
     &__task {
@@ -263,7 +279,7 @@
     &__return-btn {
         position: absolute;
         left: 30px;
-        top: 100px;
+        top: 190px;
         margin-top: 0;
         color: var(--color-background);
         background-color: var(--color-accent);
@@ -287,13 +303,13 @@
 
 
 .deadline-bar {
-    width: 10px;
+    width: 100%;
+    height: 4px;
     background-color: rgb(0, 195, 255);
-    border-radius: 2px;
+    border-radius: 20px;
     align-self: flex-end;
     position: absolute;
-    left: -5%;
-    bottom: 10%;
+    bottom: -24px;
     cursor: pointer;
     transition: 0.3s;
 
@@ -305,6 +321,7 @@
 .section-choose {
     display: flex;
     column-gap: 10px;
+    width: 100%;
 }
 
 .complete {
@@ -351,7 +368,7 @@
 
 .task-index {
     position: absolute;
-    left: -52.5px;
+    left: -35px;
     font-size: 25px;
     font-weight: 1000;
 }
@@ -366,6 +383,7 @@
     display: flex;
     justify-content: space-between;
     column-gap: 20px;
+    position: relative;
 }
 
 .text-wrapper {
@@ -477,7 +495,6 @@
 }
 
 .deleting-category {
-
     animation: deleting-category 0.3s forwards ease-in-out;
 }
 
@@ -495,12 +512,12 @@
     align-self: center;
     fill: var(--color-accent);
     animation: rotate 1s infinite;
-    left: -120px;
+    left: -100px;
 }
 
 #confirm-edit {
     position: absolute;
-    left: -72.5px;
+    left: -55px;
     opacity: 0;
     z-index: 10;
     transition: 0.3s;

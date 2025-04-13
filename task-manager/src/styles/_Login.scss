@@ -19,9 +19,10 @@
     &__button {
         @include signInUpButtonStyles();
         color: var(--color-background);
+        transition: 0.3s;
 
         &:hover {
-            background-color: #0055b0;
+            background-color: var(--color-hover);
         }
     }
 }
@@ -70,7 +71,7 @@
     right: 8px;
     border-radius: 10px;
     cursor: pointer;
-    transition: 0.2s;
+    transition: 0.3s;
 
     &::after, &::before {
         position: absolute;
