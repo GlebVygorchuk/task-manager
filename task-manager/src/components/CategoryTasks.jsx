@@ -104,7 +104,7 @@ export default function CategoryTasks({ title, onReturn, date, categoryId}) {
                 return (
                     <TaskItem
                     className={task.status === 'complete' ? "taskboard__task complete" : task.status === 'process' ? 'taskboard__task in-process' : 'taskboard__task'}
-                    style={task.status === 'complete' ? {backgroundColor: currentColor} : task.status === 'process' ? {border: `1.5px solid ${currentColor}`} : null}
+                    style={task.status === 'complete' ? {backgroundColor: currentColor} : task.status === 'process' ? {border: `2px solid ${currentColor}`} : null}
                     index={categoryTasks.indexOf(task) + 1} 
                     content={task.task}
                     status={task.status}

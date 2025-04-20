@@ -421,11 +421,13 @@ body {
   background-color: var(--color-accent);
   color: var(--color-text);
   box-shadow: var(--box-shadow);
+  border-radius: 15px;
   margin-top: 0;
   font-size: 20px;
   padding: 12.5px 17.5px;
   color: var(--color-background);
   transition: 0.3s;
+  font-weight: 1000;
 }
 .main__header__logout-btn:hover {
   opacity: 0.6;
@@ -440,13 +442,32 @@ body {
   transform: translateY(10px);
   row-gap: 15px;
   background: var(--background-gradient);
-  padding: 22.5px 27.5px;
-  border-radius: var(--border-radius);
-  box-shadow: 0px 0px 20px var(--color-background);
+  padding: 25px 30px;
+  border-radius: 15px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.194);
   right: 50px;
   top: 70px;
   font-size: 17.5px;
+  font-weight: 1000;
   z-index: 1;
+}
+.main__header__extra {
+  background-color: var(--background-gradient);
+  padding: 10px 15px;
+  font-size: 20px;
+  font-weight: 1000;
+  border-radius: 15px;
+  border: 2px solid transparent;
+  transition: 0.3s;
+}
+.main__header__extra:hover {
+  border: 2px solid var(--color-accent);
+}
+
+.selected {
+  background-color: var(--color-accent) !important;
+  color: var(--color-background);
+  border: 2px solid var(--color-accent);
 }
 
 .profile-information {
@@ -460,7 +481,7 @@ body {
 
 .username {
   align-self: center;
-  font-weight: 100;
+  font-weight: 1000;
   font-size: 21px;
   color: var(--color-text);
 }
@@ -483,11 +504,10 @@ body {
   justify-content: center;
   position: fixed;
   z-index: 2;
-  opacity: 0;
   width: 100%;
   height: 100%;
   pointer-events: none;
-  background-color: var(--color-background);
+  background-color: transparent;
   transition: 0.3s;
   top: 0;
 }
@@ -500,7 +520,9 @@ body {
 }
 
 .dark {
-  opacity: 0.95;
+  -webkit-backdrop-filter: blur(6px);
+          backdrop-filter: blur(6px);
+  pointer-events: all;
 }
 
 .make-sure {
@@ -514,6 +536,7 @@ body {
   border-radius: 20px;
   margin-top: 7.5vh;
   animation: appear 0.5s forwards;
+  border-radius: 15px;
   position: absolute;
   z-index: 4;
   padding: 30px 30px;
@@ -527,6 +550,38 @@ body {
   transition: 0.3s;
   transform: scale(0.85, 0.85);
   background-color: var(--background-gradient);
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.247);
+}
+
+.extra-possibilities {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--background-gradient);
+  padding: 30px 35px;
+  border-radius: 15px;
+  row-gap: 10px;
+  position: absolute;
+  z-index: 2;
+  top: 25%;
+  min-width: 250px;
+  transform: scale(0.85, 0.85);
+  opacity: 0;
+  transition: 0.3s;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.247);
+}
+
+.extra-option {
+  background-color: var(--background-gradient);
+  padding: 10px 15px;
+  font-size: 20px;
+  font-weight: 1000;
+  border-radius: 15px;
+  border: 2px solid transparent;
+  transition: 0.3s;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.132);
+}
+.extra-option:hover {
+  border: 2px solid var(--color-accent);
 }
 
 .buttons {
@@ -548,6 +603,8 @@ body {
   width: 50%;
   color: var(--color-background);
   transition: 0.3s;
+  font-weight: 1000;
+  border-radius: 15px;
 }
 #sure:hover, #not-sure:hover {
   opacity: 0.6;
@@ -582,7 +639,7 @@ input {
   --color-background: #FFFFFF;
   --background-gradient: #f2f2f2;
   --color-hover: rgba(0, 0, 0, 0.675);
-  --box-shadow: 0 5px 10px rgba(185, 185, 185, 0.152);
+  --box-shadow: 0 5px 10px rgba(0, 0, 0, 0.108);
   --border-radius: 20px;
 }
 
@@ -597,6 +654,11 @@ input {
 }
 .time-scale div {
   display: flex;
+}
+.time-scale__dates {
+  display: flex;
+  -moz-column-gap: 5px;
+       column-gap: 5px;
 }
 
 .date {
@@ -627,14 +689,13 @@ input {
 }
 
 .arrow {
-  padding: 12.5px 17.5px;
+  padding: 0px 15px;
   border-radius: var(--border-radius);
   background-color: var(--color-accent);
   font-size: 20px;
   font-weight: 1000;
   color: var(--color-background);
   transition: 0.3s;
-  margin-inline: 10px;
 }
 .arrow:hover {
   opacity: 0.6;
@@ -643,10 +704,12 @@ input {
 .react-horizontal-scrolling-menu--scroll-container {
   overflow: hidden;
   display: flex;
-  -moz-column-gap: 5px;
-       column-gap: 5px;
-  width: 561px;
-  padding-inline: 2px;
+  -moz-column-gap: 4px;
+       column-gap: 4px;
+  width: 560px;
+  padding-inline: 0px;
+  background: transparent;
+  margin-inline: 10px;
 }
 
 .day-wrapper {
@@ -701,7 +764,7 @@ input {
 .taskboard__select .selected {
   background-color: var(--color-accent);
   color: var(--color-background);
-  border: 1.5px solid var(--color-accent);
+  border: 2px solid var(--color-accent);
 }
 .taskboard__write-task {
   border: 2px solid rgb(210, 210, 210);
@@ -738,7 +801,7 @@ input {
   background-color: var(--color-accent);
   color: white;
   font-weight: 1000;
-  font-size: 17.5px;
+  font-size: 20px;
   border-radius: 10px;
   transition: 0.3s;
   padding-inline: 15px;
@@ -766,6 +829,7 @@ input {
   padding-inline: 35%;
   margin-top: 20px;
   row-gap: 20px;
+  transition: all 0.3s;
 }
 .taskboard__task {
   background: var(--background-gradient);
@@ -773,9 +837,10 @@ input {
   min-width: 300px;
   padding: 15px 15px 15px 20px;
   font-size: 20px;
+  font-weight: 1000;
   border-radius: var(--border-radius);
   transition: 0.3s;
-  border: 1.5px solid transparent;
+  border: 2px solid transparent;
 }
 .taskboard-categories {
   padding-inline: 80px;
@@ -852,13 +917,13 @@ input {
   grid-template-columns: 1fr 1fr 1fr 1fr;
   padding: 7.5px;
   background-color: var(--background-gradient);
-  box-shadow: 0px 0px 15px rgb(188, 188, 188);
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.419);
   border-radius: 10px;
   -moz-column-gap: 5px;
        column-gap: 5px;
   row-gap: 5px;
   top: -100%;
-  right: 365px;
+  right: 105%;
   z-index: 9999 !important;
   opacity: 0;
   transform: translateX(20px);
@@ -924,7 +989,7 @@ input {
   background-color: var(--color-accent);
   font-size: 20px;
   padding: 10px 20px;
-  border-radius: var(--border-radius);
+  border-radius: 15px;
   transition: 0.3s;
 }
 .category-tasks__return-btn:hover {
@@ -966,7 +1031,7 @@ input {
 }
 
 .in-process {
-  border: 1.5px solid var(--color-accent);
+  border: 2px solid var(--color-accent);
 }
 
 .cross {
@@ -1173,6 +1238,7 @@ body {
   font-family: "Comfortaa";
   background-color: var(--color-background);
   color: var(--color-text);
+  font-weight: 1000;
 }
 body::-moz-selection {
   background-color: black;

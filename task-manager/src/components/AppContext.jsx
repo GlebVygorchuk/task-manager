@@ -7,9 +7,10 @@ export default function AppProvider({ children }) {
     const [selectedDate, setSelectedDate] = useState(null)
     const [tasks, setTasks] = useState([])
     const [section, setSection] = useState('')
+    const [deadlineDisabled, setDeadlineDisabled] = useState(false)
     
     return (
-        <AppContext.Provider value={{ selectedDate, tasks, section, setSelectedDate, setTasks, setSection }}>
+        <AppContext.Provider value={{ selectedDate, tasks, section, deadlineDisabled, setDeadlineDisabled, setSelectedDate, setTasks, setSection }}>
             {children}
         </AppContext.Provider>
     )

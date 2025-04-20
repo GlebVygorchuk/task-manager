@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 import { database, auth } from "../firebase"
 import { updateDoc, doc, deleteDoc } from "firebase/firestore"
+import { AppContext } from "./AppContext"
 
 export default function TaskItem({ content, className, status, onSelect, operated, itemId, date, section, categoryId, index, style}) {
     const [taskStatus, setTaskStatus] = useState('')
@@ -11,29 +12,30 @@ export default function TaskItem({ content, className, status, onSelect, operate
     const [optionsState, setOptionsState] = useState('task-options')
     const [daysToComplete, setDaysToComplete] = useState('')
     const [deadlineColor, setDeadlineColor] = useState('rgb(0, 195, 255)')
-    const [deadlineDisabled, setDeadlineDisabled] = useState(false)
+    const [showDeadline, setShowDeadline] = useState(false)
+    const { deadlineDisabled, setDeadlineDisabled } = useContext(AppContext)
 
     const userID = auth.currentUser ? auth.currentUser.uid : null
 
     useEffect(() => {
         if (status === 'created') {
             setTaskStatus('')
-            setDeadlineDisabled(false)
+            setShowDeadline(true)
         }
         if (status === 'complete') {
             setTaskStatus('Статус: Выполнено')
-            setDeadlineDisabled(true)
+            setShowDeadline(false)
         } 
         if (status === 'process') {
             setTaskStatus('Статус: В работе')
-            setDeadlineDisabled(false)
+            setShowDeadline(true)
         }
     }, [status])
 
     async function handleDelete(id) {
         const item = document.getElementById(id)
         item.classList.add('deleting')
-
+        
         setTimeout(() => {
             section === 'tasks'
             ? deleteDoc(doc(database, 'users', userID, 'tasks', date, 'tasks', id))
@@ -45,16 +47,22 @@ export default function TaskItem({ content, className, status, onSelect, operate
         }, 500)
     }
 
-    async function handleStatus(id, status) {
+    async function handleStatus(id, state) {
         const docRef = 
         section === 'tasks' 
         ? doc(database, 'users', userID, 'tasks', date, 'tasks', id)
         : doc(database, 'users', userID, 'tasks', date, 'categories', categoryId, 'category-tasks', id)
 
         try {
-            await updateDoc(docRef, {
-                status: status
-            })
+            if (status === 'complete') {
+                await updateDoc(docRef, {
+                    status: 'created'
+                })
+            } else {
+                await updateDoc(docRef, {
+                    status: state
+                })
+            }
         } 
         catch(error) {
             console.error(error.message)
@@ -155,7 +163,7 @@ export default function TaskItem({ content, className, status, onSelect, operate
                 onKeyDown={handleEnterPress} 
                 value={inputValue} className="edit-task" /> 
                 : <div className="item-wrapper">
-                    {!deadlineDisabled ? <div style={daysToComplete <= 7 ? {width: `${daysToComplete + 1}0%`, backgroundColor: deadlineColor} : deadlineDisabled ? {background: 'transparent'} : {width: '100%'}} className="deadline-bar"></div> : null}
+                    {!deadlineDisabled && showDeadline ? <div style={daysToComplete <= 7 ? {width: `${daysToComplete + 1}0%`, backgroundColor: deadlineColor} : deadlineDisabled ? {background: 'transparent'} : {width: '100%'}} className="deadline-bar"></div> : null}
                     <div className="text-wrapper">
                         <p className={status === 'complete' ? 'cross' : ''}>
                             {taskContent}

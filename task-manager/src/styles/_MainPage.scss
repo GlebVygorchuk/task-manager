@@ -45,11 +45,13 @@ body {
 
         &__logout-btn {
             @include signInUpButtonStyles();
+            border-radius: 15px;
             margin-top: 0;
             font-size: 20px;
             padding: 12.5px 17.5px;
             color: var(--color-background);
             transition: 0.3s;
+            font-weight: 1000;
 
             &:hover {
                 opacity: 0.6;
@@ -66,15 +68,36 @@ body {
             transform: translateY(10px);
             row-gap: 15px;
             background: var(--background-gradient);
-            padding: 22.5px 27.5px;
-            border-radius: var(--border-radius);
-            box-shadow: 0px 0px 20px var(--color-background);
+            padding: 25px 30px;
+            border-radius: 15px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.194);
             right: 50px;
             top: 70px;
             font-size: 17.5px;
+            font-weight: 1000;
             z-index: 1;
         }
+
+        &__extra {
+            background-color: var(--background-gradient);
+            padding: 10px 15px;
+            font-size: 20px;
+            font-weight: 1000;
+            border-radius: 15px;
+            border: 2px solid transparent;
+            transition: 0.3s;
+
+            &:hover {
+                border: 2px solid var(--color-accent);
+            }
+        }
     }
+}
+
+.selected {
+    background-color: var(--color-accent) !important;
+    color: var(--color-background);
+    border: 2px solid var(--color-accent);
 }
 
 .profile-information {
@@ -87,7 +110,7 @@ body {
 
 .username {
     align-self: center;
-    font-weight: 100;
+    font-weight: 1000;
     font-size: 21px;
     color: var(--color-text);
 }
@@ -108,13 +131,12 @@ body {
     justify-content: center;
     position: fixed;
     z-index: 2;
-    opacity: 0;
     width: 100%;
     height: 100%;
     pointer-events: none;
-    background-color: var(--color-background);
+    background-color: transparent;
     transition: 0.3s;
-    top: 0
+    top: 0;
 }
 
 .show-modal {
@@ -125,11 +147,13 @@ body {
 }
 
 .dark {
-    opacity: 0.95;
+    backdrop-filter: blur(6px);
+    pointer-events: all;
 }
 
 .make-sure {
     @include formContainerStyles();
+    border-radius: 15px;
     position: absolute;
     z-index: 4;
     padding: 30px 30px;
@@ -143,6 +167,39 @@ body {
     transition: 0.3s;
     transform: scale(0.85, 0.85);
     background-color: var(--background-gradient);
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.247);
+}
+
+.extra-possibilities {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--background-gradient);
+    padding: 30px 35px;
+    border-radius: 15px;
+    row-gap: 10px;
+    position: absolute;
+    z-index: 2;
+    top: 25%;
+    min-width: 250px;
+    transform: scale(0.85, 0.85);
+    opacity: 0;
+    transition: 0.3s;
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.247);
+}
+
+.extra-option {
+    background-color: var(--background-gradient);
+    padding: 10px 15px;
+    font-size: 20px;
+    font-weight: 1000;
+    border-radius: 15px;
+    border: 2px solid transparent;
+    transition: 0.3s;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.132);
+
+    &:hover {
+        border: 2px solid var(--color-accent);
+    }
 }
 
 .buttons {
@@ -157,6 +214,8 @@ body {
     width: 50%;
     color: var(--color-background);
     transition: 0.3s;
+    font-weight: 1000;
+    border-radius: 15px;
 
     &:hover {
         opacity: 0.6;

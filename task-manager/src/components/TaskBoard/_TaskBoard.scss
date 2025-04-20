@@ -40,7 +40,7 @@
         .selected {
             background-color: var(--color-accent);
             color: var(--color-background);
-            border: 1.5px solid var(--color-accent);
+            border: 2px solid var(--color-accent);
         }
     }
 
@@ -81,7 +81,7 @@
         background-color: var(--color-accent);
         color: white;
         font-weight: 1000;
-        font-size: 17.5px;
+        font-size: 20px;
         border-radius: 10px;
         transition: 0.3s;
         padding-inline: 15px;
@@ -111,6 +111,7 @@
         padding-inline: 35%;
         margin-top: 20px;
         row-gap: 20px;
+        transition: all 0.3s;
     }
 
     &__task {
@@ -119,9 +120,10 @@
         min-width: 300px;
         padding: 15px 15px 15px 20px;
         font-size: 20px;
+        font-weight: 1000;
         border-radius: var(--border-radius);
         transition: 0.3s;
-        border: 1.5px solid transparent;
+        border: 2px solid transparent;
     }
 
     &-categories {
@@ -203,12 +205,12 @@
                 grid-template-columns: 1fr 1fr 1fr 1fr;
                 padding: 7.5px;
                 background-color: var(--background-gradient);
-                box-shadow: 0px 0px 15px rgb(188, 188, 188);
+                box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.419);
                 border-radius: 10px;
                 column-gap: 5px;
                 row-gap: 5px;
                 top: -100%;
-                right: 365px;
+                right: 105%;
                 z-index: 9999 !important;
                 opacity: 0;
                 transform: translateX(20px);
@@ -285,7 +287,7 @@
         background-color: var(--color-accent);
         font-size: 20px;
         padding: 10px 20px;
-        border-radius: var(--border-radius);
+        border-radius: 15px;
         transition: 0.3s;
 
         &:hover {
@@ -330,7 +332,7 @@
 }
 
 .in-process {
-    border: 1.5px solid var(--color-accent);
+    border: 2px solid var(--color-accent);
 }
 
 .cross {

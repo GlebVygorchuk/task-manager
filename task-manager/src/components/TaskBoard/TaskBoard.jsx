@@ -14,7 +14,6 @@ export default function TaskBoard({ date, tasks, categories, loading }) {
     const [tasksArray, setTasksArray] = useState([])
     const [categoriesArray, setCategoriesArray] = useState([])
     const [operatedTask, setOperatedTask] = useState('')
-    // const [section, setSection] = useState('')
     const [category, setCategory] = useState('')
     const [chosenCategoryId, setChosenCategoryId] = useState('')
     const [chooseColor, setChooseColor] = useState(false)
@@ -71,18 +70,21 @@ export default function TaskBoard({ date, tasks, categories, loading }) {
         setCurrentColor(category.data().color)
     }
 
-    function wipe() {
-        tasksArray.forEach(item => {
+    function wipe(array) {
+        array.forEach(item => {
             const taskElement = document.getElementById(item.id)
-            taskElement.classList.add('deleting')
+            array === tasksArray ? taskElement.classList.add('deleting') 
+            : taskElement.classList.add('deleting-category')
 
             setTimeout(() => {
-                deleteDoc(doc(database, 'users', userID, 'tasks', date, 'tasks', item.id))
+                array === tasksArray ? deleteDoc(doc(database, 'users', userID, 'tasks', date, 'tasks', item.id))
+                : deleteDoc(doc(database, 'users', userID, 'tasks', date, 'categories', item.id))
             }, 500)
 
             setTimeout(() => {
-                taskElement.classList.remove('deleting')
-            }, 500)
+               array === tasksArray ? taskElement.classList.remove('deleting')
+               : taskElement.classList.remove('deleting-category')
+            }, 600)
         })
     }
 
@@ -114,7 +116,7 @@ export default function TaskBoard({ date, tasks, categories, loading }) {
                         disabled={taskValue === ''}
                         onClick={addTask} 
                         className="taskboard__add-task">+</button>
-                    <button onClick={wipe} className="taskboard__wipe">Очистить</button>
+                    <button onClick={() => wipe(tasksArray)} className="taskboard__wipe">Очистить</button>
                 </div> : null}
                 {section === 'categories' ?                             
                 <div className="taskboard__header">
@@ -130,6 +132,7 @@ export default function TaskBoard({ date, tasks, categories, loading }) {
                         onClick={addCategory} 
                         disabled={categoryValue === ''}
                         className="taskboard__add-task">+</button>
+                        <div style={{display: 'flex', position: 'relative'}}>
                         <button onClick={() => setChooseColor(prev => !prev)} style={{background: categoryColor}} className="taskboard__category__change-color">Цвет</button>
                         <div className={`taskboard__category__change-color__options ${chooseColor ? 'reveal' : ''}`}>
                             <div onClick={() => setColor('rgb(255, 187, 0)')} style={{backgroundColor:'rgb(255, 187, 0)'}} className="taskboard__category__change-color__option"></div>
@@ -141,6 +144,9 @@ export default function TaskBoard({ date, tasks, categories, loading }) {
                             <div onClick={() => setColor('rgb(0, 213, 11)')} style={{backgroundColor:'rgb(0, 213, 11)'}} className="taskboard__category__change-color__option"></div>
                             <div onClick={() => setColor('rgb(219, 0, 219)')} style={{backgroundColor:'rgb(219, 0, 219)'}} className="taskboard__category__change-color__option"></div>
                         </div>
+                        </div>
+                        <button onClick={() => wipe(categoriesArray)} className="taskboard__wipe">Очистить</button>
+
                 </div> : null}
             </div>
             {section === 'tasks' ? 
