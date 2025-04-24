@@ -1,6 +1,22 @@
 import { Link } from "react-router-dom"
+import { onAuthStateChanged, getAuth } from "firebase/auth"
+import { useNavigate } from "react-router-dom"
+import { useEffect } from "react"
 
 export default function Entrance() {
+    const auth = getAuth()
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        const unsubscribe = 
+            onAuthStateChanged(auth, user => {
+                if (user) {
+                    navigate('/main', {replace: true})
+                }
+            })
+        return () => unsubscribe()
+    }, [])
+
     return (
         <section className="entrance">
             <div className="entrance__container">

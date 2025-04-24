@@ -62,10 +62,6 @@ export default function TimeScale() {
         setDates(generatedDates)
     }, [])
 
-    useEffect(() => {
-        console.log(section)
-    }, [section])
-
     return (
         <div className="time-scale">
             <ScrollMenu

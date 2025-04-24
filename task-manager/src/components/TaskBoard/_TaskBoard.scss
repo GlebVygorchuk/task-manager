@@ -127,13 +127,15 @@
     }
 
     &-categories {
-        padding-inline: 80px;
+        padding-inline: 140px;
     }
 
     &__categories-list {
-        margin-top: 10px;
+        margin-top: 30px;
         display: grid;
         grid-template-columns: 1fr 1fr;
+        column-gap: 30px;
+        row-gap: 20px;
     }
 
     &__category {
@@ -247,11 +249,10 @@
         }
             
         &-wrapper {
-            padding: 10px 30px;
             transition: 0.3s;
 
             &:hover {
-                transform: scale(1.075, 1.075);
+                transform: scale(1.050, 1.050);
             }
         }
     }
@@ -302,7 +303,6 @@
         margin-top: 15px;
     }
 }
-
 
 .deadline-bar {
     width: 100%;
@@ -366,6 +366,8 @@
     column-gap: 5px;
     align-items: center;
     animation: drop 0.3s forwards;
+    cursor: grab;
+    user-select: none;
 }
 
 .task-index {

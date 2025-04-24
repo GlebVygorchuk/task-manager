@@ -1,6 +1,6 @@
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth"
 import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useLocation } from "react-router-dom"
 import { AppContext } from "../components/AppContext"
 import { useContext } from "react"
 import { database } from "../firebase"
@@ -25,6 +25,16 @@ export default function MainPage() {
     const auth = getAuth()
     const navigate = useNavigate()
     const userID = auth.currentUser ? auth.currentUser.uid : null
+
+    useEffect(() => {
+        window.history.pushState(null, '', '/main')
+        window.history.pushState(null, '', '/main')
+        window.addEventListener('popstate', () => {
+            window.history.pushState(null, '', '/main')
+            setShowModal(true)
+        })
+        return () => window.removeEventListener('popstate', () => {})
+    }, [])
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -101,7 +111,7 @@ export default function MainPage() {
         <header className="main__header">
             <div className="main__header__name">
                 <h1 className="main__header__title">Chronos</h1>
-                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path d="M18.513 7.119c.958-1.143 1.487-2.577 1.487-4.036v-3.083h-16v3.083c0 1.459.528 2.892 1.487 4.035l3.086 3.68c.567.677.571 1.625.009 2.306l-3.13 3.794c-.936 1.136-1.452 2.555-1.452 3.995v3.107h16v-3.107c0-1.44-.517-2.858-1.453-3.994l-3.13-3.794c-.562-.681-.558-1.629.009-2.306l3.087-3.68zm-4.639 7.257l3.13 3.794c.652.792.996 1.726.996 2.83h-12c0-1.104.343-2.039.996-2.829l3.129-3.793c1.167-1.414 1.159-3.459-.019-4.864l-3.086-3.681c-.66-.785-1.02-1.736-1.02-2.834h12c0 1.101-.363 2.05-1.02 2.834l-3.087 3.68c-1.177 1.405-1.185 3.451-.019 4.863z"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24"><path d="M18.513 7.119c.958-1.143 1.487-2.577 1.487-4.036v-3.083h-16v3.083c0 1.459.528 2.892 1.487 4.035l3.086 3.68c.567.677.571 1.625.009 2.306l-3.13 3.794c-.936 1.136-1.452 2.555-1.452 3.995v3.107h16v-3.107c0-1.44-.517-2.858-1.453-3.994l-3.13-3.794c-.562-.681-.558-1.629.009-2.306l3.087-3.68zm-4.639 7.257l3.13 3.794c.652.792.996 1.726.996 2.83h-12c0-1.104.343-2.039.996-2.829l3.129-3.793c1.167-1.414 1.159-3.459-.019-4.864l-3.086-3.681c-.66-.785-1.02-1.736-1.02-2.834h12c0 1.101-.363 2.05-1.02 2.834l-3.087 3.68c-1.177 1.405-1.185 3.451-.019 4.863z"/></svg>
             </div>
             
             <div className="profile-information">
@@ -121,15 +131,22 @@ export default function MainPage() {
                 onClick={() => setShowModal(true)}>Выйти</button>
             </div> 
         </header>
-
-        <div style={{top: '0'}} className={loading ? "loading-screen load" : "loading-screen"}></div>
         
         <main className="main">
             <TimeScale />
             {selectedDate && <TaskBoard loading={loadingData} date={selectedDate} tasks={currentTasks} categories={categories}/>}
         </main>
+
+        {loading ?         
+        <div className="confirmation dark">
+            <div style={{display: 'flex', justifyContent: 'center', marginBottom: '60px'}}><svg style={{position: 'initial'}} className="sandclock" xmlns="http://www.w3.org/2000/svg" fill="black" width="50" height="50" viewBox="0 0 24 24"><path d="M18.513 7.119c.958-1.143 1.487-2.577 1.487-4.036v-3.083h-16v3.083c0 1.459.528 2.892 1.487 4.035l3.086 3.68c.567.677.571 1.625.009 2.306l-3.13 3.794c-.936 1.136-1.452 2.555-1.452 3.995v3.107h16v-3.107c0-1.44-.517-2.858-1.453-3.994l-3.13-3.794c-.562-.681-.558-1.629.009-2.306l3.087-3.68zm-4.639 7.257l3.13 3.794c.652.792.996 1.726.996 2.83h-12c0-1.104.343-2.039.996-2.829l3.129-3.793c1.167-1.414 1.159-3.459-.019-4.864l-3.086-3.681c-.66-.785-1.02-1.736-1.02-2.834h12c0 1.101-.363 2.05-1.02 2.834l-3.087 3.68c-1.177 1.405-1.185 3.451-.019 4.863z"/></svg></div>
+        </div> : null}
         
-        <div className={showModal || showExtra ? 'confirmation dark' : 'confirmation'}>
+        <div onClick={() => {
+            setShowExtra(false)
+            setShowModal(false)
+        }} 
+        className={showModal || showExtra ? 'confirmation dark' : 'confirmation'}>
         <div className={showModal ? 'make-sure show-modal' : 'make-sure'}>
             <p style={{fontSize: '25px'}}>Вы уверены?</p>
             <div className="buttons">
@@ -139,7 +156,10 @@ export default function MainPage() {
         </div>
         <div className={`extra-possibilities ${showExtra ? 'show-modal' : ''}`}>
             <div onClick={() => setShowExtra(false)} className="close-button"></div>
-            <button onClick={() => setDeadlineDisabled(prev => !prev)} className={`extra-option ${!deadlineDisabled ? 'selected' : ''}`}>Дедлайны {deadlineDisabled ? '- выкл.' : '- вкл.'}</button>
+            <button onClick={(e) => {
+                e.stopPropagation()
+                setDeadlineDisabled(prev => !prev)
+            }} className={`extra-option ${!deadlineDisabled ? 'selected' : ''}`}>Дедлайны {deadlineDisabled ? '- выкл.' : '- вкл.'}</button>
             <button className="extra-option">В разработке</button>
             <button className="extra-option">В разработке</button>
         </div>

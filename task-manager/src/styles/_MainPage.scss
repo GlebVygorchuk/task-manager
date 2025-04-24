@@ -13,7 +13,7 @@ body {
 
         &__name {
             display: flex;
-            column-gap: 10px;
+            column-gap: 12.5px;
             animation: appear 0.5s forwards;
             opacity: 0;
 
@@ -26,7 +26,8 @@ body {
         &__title {
             color: var(--color-text);
             align-self: center;
-            font-size: 30px;
+            font-size: 40px;
+            font-weight: 1000;
         }
 
         &__profile {
@@ -147,7 +148,7 @@ body {
 }
 
 .dark {
-    backdrop-filter: blur(6px);
+    backdrop-filter: blur(12.5px);
     pointer-events: all;
 }
 
@@ -156,11 +157,10 @@ body {
     border-radius: 15px;
     position: absolute;
     z-index: 4;
-    padding: 30px 30px;
-    width: 25%;
+    padding: 25px 30px;
     row-gap: 10px;
-    max-width: 350px;
     margin-top: 14%;
+    width: 200px;
     opacity: 0;
     pointer-events: none;
     animation: none;
@@ -204,14 +204,13 @@ body {
 
 .buttons {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     column-gap: 10px;
 }
 
 #sure, #not-sure {
     @include signInUpButtonStyles();
     padding: 10px 15px;
-    width: 50%;
     color: var(--color-background);
     transition: 0.3s;
     font-weight: 1000;
