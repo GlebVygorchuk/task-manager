@@ -7,6 +7,7 @@ import { database } from "../firebase"
 import { collection, onSnapshot } from "firebase/firestore"
 import TimeScale from "../components/TimeScale/TimeScale"
 import TaskBoard from "../components/TaskBoard/TaskBoard"
+import AllTasks from "../components/AllTasks"
  
 export default function MainPage() {
     const [loading, setLoading] = useState(false)
@@ -20,6 +21,7 @@ export default function MainPage() {
     const [categories, setCategories] = useState([])
     const [loadingData, setLoadingData] = useState(true)
     const [showExtra, setShowExtra] = useState(false)
+    const [allTasks, setAllTasks] = useState(false)
     const { selectedDate, deadlineDisabled, setDeadlineDisabled } = useContext(AppContext)
 
     const auth = getAuth()
@@ -58,14 +60,15 @@ export default function MainPage() {
         if (userID && selectedDate) {
             
             const getTasks = onSnapshot(
-                collection(database, 'users', userID, 'tasks', `${selectedDate}`, 'tasks'),
+                collection(database, 'users', userID, 'allTasks', `${selectedDate}`, 'tasks'),
                 (querySnapshot) => {
                     const tasksThisDay = []
                     querySnapshot.forEach(doc => {
                         tasksThisDay.push({
                             id: doc.id,
                             task: doc.data().task,
-                            status: doc.data().status
+                            status: doc.data().status,
+                            date: doc.data().date
                         })
                     })
                     setCurrentTasks(tasksThisDay)
@@ -74,7 +77,7 @@ export default function MainPage() {
             )
 
             const getCategories = onSnapshot(
-                collection(database, 'users', userID, 'tasks', `${selectedDate}`, 'categories'),
+                collection(database, 'users', userID, 'allTasks', `${selectedDate}`, 'categories'),
                 (querySnapshot) => {
                     const categoriesThisDay = []
                     querySnapshot.forEach(doc => {
@@ -134,7 +137,8 @@ export default function MainPage() {
         
         <main className="main">
             <TimeScale />
-            {selectedDate && <TaskBoard loading={loadingData} date={selectedDate} tasks={currentTasks} categories={categories}/>}
+            {allTasks ? <AllTasks /> : null}
+            {!allTasks ? selectedDate && <TaskBoard loading={loadingData} date={selectedDate} tasks={currentTasks} categories={categories}/> : null}
         </main>
 
         {loading ?         
@@ -160,8 +164,8 @@ export default function MainPage() {
                 e.stopPropagation()
                 setDeadlineDisabled(prev => !prev)
             }} className={`extra-option ${!deadlineDisabled ? 'selected' : ''}`}>Дедлайны {deadlineDisabled ? '- выкл.' : '- вкл.'}</button>
-            <button className="extra-option">В разработке</button>
-            <button className="extra-option">В разработке</button>
+            <button onClick={() => setAllTasks(prev => !prev)} className="extra-option">Все задачи</button>
+            <button className="extra-option">Тема - светлая</button>
         </div>
         </div>
 

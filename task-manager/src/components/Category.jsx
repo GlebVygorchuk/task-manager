@@ -11,7 +11,7 @@ export default function Category({content, onClick, categoryId, date, color}) {
         item.classList.add('deleting-category')
     
         setTimeout(() => {
-            deleteDoc(doc(database, 'users', userID, 'tasks', date, 'categories', categoryId))
+            deleteDoc(doc(database, 'users', userID, 'allTasks', date, 'categories', categoryId))
         }, 600)
     
         setTimeout(() => {

@@ -38,8 +38,8 @@ export default function TaskItem({ content, className, status, onSelect, operate
         
         setTimeout(() => {
             section === 'tasks'
-            ? deleteDoc(doc(database, 'users', userID, 'tasks', date, 'tasks', id))
-            : deleteDoc(doc(database, 'users', userID, 'tasks', date, 'categories', categoryId, 'category-tasks', id))
+            ? deleteDoc(doc(database, 'users', userID, 'allTasks', date, 'tasks', id))
+            : deleteDoc(doc(database, 'users', userID, 'allTasks', date, 'categories', categoryId, 'category-tasks', id))
         }, 500)
 
         setTimeout(() => {
@@ -50,8 +50,8 @@ export default function TaskItem({ content, className, status, onSelect, operate
     async function handleStatus(id, state) {
         const docRef = 
         section === 'tasks' 
-        ? doc(database, 'users', userID, 'tasks', date, 'tasks', id)
-        : doc(database, 'users', userID, 'tasks', date, 'categories', categoryId, 'category-tasks', id)
+        ? doc(database, 'users', userID, 'allTasks', date, 'tasks', id)
+        : doc(database, 'users', userID, 'allTasks', date, 'categories', categoryId, 'category-tasks', id)
 
         try {
             if (status === 'complete') {
@@ -73,8 +73,8 @@ export default function TaskItem({ content, className, status, onSelect, operate
         setUpdating(true)
         const docRef = 
         section === 'tasks' 
-        ? doc(database, 'users', userID, 'tasks', date, 'tasks', id)
-        : doc(database, 'users', userID, 'tasks', date, 'categories', categoryId, 'category-tasks', id)
+        ? doc(database, 'users', userID, 'allTasks', date, 'tasks', id)
+        : doc(database, 'users', userID, 'allTasks', date, 'categories', categoryId, 'category-tasks', id)
 
         try {
             await updateDoc(docRef, {
@@ -95,8 +95,8 @@ export default function TaskItem({ content, className, status, onSelect, operate
         setOptionsState('task-options')
         const docRef = 
         section === 'tasks' 
-        ? doc(database, 'users', userID, 'tasks', date, 'tasks', id)
-        : doc(database, 'users', userID, 'tasks', date, 'categories', categoryId, 'category-tasks', id)
+        ? doc(database, 'users', userID, 'allTasks', date, 'tasks', id)
+        : doc(database, 'users', userID, 'allTasks', date, 'categories', categoryId, 'category-tasks', id)
 
         try {
             await updateDoc(docRef, {
@@ -168,7 +168,7 @@ export default function TaskItem({ content, className, status, onSelect, operate
                         <p className={status === 'complete' ? 'cross' : ''}>
                             {taskContent}
                         </p>
-                        {status !== 'created' ?                         
+                        {status !== 'created' && status !== 'complete' ?                         
                         <p className="task-status">
                             {taskStatus}
                         </p> : null}
