@@ -860,15 +860,17 @@ input {
   transition: all 0.3s;
 }
 .taskboard__task {
+  position: relative;
   background: var(--background-gradient);
   max-width: 550px;
   min-width: 300px;
-  padding: 15px 15px 15px 20px;
+  padding: 5px;
   font-size: 20px;
   font-weight: 1000;
   border-radius: var(--border-radius);
-  transition: 0.3s;
+  transition: 0.2s;
   border: 2px solid transparent;
+  overflow: hidden;
 }
 .taskboard-categories {
   padding-inline: 140px;
@@ -991,6 +993,38 @@ input {
   transform: scale(1.05, 1.05);
 }
 
+.inner-content-wrapper {
+  padding: 10px;
+  display: flex;
+  -moz-column-gap: 10px;
+       column-gap: 10px;
+  justify-content: space-between;
+  width: 100%;
+  border-radius: 15px;
+  background-color: var(--background-gradient);
+  z-index: 1;
+  transition: 0.2s;
+}
+
+.spinning-border {
+  position: absolute;
+  width: 120%;
+  height: 30%;
+  top: 50%;
+  left: -10%;
+  background-color: black;
+  animation: moveBorder 2s infinite linear;
+  z-index: 1;
+}
+@keyframes moveBorder {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 .reveal {
   opacity: 1;
   transform: translateX(0);
@@ -1061,7 +1095,7 @@ input {
 }
 
 .in-process {
-  border: 2px solid var(--color-accent);
+  border: 2px solid transparent;
 }
 
 .cross {
@@ -1072,6 +1106,7 @@ input {
   font-size: 20px;
   border-radius: var(--border-radius);
   padding: 10px 15px;
+  width: 89%;
   font-family: "Comfortaa";
   box-shadow: var(--box-shadow);
   border: 1.5px solid transparent;

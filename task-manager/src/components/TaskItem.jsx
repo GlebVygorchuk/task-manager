@@ -13,7 +13,7 @@ export default function TaskItem({ content, className, status, onSelect, operate
     const [daysToComplete, setDaysToComplete] = useState('')
     const [deadlineColor, setDeadlineColor] = useState('rgb(0, 195, 255)')
     const [showDeadline, setShowDeadline] = useState(false)
-    const { deadlineDisabled, setDeadlineDisabled } = useContext(AppContext)
+    const { deadlineDisabled, setDeadlineDisabled, operatedTask, setOperatedTask } = useContext(AppContext)
 
     const userID = auth.currentUser ? auth.currentUser.uid : null
 
@@ -23,11 +23,10 @@ export default function TaskItem({ content, className, status, onSelect, operate
             setShowDeadline(true)
         }
         if (status === 'complete') {
-            setTaskStatus('Статус: Выполнено')
             setShowDeadline(false)
         } 
         if (status === 'process') {
-            setTaskStatus('Статус: В работе')
+            setTaskStatus('В работе')
             setShowDeadline(true)
         }
     }, [status])
@@ -54,7 +53,7 @@ export default function TaskItem({ content, className, status, onSelect, operate
         : doc(database, 'users', userID, 'allTasks', date, 'categories', categoryId, 'category-tasks', id)
 
         try {
-            if (status === 'complete') {
+            if (status === state) {
                 await updateDoc(docRef, {
                     status: 'created'
                 })
@@ -164,6 +163,8 @@ export default function TaskItem({ content, className, status, onSelect, operate
                 value={inputValue} className="edit-task" /> 
                 : <div className="item-wrapper">
                     {!deadlineDisabled && showDeadline ? <div style={daysToComplete <= 7 ? {width: `${daysToComplete + 1}0%`, backgroundColor: deadlineColor} : deadlineDisabled ? {background: 'transparent'} : {width: '100%'}} className="deadline-bar"></div> : null}
+                    {status === 'process' ? <div className="spinning-border"></div> : null}
+                    <div style={style} className="inner-content-wrapper">
                     <div className="text-wrapper">
                         <p className={status === 'complete' ? 'cross' : ''}>
                             {taskContent}
@@ -180,6 +181,7 @@ export default function TaskItem({ content, className, status, onSelect, operate
                                 <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/>
                             </svg> : null}
                         </div>
+                    </div>
                     </div>
                   </div>}
             </div>

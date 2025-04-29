@@ -164,7 +164,7 @@ export default function TaskBoard({ date, tasks, categories, loading }) {
                                         <TaskItem 
                                         content={task.task}
                                         index={tasksArray.indexOf(task) + 1}
-                                        className={task.status === 'complete' ? "taskboard__task complete" : task.status === 'process' ? 'taskboard__task in-process' : 'taskboard__task'}
+                                        className={task.status === 'complete' ? "taskboard__task complete" : 'taskboard__task'}
                                         status={task.status} 
                                         onSelect={() => toggleOptions(task.id)}
                                         operated={operatedTask}
