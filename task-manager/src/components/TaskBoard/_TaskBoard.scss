@@ -126,7 +126,6 @@
         transition: 0.2s;
         border: 2px solid transparent;
         overflow: hidden;
-
     }
 
     &-categories {
@@ -262,6 +261,7 @@
 }
 
 .inner-content-wrapper {
+    position: relative;
     padding: 10px;
     display: flex;
     column-gap: 10px;
@@ -346,13 +346,10 @@
     border-radius: 20px;
     align-self: flex-end;
     position: absolute;
-    bottom: -24px;
-    cursor: pointer;
+    z-index: 5;
+    bottom: -7px;
+    left: 15px;
     transition: 0.3s;
-
-    &:hover {
-        opacity: 0.7;
-    }
 }
 
 .section-choose {

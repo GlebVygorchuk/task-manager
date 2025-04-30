@@ -165,6 +165,7 @@ export default function TaskBoard({ date, tasks, categories, loading }) {
                                         content={task.task}
                                         index={tasksArray.indexOf(task) + 1}
                                         className={task.status === 'complete' ? "taskboard__task complete" : 'taskboard__task'}
+                                        style={task.status === 'complete' ? {backgroundColor: 'black', color: 'white'} : null}
                                         status={task.status} 
                                         onSelect={() => toggleOptions(task.id)}
                                         operated={operatedTask}

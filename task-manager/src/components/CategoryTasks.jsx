@@ -105,7 +105,8 @@ export default function CategoryTasks({ title, onReturn, date, categoryId}) {
                     <TaskItem
                     className={task.status === 'complete' ? "taskboard__task complete" : 'taskboard__task'}
                     style={task.status === 'complete' ? {backgroundColor: currentColor} : null }
-                    index={categoryTasks.indexOf(task) + 1} 
+                    index={categoryTasks.indexOf(task) + 1}
+                    accentColor={currentColor} 
                     content={task.task}
                     status={task.status}
                     itemId={task.id}

@@ -3,7 +3,7 @@ import { database, auth } from "../firebase"
 import { updateDoc, doc, deleteDoc } from "firebase/firestore"
 import { AppContext } from "./AppContext"
 
-export default function TaskItem({ content, className, status, onSelect, operated, itemId, date, section, categoryId, index, style}) {
+export default function TaskItem({ content, className, status, onSelect, operated, itemId, date, section, categoryId, index, style, accentColor}) {
     const [taskStatus, setTaskStatus] = useState('')
     const [isRedacting, setIsRedacting] = useState(false)
     const [inputValue, setInputValue] = useState(content)
@@ -155,6 +155,7 @@ export default function TaskItem({ content, className, status, onSelect, operate
         </svg> : null}
         <p className="task-index">{index}.</p>
         <div className="content-wrapper">
+        {!deadlineDisabled && showDeadline ? <div style={daysToComplete <= 7 ? {width: `${daysToComplete + 1}0%`, backgroundColor: deadlineColor} : deadlineDisabled ? {background: 'transparent'} : {width: '100%'}} className="deadline-bar"></div> : null}
             <div style={style} className={className}>
                 {isRedacting ? <textarea 
                 onBlur={() => handleEdit(itemId)} 
@@ -162,15 +163,14 @@ export default function TaskItem({ content, className, status, onSelect, operate
                 onKeyDown={handleEnterPress} 
                 value={inputValue} className="edit-task" /> 
                 : <div className="item-wrapper">
-                    {!deadlineDisabled && showDeadline ? <div style={daysToComplete <= 7 ? {width: `${daysToComplete + 1}0%`, backgroundColor: deadlineColor} : deadlineDisabled ? {background: 'transparent'} : {width: '100%'}} className="deadline-bar"></div> : null}
-                    {status === 'process' ? <div className="spinning-border"></div> : null}
+                    {status === 'process' ? <div style={{backgroundColor: accentColor}} className="spinning-border"></div> : null}
                     <div style={style} className="inner-content-wrapper">
                     <div className="text-wrapper">
                         <p className={status === 'complete' ? 'cross' : ''}>
                             {taskContent}
                         </p>
                         {status !== 'created' && status !== 'complete' ?                         
-                        <p className="task-status">
+                        <p style={{color: accentColor}} className="task-status">
                             {taskStatus}
                         </p> : null}
                     </div>
