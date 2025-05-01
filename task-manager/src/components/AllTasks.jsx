@@ -5,43 +5,48 @@ import { useEffect, useState } from "react"
 import { database } from "../firebase"
 
 export default function AllTasks() {
-    const [tasks, setTasks] = useState('')
+    const [tasks, setTasks] = useState([])
     const [operatedTask, setOperatedTask] = useState('')
 
     const auth = getAuth()
     const userID = auth.currentUser ? auth.currentUser.uid : null
 
     useEffect(() => {
-        const getAllTasks = async () => {
-            if (userID) {
-                try {
-                    const tasksCollection = collection(database, 'users', userID, 'allTasks')
-                    const querySnapshot = await getDocs(tasksCollection)
-                    const allTasks = []
-                    
-                    querySnapshot.docs.forEach(doc => {
-                        onSnapshot(collection(database, 'users', userID, 'allTasks', doc.id, 'tasks'), 
-                        snapshot => {
-                            snapshot.forEach(item => allTasks.push({
-                                id: item.id,
-                                task: item.data().task,
-                                status: item.data().status,
-                                date: item.data().date
-                            }))
+        if (!userID) return 
+        const unsubcribeFunctions = []
+        const fetchAllTasks = async () => {
+            const datesCollection = collection(database, 'users', userID, 'allTasks')
+            const datesDocs = await getDocs(datesCollection)
+        
+            datesDocs.docs.forEach(docDate => {
+                const tasksCollection = collection(database, 'users', userID, 'allTasks', docDate.id, 'tasks')
+
+                const unsub = onSnapshot(tasksCollection, snapshot => {
+                    setTasks(prev => {
+                        const taskMap = new Map(prev.map(task => [task.id, task]))
+
+                        snapshot.docs.forEach(doc => {
+                            taskMap.set(doc.id, {
+                                id: doc.id,
+                                task: doc.data().task,
+                                status: doc.data().status,
+                                date: doc.data().date,
+                                index: taskMap.has(doc.id) 
+                                ? taskMap.get(doc.id).index
+                                : prev.length + snapshot.docs.indexOf(doc)
+                            })
                         })
+
+                        const tasksFromMap = Array.from(taskMap.values())
+                        const sortedTasks = tasksFromMap.sort((a, b) => a.index - b.index)
+                        return sortedTasks
                     })
-
-                    setTimeout(() => setTasks(allTasks), 1000)
-                }
-                catch (error) {
-                    console.log('ERROR:', error)
-                }
-            }
+                }) 
+                unsubcribeFunctions.push(unsub)
+            })
         }
-
-        getAllTasks()
-
-        return () => {}
+        fetchAllTasks()
+        return () => unsubcribeFunctions.forEach(fn => fn())
     }, [userID])
 
     useEffect(() => {
@@ -55,7 +60,9 @@ export default function AllTasks() {
     }
  
     return (
-        <ul className="taskboard__task-list">
+        <div style={{display: 'flex', alignItems: 'center', flexDirection: "column"}} className="all-tasks">
+            <h1 style={{fontSize: '50px', marginTop: '30px', marginBottom: '5px'}}>Все задачи</h1>
+            <ul className="taskboard__task-list">
             {Array.isArray(tasks) ? (
                 tasks.map(task => {
                     return (
@@ -69,10 +76,12 @@ export default function AllTasks() {
                         itemId={task.id}
                         section={'tasks'}
                         date={task.date}
-                        key={task.id} />
+                        key={`${task.id} - ${task.date}`}
+                        accentColor={'black'} />
                     )
                 })
             ) : null}
-        </ul>
+            </ul>
+        </div>
     )
 }

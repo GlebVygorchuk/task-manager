@@ -136,8 +136,7 @@ export default function MainPage() {
         </header>
         
         <main className="main">
-            <TimeScale />
-            {allTasks ? <AllTasks /> : null}
+            {allTasks ? <AllTasks /> : <TimeScale />}
             {!allTasks ? selectedDate && <TaskBoard loading={loadingData} date={selectedDate} tasks={currentTasks} categories={categories}/> : null}
         </main>
 

@@ -108,7 +108,7 @@
     &__task-list {
         display: flex;
         flex-direction: column;
-        padding-inline: 35%;
+        align-items: center;
         margin-top: 20px;
         row-gap: 20px;
         transition: all 0.3s;
@@ -117,8 +117,7 @@
     &__task {
         position: relative;
         background: var(--background-gradient);
-        max-width: 550px;
-        min-width: 300px;
+        width: 350px;
         padding: 5px;
         font-size: 20px;
         font-weight: 1000;
