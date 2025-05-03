@@ -21,7 +21,7 @@ export default function Entrance() {
         <section className="entrance">
             <div className="entrance__container">
 
-                <h1 className="entrance__greetings">Добро пожаловать в <span className="highlight">Chronos</span> - инструмент управления временем</h1>
+                <h1 className="entrance__greetings">Добро пожаловать в Chronos - инструмент управления временем</h1>
 
                 <div className="entrance__buttons-wrapper">
 

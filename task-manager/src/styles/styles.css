@@ -1,11 +1,12 @@
 @font-face {
   font-family: "Comfortaa";
-  src: url("../assets/Comfortaa-VariableFont_wght.ttf");
+  src: url("../assets/Unbounded-VariableFont_wght.ttf");
 }
 .entrance {
   display: flex;
   justify-content: center;
   padding-inline: 300px;
+  font-weight: 400;
 }
 .entrance__container {
   display: flex;
@@ -19,13 +20,14 @@
   opacity: 0;
 }
 .entrance__greetings {
-  font-size: 45px;
+  font-size: 40px;
   align-self: center;
   animation: appear 0.5s forwards;
   animation-delay: 0.1s;
   opacity: 0;
   text-align: center;
   line-height: 1.3;
+  font-weight: 400;
 }
 .entrance__buttons-wrapper {
   display: flex;
@@ -83,7 +85,7 @@
   background: var(--background-gradient);
   row-gap: 20px;
   padding: 40px 60px;
-  border-radius: 20px;
+  border-radius: 15px;
   margin-top: 7.5vh;
   animation: appear 0.5s forwards;
 }
@@ -116,7 +118,7 @@
 .registration__button {
   margin-top: 10px;
   padding: 15px 25px;
-  border-radius: 20px;
+  border-radius: 15px;
   font-size: 22.5px;
   background-color: var(--color-accent);
   color: var(--color-text);
@@ -254,7 +256,7 @@
   background: var(--background-gradient);
   row-gap: 20px;
   padding: 40px 60px;
-  border-radius: 20px;
+  border-radius: 15px;
   margin-top: 7.5vh;
   animation: appear 0.5s forwards;
 }
@@ -287,7 +289,7 @@
 .login__button {
   margin-top: 10px;
   padding: 15px 25px;
-  border-radius: 20px;
+  border-radius: 15px;
   font-size: 22.5px;
   background-color: var(--color-accent);
   color: var(--color-text);
@@ -351,7 +353,7 @@
   background: var(--background-gradient);
   row-gap: 20px;
   padding: 40px 60px;
-  border-radius: 20px;
+  border-radius: 15px;
   margin-top: 7.5vh;
   animation: appear 0.5s forwards;
   position: absolute;
@@ -430,7 +432,7 @@ body {
   color: var(--color-text);
   align-self: center;
   font-size: 40px;
-  font-weight: 1000;
+  font-weight: 400;
 }
 .main__header__profile {
   align-self: center;
@@ -446,7 +448,7 @@ body {
 .main__header__logout-btn {
   margin-top: 10px;
   padding: 15px 25px;
-  border-radius: 20px;
+  border-radius: 15px;
   font-size: 22.5px;
   background-color: var(--color-accent);
   color: var(--color-text);
@@ -457,7 +459,6 @@ body {
   padding: 12.5px 17.5px;
   color: var(--color-background);
   transition: 0.3s;
-  font-weight: 1000;
 }
 .main__header__logout-btn:hover {
   opacity: 0.6;
@@ -478,15 +479,13 @@ body {
   right: 50px;
   top: 70px;
   font-size: 17.5px;
-  font-weight: 1000;
   z-index: 1;
 }
 .main__header__extra {
   background-color: var(--background-gradient);
   padding: 10px 15px;
   font-size: 20px;
-  font-weight: 1000;
-  border-radius: 15px;
+  border-radius: 10px;
   border: 2px solid transparent;
   transition: 0.3s;
 }
@@ -511,7 +510,7 @@ body {
 
 .username {
   align-self: center;
-  font-weight: 1000;
+  font-weight: 400;
   font-size: 21px;
   color: var(--color-text);
 }
@@ -563,7 +562,7 @@ body {
   background: var(--background-gradient);
   row-gap: 20px;
   padding: 40px 60px;
-  border-radius: 20px;
+  border-radius: 15px;
   margin-top: 7.5vh;
   animation: appear 0.5s forwards;
   border-radius: 15px;
@@ -603,8 +602,7 @@ body {
   background-color: var(--background-gradient);
   padding: 10px 15px;
   font-size: 20px;
-  font-weight: 1000;
-  border-radius: 15px;
+  border-radius: 10px;
   border: 2px solid transparent;
   transition: 0.3s;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.132);
@@ -623,7 +621,7 @@ body {
 #sure, #not-sure {
   margin-top: 10px;
   padding: 15px 25px;
-  border-radius: 20px;
+  border-radius: 15px;
   font-size: 22.5px;
   background-color: var(--color-accent);
   color: var(--color-text);
@@ -631,7 +629,6 @@ body {
   padding: 10px 15px;
   color: var(--color-background);
   transition: 0.3s;
-  font-weight: 1000;
   border-radius: 15px;
 }
 #sure:hover, #not-sure:hover {
@@ -668,7 +665,7 @@ input {
   --background-gradient: #f2f2f2;
   --color-hover: rgba(0, 0, 0, 0.675);
   --box-shadow: 0 5px 10px rgba(0, 0, 0, 0.108);
-  --border-radius: 20px;
+  --border-radius: 15px;
 }
 
 .time-scale {
@@ -721,7 +718,6 @@ input {
   border-radius: var(--border-radius);
   background-color: var(--color-accent);
   font-size: 20px;
-  font-weight: 1000;
   color: var(--color-background);
   transition: 0.3s;
 }
@@ -748,7 +744,6 @@ input {
 
 .day {
   color: var(--color-accent);
-  font-weight: 1000;
   font-size: 20px;
 }
 
@@ -780,7 +775,6 @@ input {
   background-color: var(--background-gradient);
   padding: 10px 15px;
   font-size: 25px;
-  font-weight: 1000;
   border-radius: var(--border-radius);
   border: 2px solid transparent;
   transition: 0.3s;
@@ -799,7 +793,7 @@ input {
   background: transparent;
   font-family: "Comfortaa";
   color: var(--color-text);
-  border-radius: var(--border-radius);
+  border-radius: 15px;
   font-size: 20px;
   padding: 10px 20px;
   transition: 0.3s;
@@ -814,9 +808,9 @@ input {
   border: 2px solid var(--color-accent);
 }
 .taskboard__add-task {
-  margin: 0;
-  padding-inline: 15px;
-  font-size: 30px;
+  padding-top: 0;
+  padding-inline: 13px;
+  font-size: 35px;
   color: var(--color-background);
   background-color: var(--color-accent);
   transition: 0.3s;
@@ -828,7 +822,6 @@ input {
 .taskboard__wipe {
   background-color: var(--color-accent);
   color: white;
-  font-weight: 1000;
   font-size: 20px;
   border-radius: 10px;
   transition: 0.3s;
@@ -865,7 +858,6 @@ input {
   width: 350px;
   padding: 5px;
   font-size: 20px;
-  font-weight: 1000;
   border-radius: var(--border-radius);
   transition: 0.2s;
   border: 2px solid transparent;
@@ -890,7 +882,6 @@ input {
   -moz-column-gap: 20px;
        column-gap: 20px;
   font-size: 40px;
-  font-weight: 1000;
   background-color: var(--color-accent);
   box-shadow: none;
   color: var(--color-background);
@@ -934,7 +925,6 @@ input {
   background-color: var(--color-accent);
   color: var(--color-background);
   font-size: 20px;
-  font-weight: 1000;
   font-family: "Comfortaa";
   border-radius: 10px;
   transition: 0.5s;
@@ -1000,7 +990,7 @@ input {
        column-gap: 10px;
   justify-content: space-between;
   width: 100%;
-  border-radius: 15px;
+  border-radius: 10px;
   background-color: var(--background-gradient);
   z-index: 1;
   transition: 0.2s;
@@ -1043,6 +1033,7 @@ input {
 }
 .category-tasks__title {
   font-size: 40px;
+  font-weight: 400;
 }
 .category-tasks__return-btn {
   position: absolute;
@@ -1119,7 +1110,7 @@ input {
 
 .task-status {
   font-size: 15px;
-  font-weight: 1000;
+  font-weight: 600;
 }
 
 .task-wrapper {
@@ -1135,9 +1126,9 @@ input {
 
 .task-index {
   position: absolute;
-  left: -35px;
+  left: -37.5px;
   font-size: 25px;
-  font-weight: 1000;
+  font-weight: 400;
 }
 
 .content-wrapper {
@@ -1300,11 +1291,29 @@ input {
   background-color: rgb(93, 93, 93);
 }
 
+.phantom {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--border-radius);
+  z-index: 3;
+  pointer-events: none;
+  z-index: -1;
+  transform: scale(0.9, 0.9);
+  background-color: transparent;
+}
+
+.fade {
+  transform: scale(1.1, 1.35);
+  transition: 0.4s;
+  opacity: 0;
+}
+
 body {
   font-family: "Comfortaa";
   background-color: var(--color-background);
   color: var(--color-text);
-  font-weight: 1000;
+  font-weight: 400;
 }
 body::-moz-selection {
   background-color: black;
@@ -1313,6 +1322,10 @@ body::-moz-selection {
 body::selection {
   background-color: black;
   color: white;
+}
+
+h1 {
+  font-weight: 400;
 }
 
 @keyframes appear {

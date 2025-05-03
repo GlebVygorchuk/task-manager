@@ -13,6 +13,7 @@ export default function TaskItem({ content, className, status, onSelect, operate
     const [daysToComplete, setDaysToComplete] = useState('')
     const [deadlineColor, setDeadlineColor] = useState('rgb(0, 195, 255)')
     const [showDeadline, setShowDeadline] = useState(false)
+    const [showPhantom, setShowPhantom] = useState(false)
     const { deadlineDisabled, setDeadlineDisabled, operatedTask, setOperatedTask } = useContext(AppContext)
 
     const userID = auth.currentUser ? auth.currentUser.uid : null
@@ -24,6 +25,7 @@ export default function TaskItem({ content, className, status, onSelect, operate
         }
         if (status === 'complete') {
             setShowDeadline(false)
+            setShowPhantom(true)
         } 
         if (status === 'process') {
             setTaskStatus('В работе')
@@ -52,6 +54,11 @@ export default function TaskItem({ content, className, status, onSelect, operate
         ? doc(database, 'users', userID, 'allTasks', date, 'tasks', id)
         : doc(database, 'users', userID, 'allTasks', date, 'categories', categoryId, 'category-tasks', id)
 
+        if (state === 'complete') {
+            setShowPhantom(prev => !prev)
+        } else {
+            setShowPhantom(false)
+        }
         try {
             if (status === state) {
                 await updateDoc(docRef, {
@@ -82,6 +89,7 @@ export default function TaskItem({ content, className, status, onSelect, operate
             setTaskContent(inputValue)
             setIsRedacting(false)
             setUpdating(false)
+            setShowPhantom(false)
             onSelect()
         } 
         catch(error) {
@@ -156,6 +164,7 @@ export default function TaskItem({ content, className, status, onSelect, operate
         <p className="task-index">{index}.</p>
         <div className="content-wrapper">
         {!deadlineDisabled && showDeadline ? <div style={daysToComplete <= 7 ? {width: `${daysToComplete + 1}0%`, backgroundColor: deadlineColor} : deadlineDisabled ? {background: 'transparent'} : {width: '100%'}} className="deadline-bar"></div> : null}
+        <div style={{backgroundColor: accentColor === undefined ? 'black' : accentColor}} className={showPhantom ? 'phantom fade' : 'phantom'}></div>
             <div style={status === 'complete' ? {backgroundColor: accentColor} : null} className={className}>
                 {isRedacting ? <textarea 
                 onBlur={() => handleEdit(itemId)} 
@@ -164,7 +173,7 @@ export default function TaskItem({ content, className, status, onSelect, operate
                 value={inputValue} className="edit-task" /> 
                 : <div className="item-wrapper">
                     {status === 'process' ? <div style={{backgroundColor: accentColor}} className="spinning-border"></div> : null}
-                    <div style={status === 'complete' ? {backgroundColor: accentColor} : null} className="inner-content-wrapper">
+                    <div style={status === 'complete' ? {backgroundColor: accentColor === undefined ? 'black' : accentColor} : null} className="inner-content-wrapper">
                     <div className="text-wrapper">
                         <p className={status === 'complete' ? 'cross' : ''}>
                             {taskContent}
@@ -192,7 +201,7 @@ export default function TaskItem({ content, className, status, onSelect, operate
             <svg onClick={() => handleStatus(itemId, 'complete')} className="option" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" viewBox="0 0 16 16">
                 <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/>
             </svg>
-            <button onClick={() => handleStatus(itemId, 'process')} style={{fontSize: '20px', fontWeight: '1000', userSelect: 'none'}} className="option">GO</button>
+            <button onClick={() => handleStatus(itemId, 'process')} style={{fontSize: '20px', fontWeight: '600', userSelect: 'none'}} className="option">GO</button>
             <svg onClick={() => handleStartEdit(itemId)} className="option" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" viewBox="0 0 16 16">
                 <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                 <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>

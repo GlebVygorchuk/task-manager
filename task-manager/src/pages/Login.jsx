@@ -75,7 +75,7 @@ export default function Login() {
 
             <div className="login__container">
 
-                <h1 style={{fontSize: '50px'}}>Вход</h1>
+                <h1 style={{fontSize: '45px'}}>Вход</h1>
 
                 <form className="login__form">
 
