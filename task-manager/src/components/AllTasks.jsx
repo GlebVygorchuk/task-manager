@@ -12,55 +12,92 @@ export default function AllTasks() {
     const userID = auth.currentUser ? auth.currentUser.uid : null
 
     useEffect(() => {
-        if (!userID) return 
-        const unsubcribeFunctions = []
-        const fetchAllTasks = async () => {
-            const datesCollection = collection(database, 'users', userID, 'allTasks')
-            const datesDocs = await getDocs(datesCollection)
+        if (!userID) return
+        const unsubs = []
         
-            datesDocs.docs.forEach(docDate => {
-                const tasksCollection = collection(database, 'users', userID, 'allTasks', docDate.id, 'tasks')
+        async function fetchAllTasks() {
+            const dates = collection(database, 'users', userID, 'allTasks')
+            const datesSnapshot = await getDocs(dates)
 
-                const unsub = onSnapshot(tasksCollection, snapshot => {
-                    setTasks(prev => {
-                        const taskMap = new Map(prev.map(task => [task.id, task]))
+            const taskMap = new Map()
 
-                        snapshot.docs.forEach(doc => {
-                            taskMap.set(doc.id, {
-                                id: doc.id,
-                                task: doc.data().task,
-                                status: doc.data().status,
-                                date: doc.data().date,
-                                index: taskMap.has(doc.id) 
-                                ? taskMap.get(doc.id).index
-                                : prev.length + snapshot.docs.indexOf(doc)
-                            })
-                        })
+            for (const dateDoc of datesSnapshot.docs) {
+                const date = dateDoc.id
+                const tasksCollection = collection(database, 'users', userID, 'allTasks', date, 'tasks')
 
-                        const tasksFromMap = Array.from(taskMap.values())
-                        const sortedTasks = tasksFromMap.sort((a, b) => a.index - b.index)
-                        return sortedTasks
+                const fetchTasks = onSnapshot(tasksCollection, snapshot => {
+                    snapshot.docChanges().forEach(change => {
+                        const data = change.doc.data()
+                        const id = change.doc.id
+                        const task = {
+                            id,
+                            task: data.task,
+                            status: data.status,
+                            date,
+                            index: data.index ?? 0
+                        }
+
+                        if (change.type === 'removed') {
+                            taskMap.delete(id)
+                        } else {
+                            taskMap.set(id, task)
+                        }
+
+                        const mapValues = Array.from(taskMap.values())
+                        const sortedTasks = mapValues.sort((a, b) => a - b)
+                        setTasks(sortedTasks)
                     })
-                }) 
-                unsubcribeFunctions.push(unsub)
-            })
+                })
+                unsubs.push(fetchTasks)
+
+                const categoriesCollection = collection(database, 'users', userID, 'allTasks', date, 'categories')
+                const categoriesSnapshot = await getDocs(categoriesCollection)
+                for (const category of categoriesSnapshot.docs) {
+                    const categoryTasksCollection = collection(database, 'users', userID, 'allTasks', date, 'categories', category.id, 'category-tasks')
+                    const fetchCategoryTasks = onSnapshot(categoryTasksCollection, snapshot => {
+                        snapshot.docChanges().forEach(change => {
+                            const data = change.doc.data()
+                            const id = change.doc.id
+                            const task = {
+                                id,
+                                task: data.task,
+                                status: data.status,
+                                date,
+                                categoryId: data.categoryId,
+                                index: data.index ?? 0
+                            }
+
+                            if (change.type === 'removed') {
+                                taskMap.delete(id)
+                            } else {
+                                taskMap.set(id, task)
+                            }
+
+                            const mapValues = Array.from(taskMap.values())
+                            const sorted = mapValues.sort((a, b) => a - b)
+                            setTasks(sorted)
+                        })
+                    })
+                    unsubs.push(fetchCategoryTasks)
+                }
+            }
         }
         fetchAllTasks()
-        return () => unsubcribeFunctions.forEach(fn => fn())
+        return () => unsubs.forEach(fn => fn())
     }, [userID])
-
-    useEffect(() => {
-        console.log(tasks)
-    }, [tasks])
 
     function toggleOptions(task) {
         setOperatedTask(prev => {
             return task === prev ? '' : task
         })
     }
+
+    useEffect(() => {
+        console.log(tasks)
+    }, [tasks])
  
     return (
-        <div style={{display: 'flex', alignItems: 'center', flexDirection: "column"}} className="all-tasks">
+        <div style={{display: 'flex', alignItems: 'center', flexDirection: "column", paddingBottom: '50px'}} className="all-tasks">
             <h1 style={{fontSize: '50px', marginTop: '30px', marginBottom: '5px'}}>Все задачи</h1>
             <ul className="taskboard__task-list">
             {Array.isArray(tasks) ? (
@@ -74,7 +111,8 @@ export default function AllTasks() {
                         onSelect={() => toggleOptions(task.id)}
                         operated={operatedTask}
                         itemId={task.id}
-                        section={'tasks'}
+                        categoryId={task.categoryId}
+                        section={'all tasks'}
                         date={task.date}
                         key={`${task.id} - ${task.date}`}
                         accentColor={'black'} />

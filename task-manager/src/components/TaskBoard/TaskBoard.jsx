@@ -7,7 +7,6 @@ import TaskItem from "../TaskItem"
 import Category from "../Category"
 import CategoryTasks from "../CategoryTasks"
 import { AppContext } from "../AppContext"
-import Sortable from "sortablejs"
 
 export default function TaskBoard({ date, tasks, categories, loading }) {
     const [taskValue, setTaskValue] = useState('')
@@ -30,7 +29,7 @@ export default function TaskBoard({ date, tasks, categories, loading }) {
             await addDoc(collection(database, 'users', userID, 'allTasks', date, 'tasks'), {
                 task: taskValue,
                 status: 'created',
-                date: date
+                date: new Date().toISOString().split('T')[0]
             })
             await setDoc(doc(database, 'users', userID, 'allTasks', date), {
                 createdAt: new Date()

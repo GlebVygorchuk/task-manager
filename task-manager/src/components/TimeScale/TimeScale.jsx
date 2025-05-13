@@ -50,7 +50,7 @@ export default function TimeScale() {
             current.setDate(current.getDate() + i)
             const dateItem = {
                 id: i + 1, 
-                fullDate: current.toLocaleString().slice(0, -10), 
+                fullDate: current.toISOString().split('T')[0], 
                 day: <FormattedDate date={current}/>
             }
             generatedDates.push(dateItem)

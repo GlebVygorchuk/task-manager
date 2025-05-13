@@ -55,7 +55,8 @@ export default function CategoryTasks({ title, onReturn, date, categoryId}) {
         try {
             await addDoc(collection(database, 'users', userID, 'allTasks', date, 'categories', categoryId, 'category-tasks' ), {
                 task: taskValue,
-                status: 'created'
+                status: 'created',
+                categoryId: categoryId
             })
         }
         catch(error) {
@@ -119,7 +120,7 @@ export default function CategoryTasks({ title, onReturn, date, categoryId}) {
             })}
         </ul>
     </div>}
-    <button onClick={onReturn} className="category-tasks__return-btn">&lt; Назад</button>
+    <button onClick={onReturn} className="category-tasks__return-btn">&lt; назад</button>
     </>
     )
 }

@@ -4,7 +4,7 @@ import { useNavigate, useLocation } from "react-router-dom"
 import { AppContext } from "../components/AppContext"
 import { useContext } from "react"
 import { database } from "../firebase"
-import { collection, onSnapshot } from "firebase/firestore"
+import { collection, getDocs, onSnapshot, writeBatch } from "firebase/firestore"
 import TimeScale from "../components/TimeScale/TimeScale"
 import TaskBoard from "../components/TaskBoard/TaskBoard"
 import AllTasks from "../components/AllTasks"
@@ -37,6 +37,27 @@ export default function MainPage() {
         })
         return () => window.removeEventListener('popstate', () => {})
     }, [])
+
+    useEffect(() => {
+        if (!userID) return
+
+        async function cleanUp() {
+            const now = new Date().toISOString().split('T')[0]
+            const datesRef = collection(database, 'users', userID, 'allTasks')
+            const datesDocs = await getDocs(datesRef)
+            const batch = writeBatch(database)
+
+            datesDocs.docs.forEach(doc => {
+                if (doc.id < now) {
+                    batch.delete(doc.ref)
+                } 
+            })
+
+            await batch.commit()
+        }
+
+        cleanUp()
+    }, [userID])
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -118,7 +139,6 @@ export default function MainPage() {
             </div>
             
             <div className="profile-information">
-            <button onClick={() => setShowExtra(prev => !prev)} className={`main__header__extra ${showExtra ? 'selected' : null}`}>Доп. возможности</button>
                 <h2 className="username">{`Добро пожаловать, ${userdata.nickname}!`}</h2>
                 <div onClick={() => setShowProfile(prev => !prev)} className="main__header__profile">
                     <svg xmlns="http://www.w3.org/2000/svg" width="40px" height="40px" viewBox="0 0 32 32" style={{enableBackground: 'new 0 0 32 32'}} xmlSpace="preserve"><path d="M16 31C7.729 31 1 24.271 1 16S7.729 1 16 1s15 6.729 15 15-6.729 15-15 15zm0-28C8.832 3 3 8.832 3 16s5.832 13 13 13 13-5.832 13-13S23.168 3 16 3z"/><circle cx="16" cy="11.368" r="3.368"/><path d="M20.673 24h-9.346c-.83 0-1.502-.672-1.502-1.502v-.987a5.404 5.404 0 0 1 5.403-5.403h1.544a5.404 5.404 0 0 1 5.403 5.403v.987c0 .83-.672 1.502-1.502 1.502z"/></svg>
@@ -129,6 +149,15 @@ export default function MainPage() {
                 <div onClick={() => setShowProfile(false)} className="close-button"></div>
                 <p>Имя: <span className="info-field">{userdata.nickname}</span></p>
                 <p>E-Mail: <span className="info-field">{userdata.email}</span></p>
+                <button onClick={(e) => {
+                e.stopPropagation()
+                setDeadlineDisabled(prev => !prev)
+            }} className={`extra-option ${!deadlineDisabled ? 'selected' : ''}`}>Дедлайны {deadlineDisabled ? '- выкл.' : '- вкл.'}</button>
+            <button onClick={() => {
+                setAllTasks(prev => !prev)
+                setShowProfile(false)
+            }} className={`extra-option ${allTasks ? 'selected' : ''}`}>Все задачи</button>
+            <button className="extra-option">Тема - светлая</button>
                 <button 
                 className="main__header__logout-btn" 
                 onClick={() => setShowModal(true)}>Выйти</button>
@@ -156,15 +185,6 @@ export default function MainPage() {
                 <button id="not-sure" onClick={() => setShowModal(false)}>Нет</button>
                 <button id="sure" onClick={logOut}>Да</button>
             </div>
-        </div>
-        <div className={`extra-possibilities ${showExtra ? 'show-modal' : ''}`}>
-            <div onClick={() => setShowExtra(false)} className="close-button"></div>
-            <button onClick={(e) => {
-                e.stopPropagation()
-                setDeadlineDisabled(prev => !prev)
-            }} className={`extra-option ${!deadlineDisabled ? 'selected' : ''}`}>Дедлайны {deadlineDisabled ? '- выкл.' : '- вкл.'}</button>
-            <button onClick={() => setAllTasks(prev => !prev)} className="extra-option">Все задачи</button>
-            <button className="extra-option">Тема - светлая</button>
         </div>
         </div>
 
