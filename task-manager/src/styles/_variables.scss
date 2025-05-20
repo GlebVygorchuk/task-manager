@@ -1,10 +1,17 @@
 :root {
-    --color-main: #292929;
+    --color-main: rgb(210, 210, 210);
     --color-text: #000000;
     --color-accent: black;
     --color-background: #FFFFFF;
     --background-gradient: #f2f2f2;
     --color-hover: rgba(0, 0, 0, 0.675);
-    --box-shadow: 0 5px 10px rgba(0, 0, 0, 0.108);
-    --border-radius: 15px;
+    --box-shadow: 0 0px 20px rgba(0, 0, 0, 0.07);
+    --border-radius: 10px;
+}
+
+[data-theme="dark"] {
+    --color-accent: #ffffff;
+    --color-background: rgb(8, 8, 8);
+    --background-gradient: rgb(24, 24, 24);
+    --color-main: rgb(69, 69, 69);
 }

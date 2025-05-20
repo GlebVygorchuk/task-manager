@@ -12,14 +12,22 @@ export default function AppProvider({ children }) {
     const [section, setSection] = useState('')
     const [deadlineDisabled, setDeadlineDisabled] = useState(false)
     const [timers, setTimers] = useState({})
+    const [darkTheme, setDarkTheme] = useState(false)
+
+    useEffect(() => {
+        const deadlines = localStorage.getItem('deadlines')
+        const theme = localStorage.getItem('dark-theme')
+
+        setDeadlineDisabled(JSON.parse(deadlines))
+        setDarkTheme(JSON.parse(theme)) 
+    }, [])
+
+    useEffect(() => {
+        localStorage.setItem('dark-theme', darkTheme)
+        localStorage.setItem('deadlines', deadlineDisabled)
+    }, [darkTheme, deadlineDisabled])
 
     const startTaskTimer = async ({ userID, date, taskId, categoryId, time}) => {
-        console.log(userID)
-        console.log(date)
-        console.log(taskId)
-        console.log(categoryId)
-        console.log(time)
-
         const taskKey = `${categoryId || 'no-category'}-${taskId}`
         const duration = time * 60
 
@@ -85,35 +93,6 @@ export default function AppProvider({ children }) {
         return () => clearInterval(interval)
     }
 
-    // const startTimer = (taskId, seconds) => {
-    //     setTimers(prev => ({
-    //         ...prev, 
-    //         [taskId]: {
-    //             running: true,
-    //             remaining: seconds
-    //         }
-    //     }))
-    // }
-
-    // useEffect(() => {
-    //     const interval = setInterval(() => {
-    //         setTimers(prev => {
-    //             const updated = {...prev}
-    //             Object.entries(updated).forEach(([taskId, timer]) => {
-    //                 if (timer.running && timer.remaining > 0) {
-    //                     updated[taskId] = {
-    //                         ...timer,
-    //                         remaining: timer.remaining - 1
-    //                     }
-    //                 }
-    //             })
-    //             return updated
-    //         })
-    //     }, 1000)
-
-    //     return () => clearInterval(interval)
-    // }, [])
-    
     return (
         <AppContext.Provider value={
             { 
@@ -122,12 +101,14 @@ export default function AppProvider({ children }) {
             section, 
             deadlineDisabled, 
             timers,
+            darkTheme,
             setDeadlineDisabled, 
             setSelectedDate, 
             setTasks, 
             setSection,
             setTimers,
-            startTaskTimer
+            startTaskTimer,
+            setDarkTheme
             }}>
             {children}
         </AppContext.Provider>

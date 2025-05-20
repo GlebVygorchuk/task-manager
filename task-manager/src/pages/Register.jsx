@@ -1,6 +1,6 @@
 import { auth } from "../firebase"
 import { createUserWithEmailAndPassword, sendEmailVerification, onAuthStateChanged, getAuth, updateCurrentUser, updateProfile} from "firebase/auth"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 
 export default function Register() {

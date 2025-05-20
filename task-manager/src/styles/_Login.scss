@@ -1,6 +1,8 @@
 .login {
     display: flex;
     justify-content: center;
+    color: var(--color-accent);
+    padding-bottom: 50px;
 
     &__container {
         @include formContainerStyles();
@@ -22,7 +24,7 @@
         transition: 0.3s;
 
         &:hover {
-            background-color: var(--color-hover);
+            background-color: var(--color-main);
         }
     }
 }
@@ -41,10 +43,6 @@
         border: 2px solid var(--color-hover);
         cursor: pointer;
         transition: 0.3s;
-
-        &:hover {
-            border: 2px solid var(--color-accent);
-        }
     }
 
     &__text {
@@ -106,21 +104,19 @@
         position: absolute;
         content: '';
         width: 20px;
-        top: 13px;
-        right: 4.5px;
-        height: 2.5px;
+        top: 12px;
+        right: 4px;
+        height: 2px;
         background-color: var(--color-accent);
+        transition: 0.3s;
     }
 
-    &::after {
-        transform: rotate(42.5deg);
-    }
-
-    &::before {
-        transform: rotate(-42.5deg);
-    }
-
-    &:hover {
-        opacity: 0.5;
-    }
+    &:hover{
+        &::after {
+            transform: rotate(137.5deg);
+        }
+        &::before {
+            transform: rotate(222.5deg);
+        }
+    } 
 }

@@ -7,6 +7,7 @@
   justify-content: center;
   padding-inline: 300px;
   font-weight: 400;
+  color: var(--color-accent);
 }
 .entrance__container {
   display: flex;
@@ -14,7 +15,7 @@
   margin-top: 10vh;
   background: var(--background-gradient);
   padding: 40px;
-  border-radius: var(--border-radius);
+  border-radius: 10px;
   animation: appear 0.5s forwards;
   row-gap: 30px;
   opacity: 0;
@@ -37,14 +38,14 @@
 }
 .entrance__button {
   font-size: 40px;
-  color: var(--color-text);
+  color: var(--color-accent);
   padding: 17.5px 27.5px;
   border-radius: var(--border-radius);
 }
 
 .register-btn {
   background-color: var(--color-background);
-  color: var(--color-text);
+  color: var(--color-accent);
   animation: appear 0.5s forwards;
   animation-delay: 0.2s;
   opacity: 0;
@@ -52,12 +53,12 @@
   transition: 0.3s;
 }
 .register-btn:hover {
-  background-color: rgba(179, 179, 179, 0.711);
+  background-color: var(--color-main);
 }
 
 .login-btn {
-  background-color: var(--color-accent);
-  color: var(--color-background);
+  background-color: var(--color-background);
+  color: var(--color-accent);
   width: 100%;
   animation: appear 0.5s forwards;
   animation-delay: 0.3s;
@@ -66,7 +67,8 @@
   transition: 0.3s;
 }
 .login-btn:hover {
-  background-color: var(--color-hover);
+  background-color: var(--color-main);
+  color: var(--color-accent);
 }
 
 .highlight {
@@ -76,6 +78,8 @@
 .registration {
   display: flex;
   justify-content: center;
+  color: var(--color-accent);
+  padding-bottom: 50px;
 }
 .registration__container {
   display: flex;
@@ -98,7 +102,7 @@
   background-color: var(--color-background);
   padding: 15px 17.5px;
   font-size: 20px;
-  color: var(--color-text);
+  color: var(--color-accent);
   font-family: "Comfortaa";
   border-radius: var(--border-radius);
   border: 2px solid transparent;
@@ -127,7 +131,7 @@
   transition: 0.3s;
 }
 .registration__button:hover {
-  background-color: var(--color-hover);
+  background-color: var(--color-main);
 }
 
 .loading-screen {
@@ -247,6 +251,8 @@
 .login {
   display: flex;
   justify-content: center;
+  color: var(--color-accent);
+  padding-bottom: 50px;
 }
 .login__container {
   display: flex;
@@ -269,7 +275,7 @@
   background-color: var(--color-background);
   padding: 15px 17.5px;
   font-size: 20px;
-  color: var(--color-text);
+  color: var(--color-accent);
   font-family: "Comfortaa";
   border-radius: var(--border-radius);
   border: 2px solid transparent;
@@ -298,7 +304,7 @@
   transition: 0.3s;
 }
 .login__button:hover {
-  background-color: var(--color-hover);
+  background-color: var(--color-main);
 }
 
 .remember {
@@ -316,9 +322,6 @@
   border: 2px solid var(--color-hover);
   cursor: pointer;
   transition: 0.3s;
-}
-.remember__checkbox:hover {
-  border: 2px solid var(--color-accent);
 }
 .remember__text {
   align-self: center;
@@ -389,19 +392,17 @@
   position: absolute;
   content: "";
   width: 20px;
-  top: 13px;
-  right: 4.5px;
-  height: 2.5px;
+  top: 12px;
+  right: 4px;
+  height: 2px;
   background-color: var(--color-accent);
+  transition: 0.3s;
 }
-.close-button::after {
-  transform: rotate(42.5deg);
+.close-button:hover::after {
+  transform: rotate(137.5deg);
 }
-.close-button::before {
-  transform: rotate(-42.5deg);
-}
-.close-button:hover {
-  opacity: 0.5;
+.close-button:hover::before {
+  transform: rotate(222.5deg);
 }
 
 body {
@@ -412,10 +413,11 @@ body {
   display: flex;
   justify-content: space-between;
   padding: 20px 50px;
-  border-bottom: 1px solid rgb(232, 232, 232);
+  border-bottom: 1px solid rgb(185, 185, 185);
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
+  color: var(--color-accent);
 }
 .main__header__name {
   display: flex;
@@ -429,7 +431,6 @@ body {
   fill: var(--color-accent);
 }
 .main__header__title {
-  color: var(--color-text);
   align-self: center;
   font-size: 40px;
   font-weight: 400;
@@ -476,12 +477,12 @@ body {
   row-gap: 15px;
   background: var(--background-gradient);
   padding: 25px 30px;
-  border-radius: 15px;
+  border-radius: 7.5px;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.168);
   right: 50px;
   top: 70px;
   font-size: 17.5px;
-  z-index: 1;
+  z-index: 10;
 }
 .main__header__extra {
   background-color: var(--background-gradient);
@@ -514,7 +515,6 @@ body {
   align-self: center;
   font-weight: 400;
   font-size: 21px;
-  color: var(--color-text);
 }
 
 .show-profile {
@@ -567,12 +567,13 @@ body {
   border-radius: 15px;
   margin-top: 7.5vh;
   animation: appear 0.5s forwards;
-  border-radius: 15px;
+  border-radius: 10px;
   position: absolute;
   z-index: 4;
   padding: 25px 30px;
+  color: var(--color-accent);
   row-gap: 10px;
-  margin-top: 14%;
+  margin-top: 17%;
   width: 200px;
   opacity: 0;
   pointer-events: none;
@@ -583,39 +584,31 @@ body {
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.247);
 }
 
-.extra-possibilities {
-  display: flex;
-  flex-direction: column;
-  background-color: var(--background-gradient);
-  padding: 30px 35px;
-  border-radius: 10px;
-  row-gap: 10px;
-  position: absolute;
-  z-index: 2;
-  top: 25%;
-  min-width: 250px;
-  transform: scale(0.85, 0.85);
-  opacity: 0;
-  transition: 0.3s;
-  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.247);
-}
-
 .extra-option {
+  display: flex;
   background-color: var(--background-gradient);
-  padding: 10px 15px;
+  color: var(--color-accent);
+  align-content: flex-start;
   font-size: 20px;
   border-radius: 15px;
   border: 2px solid transparent;
   transition: 0.3s;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.132);
 }
 .extra-option:hover {
-  border: 2px solid var(--color-accent);
+  text-decoration: underline;
+}
+
+.extra-list {
+  padding: 0;
+  margin: 0;
+  list-style: circle;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
 }
 
 .buttons {
   display: flex;
-  flex-direction: column;
   -moz-column-gap: 10px;
        column-gap: 10px;
 }
@@ -631,7 +624,9 @@ body {
   padding: 10px 15px;
   color: var(--color-background);
   transition: 0.3s;
-  border-radius: 15px;
+  border-radius: 10px;
+  justify-self: center;
+  width: 50%;
 }
 #sure:hover, #not-sure:hover {
   opacity: 0.6;
@@ -660,14 +655,21 @@ input {
 }
 
 :root {
-  --color-main: #292929;
+  --color-main: rgb(210, 210, 210);
   --color-text: #000000;
   --color-accent: black;
   --color-background: #FFFFFF;
   --background-gradient: #f2f2f2;
   --color-hover: rgba(0, 0, 0, 0.675);
-  --box-shadow: 0 5px 10px rgba(0, 0, 0, 0.108);
-  --border-radius: 15px;
+  --box-shadow: 0 0px 20px rgba(0, 0, 0, 0.07);
+  --border-radius: 10px;
+}
+
+[data-theme=dark] {
+  --color-accent: #ffffff;
+  --color-background: rgb(8, 8, 8);
+  --background-gradient: rgb(24, 24, 24);
+  --color-main: rgb(69, 69, 69);
 }
 
 .time-scale {
@@ -702,6 +704,7 @@ input {
      -moz-user-select: none;
           user-select: none;
   transition: 0.3s;
+  color: var(--color-accent);
 }
 .date:hover {
   border: 2px solid var(--color-accent);
@@ -716,15 +719,16 @@ input {
 }
 
 .arrow {
-  padding: 0px 15px;
-  border-radius: var(--border-radius);
-  background-color: var(--color-accent);
+  padding: 0px 10px;
+  border-radius: 10px;
+  background-color: var(--background-gradient);
   font-size: 20px;
-  color: var(--color-background);
-  transition: 0.3s;
+  border: 2px solid transparent;
+  fill: gray;
+  transition: 0.1s;
 }
-.arrow:hover {
-  opacity: 0.6;
+.arrow:active {
+  border: 2px solid var(--color-accent);
 }
 
 .react-horizontal-scrolling-menu--scroll-container {
@@ -775,6 +779,7 @@ input {
 }
 .taskboard__select_btn {
   background-color: var(--background-gradient);
+  color: var(--color-accent);
   padding: 10px 15px;
   font-size: 25px;
   border-radius: var(--border-radius);
@@ -791,20 +796,20 @@ input {
   border: 2px solid var(--color-accent);
 }
 .taskboard__write-task {
-  border: 2px solid rgb(210, 210, 210);
+  border: 2px solid var(--color-main);
   background: transparent;
   font-family: "Comfortaa";
-  color: var(--color-text);
+  color: var(--color-accent);
   border-radius: 15px;
   font-size: 20px;
   padding: 10px 20px;
   transition: 0.3s;
 }
 .taskboard__write-task::-moz-placeholder {
-  color: rgb(210, 210, 210);
+  color: var(--color-main);
 }
 .taskboard__write-task::placeholder {
-  color: rgb(210, 210, 210);
+  color: var(--color-main);
 }
 .taskboard__write-task:focus {
   border: 2px solid var(--color-accent);
@@ -823,7 +828,7 @@ input {
 }
 .taskboard__wipe {
   background-color: var(--color-accent);
-  color: white;
+  color: var(--color-background);
   font-size: 20px;
   border-radius: 10px;
   transition: 0.3s;
@@ -857,6 +862,7 @@ input {
 .taskboard__task {
   position: relative;
   background: var(--background-gradient);
+  color: var(--color-accent);
   width: 350px;
   padding: 5px;
   font-size: 20px;
@@ -886,7 +892,7 @@ input {
   font-size: 40px;
   background-color: var(--color-accent);
   box-shadow: none;
-  color: var(--color-background);
+  color: white;
   min-height: 100px;
   border-radius: var(--border-radius);
   animation: drop 0.3s forwards;
@@ -910,7 +916,7 @@ input {
   width: 0%;
   height: 3px;
   border-radius: 10px;
-  background-color: var(--color-background);
+  background-color: white;
   position: absolute;
   z-index: 1;
   top: 120%;
@@ -923,9 +929,12 @@ input {
        column-gap: 5px;
   pointer-events: all;
 }
+.taskboard__category__svg-wrapper svg {
+  fill: white;
+}
 .taskboard__category__change-color {
-  background-color: var(--color-accent);
-  color: var(--color-background);
+  background-color: var(--background-gradient);
+  color: white;
   font-size: 20px;
   font-family: "Comfortaa";
   border-radius: 10px;
@@ -968,14 +977,23 @@ input {
 .taskboard__category__change-color:hover {
   opacity: 0.6;
 }
-.taskboard__category:hover .taskboard__category__content-wrapper::before {
-  content: "";
+.taskboard__category:hover .taskboard__category__underline {
   height: 3px;
   border-radius: 10px;
-  background-color: var(--color-background);
+  background-color: white;
   position: absolute;
   z-index: 1;
   width: 100%;
+}
+.taskboard__category__underline {
+  width: 0%;
+  height: 3px;
+  border-radius: 10px;
+  background-color: white;
+  position: absolute;
+  z-index: 1;
+  top: 120%;
+  transition: 0.3s;
 }
 .taskboard__category-wrapper {
   transition: 0.3s;
@@ -992,7 +1010,7 @@ input {
        column-gap: 10px;
   justify-content: space-between;
   width: 100%;
-  border-radius: 10px;
+  border-radius: 5px;
   background-color: var(--background-gradient);
   z-index: 1;
   transition: 0.2s;
@@ -1042,8 +1060,8 @@ input {
   left: 30px;
   top: 200px;
   margin-top: 0;
-  color: var(--color-background);
-  background-color: var(--color-accent);
+  color: white;
+  background-color: black;
   font-size: 17.5px;
   padding: 10px 20px;
   border-radius: 15px;
@@ -1079,6 +1097,11 @@ input {
   -moz-column-gap: 10px;
        column-gap: 10px;
   width: 100%;
+}
+
+.task-complete {
+  background-color: var(--color-accent);
+  color: white;
 }
 
 .complete {
@@ -1128,6 +1151,7 @@ input {
 }
 
 .task-index {
+  color: var(--color-accent);
   position: absolute;
   left: -37.5px;
   font-size: 25px;
@@ -1171,7 +1195,7 @@ input {
 }
 
 .complete-btn {
-  border: 1.5px solid black;
+  border: 1.5px solid var(--color-accent);
   width: 20px;
   height: 20px;
   border-radius: 50%;
@@ -1326,6 +1350,7 @@ input {
   -moz-column-gap: 7.5px;
        column-gap: 7.5px;
   animation: rev 0.3s forwards;
+  color: var(--color-accent);
 }
 
 .set-timer {

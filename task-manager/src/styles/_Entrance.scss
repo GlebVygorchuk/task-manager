@@ -3,6 +3,7 @@
     justify-content: center;
     padding-inline: 300px;
     font-weight: 400;
+    color: var(--color-accent);
 
     &__container {
         display: flex;
@@ -10,7 +11,7 @@
         margin-top: 10vh;
         background: var(--background-gradient);
         padding: 40px;
-        border-radius: var(--border-radius);
+        border-radius: 10px;
         animation: appear 0.5s forwards;
         row-gap: 30px;
         opacity: 0;
@@ -36,7 +37,7 @@
 
     &__button {
         font-size: 40px;
-        color: var(--color-text);
+        color: var(--color-accent);
         padding: 17.5px 27.5px;
         border-radius: var(--border-radius);
     }
@@ -44,7 +45,7 @@
 
 .register-btn {
     background-color: var(--color-background);
-    color: var(--color-text);
+    color: var(--color-accent);
     animation: appear 0.5s forwards;
     animation-delay: 0.2s;
     opacity: 0;
@@ -52,13 +53,13 @@
     transition: 0.3s;
 
     &:hover {
-        background-color: rgba(179, 179, 179, 0.711);
+        background-color: var(--color-main);
     }
 }
 
 .login-btn {
-    background-color: var(--color-accent);
-    color: var(--color-background);
+    background-color: var(--color-background);
+    color: var(--color-accent);
     width: 100%;
     animation: appear 0.5s forwards;
     animation-delay: 0.3s;
@@ -67,7 +68,8 @@
     transition: 0.3s;
 
     &:hover {
-        background-color: var(--color-hover);
+        background-color: var(--color-main);
+        color: var(--color-accent);
     }
 }
 

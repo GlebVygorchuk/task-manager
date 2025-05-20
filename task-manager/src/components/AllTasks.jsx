@@ -1,12 +1,14 @@
 import TaskItem from "./TaskItem"
 import { getAuth } from "firebase/auth"
 import { onSnapshot, collection, getDocs } from "firebase/firestore"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { database } from "../firebase"
+import { AppContext } from "./AppContext"
 
 export default function AllTasks() {
     const [tasks, setTasks] = useState([])
     const [operatedTask, setOperatedTask] = useState('')
+    const { darkTheme } = useContext(AppContext)
 
     const auth = getAuth()
     const userID = auth.currentUser ? auth.currentUser.uid : null
@@ -91,14 +93,10 @@ export default function AllTasks() {
             return task === prev ? '' : task
         })
     }
-
-    useEffect(() => {
-        console.log(tasks)
-    }, [tasks])
  
     return (
         <div style={{display: 'flex', alignItems: 'center', flexDirection: "column", paddingBottom: '50px'}} className="all-tasks">
-            <h1 style={{fontSize: '50px', marginTop: '30px', marginBottom: '5px'}}>Все задачи</h1>
+            <h1 style={{color: darkTheme ? 'white' : 'black',fontSize: '50px', marginTop: '30px', marginBottom: '5px'}}>Все задачи</h1>
             <ul className="taskboard__task-list">
             {Array.isArray(tasks) ? (
                 tasks.map(task => {
@@ -106,7 +104,7 @@ export default function AllTasks() {
                         <TaskItem
                         content={task.task}
                         index={tasks.indexOf(task) + 1}
-                        className={task.status === 'complete' ? "taskboard__task complete" : task.status === 'process' ? 'taskboard__task in-process' : 'taskboard__task'}
+                        className={task.status === 'complete' ? "taskboard__task task-complete" : task.status === 'process' ? 'taskboard__task in-process' : 'taskboard__task'}
                         status={task.status} 
                         onSelect={() => toggleOptions(task.id)}
                         operated={operatedTask}
@@ -114,8 +112,7 @@ export default function AllTasks() {
                         categoryId={task.categoryId}
                         section={'all tasks'}
                         date={task.date}
-                        key={`${task.id} - ${task.date}`}
-                        accentColor={'black'} />
+                        key={`${task.id} - ${task.date}`}/>
                     )
                 })
             ) : null}

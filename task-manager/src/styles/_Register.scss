@@ -1,6 +1,8 @@
 .registration {
     display: flex;
     justify-content: center;
+    color: var(--color-accent);
+    padding-bottom: 50px;
     
     &__container {
         @include formContainerStyles()
@@ -22,7 +24,7 @@
         transition: 0.3s;
 
         &:hover {
-            background-color: var(--color-hover);
+            background-color: var(--color-main);
         }
     }
 }

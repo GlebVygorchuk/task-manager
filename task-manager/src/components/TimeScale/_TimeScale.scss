@@ -28,6 +28,7 @@
     cursor: pointer;
     user-select: none;
     transition: 0.3s;
+    color: var(--color-accent);
 
     &:hover {
         border: 2px solid var(--color-accent)
@@ -44,15 +45,16 @@
 }
 
 .arrow {
-    padding: 0px 15px;
-    border-radius: var(--border-radius);
-    background-color: var(--color-accent);
+    padding: 0px 10px;
+    border-radius: 10px;
+    background-color: var(--background-gradient);
     font-size: 20px;
-    color: var(--color-background);
-    transition: 0.3s;
+    border: 2px solid transparent;
+    fill: gray;
+    transition: 0.1s;
 
-    &:hover {
-        opacity: 0.6;
+    &:active {
+        border: 2px solid var(--color-accent);
     }
 }
 

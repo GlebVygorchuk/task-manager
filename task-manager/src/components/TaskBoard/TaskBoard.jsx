@@ -1,6 +1,6 @@
 import { useState, useContext, useRef } from "react"
 import { database, auth } from "../../firebase"
-import { collection, addDoc, getDoc, onSnapshot, setDoc } from "firebase/firestore"
+import { collection, addDoc, getDoc, onSnapshot, setDoc, getDocs } from "firebase/firestore"
 import { useEffect } from "react"
 import { doc, deleteDoc, updateDoc } from 'firebase/firestore'
 import TaskItem from "../TaskItem"
@@ -9,6 +9,7 @@ import CategoryTasks from "../CategoryTasks"
 import { AppContext } from "../AppContext"
 
 export default function TaskBoard({ date, tasks, categories, loading }) {
+    const { section, darkTheme } = useContext(AppContext)
     const [taskValue, setTaskValue] = useState('')
     const [categoryValue, setCategoryValue] = useState('')
     const [tasksArray, setTasksArray] = useState([])
@@ -17,9 +18,9 @@ export default function TaskBoard({ date, tasks, categories, loading }) {
     const [category, setCategory] = useState('')
     const [chosenCategoryId, setChosenCategoryId] = useState('')
     const [chooseColor, setChooseColor] = useState(false)
-    const [categoryColor, setCategoryColor] = useState('black')
+    const [categoryColor, setCategoryColor] = useState('rgb(0, 55, 255)')
     const [currentColor, setCurrentColor] = useState('')
-    const { section } = useContext(AppContext)
+    const [accentColor, setAccentColor] = useState('rgb(0, 55, 255)')
 
     const userID = auth.currentUser ? auth.currentUser.uid : null
 
@@ -137,14 +138,14 @@ export default function TaskBoard({ date, tasks, categories, loading }) {
                         disabled={categoryValue === ''}
                         className="taskboard__add-task">+</button>
                         <div style={{display: 'flex', position: 'relative'}}>
-                        <button onClick={() => setChooseColor(prev => !prev)} style={{background: categoryColor}} className="taskboard__category__change-color">Цвет</button>
+                        <button onClick={() => setChooseColor(prev => !prev)} style={{background: categoryColor, color: darkTheme && categoryColor === 'white' ? 'black' : 'white'}} className="taskboard__category__change-color">Цвет</button>
                         <div className={`taskboard__category__change-color__options ${chooseColor ? 'reveal' : ''}`}>
                             <div onClick={() => setColor('rgb(255, 187, 0)')} style={{backgroundColor:'rgb(255, 187, 0)'}} className="taskboard__category__change-color__option"></div>
                             <div onClick={() => setColor('rgb(230, 0, 0)')} style={{backgroundColor:'rgb(230, 0, 0)'}} className="taskboard__category__change-color__option"></div>
                             <div onClick={() => setColor('rgb(0, 55, 255)')} style={{backgroundColor:'rgb(0, 55, 255)'}} className="taskboard__category__change-color__option"></div>
                             <div onClick={() => setColor('rgb(144, 0, 255)')} style={{backgroundColor:'rgb(144, 0, 255)'}} className="taskboard__category__change-color__option"></div>
                             <div onClick={() => setColor('rgb(0, 195, 255)')} style={{backgroundColor:'rgb(0, 195, 255)'}} className="taskboard__category__change-color__option"></div>
-                            <div onClick={() => setColor('black')} style={{backgroundColor:'black'}} className="taskboard__category__change-color__option"></div>
+                            <div onClick={() => setColor('rgb(254, 98, 0)')} style={{backgroundColor: 'rgb(254, 98, 0)'}} className="taskboard__category__change-color__option"></div>
                             <div onClick={() => setColor('rgb(0, 213, 11)')} style={{backgroundColor:'rgb(0, 213, 11)'}} className="taskboard__category__change-color__option"></div>
                             <div onClick={() => setColor('rgb(219, 0, 219)')} style={{backgroundColor:'rgb(219, 0, 219)'}} className="taskboard__category__change-color__option"></div>
                         </div>
@@ -163,7 +164,7 @@ export default function TaskBoard({ date, tasks, categories, loading }) {
                                         <TaskItem 
                                         content={task.task}
                                         index={tasksArray.indexOf(task) + 1}
-                                        className={task.status === 'complete' ? "taskboard__task complete" : 'taskboard__task'}
+                                        className={task.status === 'complete' ? "taskboard__task task-complete" : 'taskboard__task'}
                                         style={task.status === 'complete' ? {backgroundColor: 'black', color: 'white'} : null}
                                         status={task.status} 
                                         onSelect={() => toggleOptions(task.id)}

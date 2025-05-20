@@ -1,8 +1,9 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { useEffect } from "react"
 import { database, auth } from "../firebase"
 import { doc, addDoc, collection, onSnapshot, getDoc } from "firebase/firestore"
 import TaskItem from "./TaskItem"
+import { AppContext } from "./AppContext"
 
 export default function CategoryTasks({ title, onReturn, date, categoryId}) {
     const [taskValue, setTaskValue] = useState('')
@@ -10,6 +11,7 @@ export default function CategoryTasks({ title, onReturn, date, categoryId}) {
     const [operatedTask, setOperatedTask] = useState('')
     const [currentColor, setCurrentColor] = useState('black')
     const [updating, setUpdating] = useState(false)
+    const { darkTheme } = useContext(AppContext)
 
     const userID = auth.currentUser ? auth.currentUser.uid : null
 
@@ -104,7 +106,7 @@ export default function CategoryTasks({ title, onReturn, date, categoryId}) {
             {categoryTasks.map(task => {
                 return (
                     <TaskItem
-                    className={task.status === 'complete' ? "taskboard__task complete" : 'taskboard__task'}
+                    className={task.status === 'complete' ? "taskboard__task task-complete" : 'taskboard__task'}
                     index={categoryTasks.indexOf(task) + 1}
                     accentColor={currentColor} 
                     content={task.task}
