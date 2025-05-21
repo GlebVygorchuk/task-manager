@@ -14,13 +14,11 @@ export default function TaskBoard({ date, tasks, categories, loading }) {
     const [categoryValue, setCategoryValue] = useState('')
     const [tasksArray, setTasksArray] = useState([])
     const [categoriesArray, setCategoriesArray] = useState([])
-    const [operatedTask, setOperatedTask] = useState('')
     const [category, setCategory] = useState('')
     const [chosenCategoryId, setChosenCategoryId] = useState('')
     const [chooseColor, setChooseColor] = useState(false)
     const [categoryColor, setCategoryColor] = useState('rgb(0, 55, 255)')
     const [currentColor, setCurrentColor] = useState('')
-    const [accentColor, setAccentColor] = useState('rgb(0, 55, 255)')
 
     const userID = auth.currentUser ? auth.currentUser.uid : null
 
@@ -57,12 +55,6 @@ export default function TaskBoard({ date, tasks, categories, loading }) {
         if (e.key === 'Enter') {
             func()
         }
-    }
-
-    function toggleOptions(task) {
-        setOperatedTask(prev => {
-            return task === prev ? '' : task
-        })
     }
 
     function setColor(color) {
@@ -167,8 +159,6 @@ export default function TaskBoard({ date, tasks, categories, loading }) {
                                         className={task.status === 'complete' ? "taskboard__task task-complete" : 'taskboard__task'}
                                         style={task.status === 'complete' ? {backgroundColor: 'black', color: 'white'} : null}
                                         status={task.status} 
-                                        onSelect={() => toggleOptions(task.id)}
-                                        operated={operatedTask}
                                         itemId={task.id}
                                         section={'tasks'}
                                         date={date}

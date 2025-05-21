@@ -22,7 +22,7 @@ export default function TaskItem({ content, className, status, onSelect, operate
     const [taskColor, setTaskColor] = useState('black')
     const [taskTextColor, setTaskTextColor] = useState('black')
     const updateStateRef = useRef(updateState)
-    const { deadlineDisabled, setDeadlineDisabled, operatedTask, setOperatedTask, startTaskTimer, timers, darkTheme } = useContext(AppContext)
+    const { deadlineDisabled, setDeadlineDisabled, operatedTask, setOperatedTask, toggleOptions, startTaskTimer, timers, darkTheme } = useContext(AppContext)
 
     const userID = auth.currentUser ? auth.currentUser.uid : null
 
@@ -65,6 +65,8 @@ export default function TaskItem({ content, className, status, onSelect, operate
     }
 
     async function handleStatus(id, state) {
+        setOptionsState('task-options')
+        setOperatedTask('')
         const docRef = 
         categoryId === undefined 
         ? doc(database, 'users', userID, 'allTasks', date, 'tasks', id)
@@ -146,6 +148,8 @@ export default function TaskItem({ content, className, status, onSelect, operate
 
     async function handleTimer() {
         setHasTimer(false)
+        setOptionsState('task-options')
+        setOperatedTask('')
         startTaskTimer({
             userID: userID,
             date: date,
@@ -165,6 +169,10 @@ export default function TaskItem({ content, className, status, onSelect, operate
 
        setRemaining(`- ${minutes}:${seconds}`)
     }, [timers])
+
+    useEffect(() => {
+        optionsState === 'task-options'
+    })
 
     function getDifference(deadline) {
         const today = new Date()
@@ -196,8 +204,8 @@ export default function TaskItem({ content, className, status, onSelect, operate
     }, [date, section])
 
     useEffect(() => {
-        operated === itemId ? setOptionsState('task-options show-options') : setOptionsState('task-options')
-    }, [operated])
+        setOptionsState(operatedTask === itemId ? 'task-options show-options' : 'task-options')
+    }, [operatedTask, itemId])
 
     useEffect(() => {
         if (darkTheme) {
@@ -216,6 +224,10 @@ export default function TaskItem({ content, className, status, onSelect, operate
         }
     }, [darkTheme, status, accentColor, taskColor])
 
+    useEffect(() => {
+        console.log(optionsState)
+    }, [optionsState])
+
     return (
         <li id={itemId} className="task-wrapper">
         {updating ? <svg className="sandclock" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path d="M18.513 7.119c.958-1.143 1.487-2.577 1.487-4.036v-3.083h-16v3.083c0 1.459.528 2.892 1.487 4.035l3.086 3.68c.567.677.571 1.625.009 2.306l-3.13 3.794c-.936 1.136-1.452 2.555-1.452 3.995v3.107h16v-3.107c0-1.44-.517-2.858-1.453-3.994l-3.13-3.794c-.562-.681-.558-1.629.009-2.306l3.087-3.68zm-4.639 7.257l3.13 3.794c.652.792.996 1.726.996 2.83h-12c0-1.104.343-2.039.996-2.829l3.129-3.793c1.167-1.414 1.159-3.459-.019-4.864l-3.086-3.681c-.66-.785-1.02-1.736-1.02-2.834h12c0 1.101-.363 2.05-1.02 2.834l-3.087 3.68c-1.177 1.405-1.185 3.451-.019 4.863z"/></svg> : null}
@@ -223,8 +235,8 @@ export default function TaskItem({ content, className, status, onSelect, operate
         <svg onClick={() => handleEdit(itemId)} id="confirm-edit" className="option" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" viewBox="0 0 16 16">
             <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/>
         </svg> : null}
-        <p className="task-index">{index}.</p>
         <div className="content-wrapper">
+        <p className="task-index">{index}.</p>
         {!deadlineDisabled && showDeadline ? <div style={daysToComplete <= 10 ? {width: `${daysToComplete + 1}0%`, backgroundColor: deadlineColor} : deadlineDisabled ? {background: 'transparent'} : {width: '100%'}} className="deadline-bar"></div> : null}
         <div style={{backgroundColor: accentColor === undefined ? taskColor : accentColor}} className={showPhantom ? 'phantom fade' : 'phantom'}></div>
             <div style={status === 'complete' ? {backgroundColor: accentColor} : null} className={className}>
@@ -256,22 +268,22 @@ export default function TaskItem({ content, className, status, onSelect, operate
                     </div>
                   </div>}
             </div>
-            <svg onClick={isRedacting ? null : onSelect} xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#007bff" className="three-dots" viewBox="0 0 16 16">
+            <svg onClick={isRedacting ? null : () => toggleOptions(itemId)} xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#007bff" className="three-dots" viewBox="0 0 16 16">
                 <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/>
             </svg>
             <div className={optionsState}>
             {!hasTimer ? 
             <>         
-            <svg onClick={() => handleStatus(itemId, 'complete')} className="option" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" viewBox="0 0 16 16">
+            <svg onClick={() => handleStatus(itemId, 'complete')} className="option" xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" viewBox="0 0 16 16">
                 <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/>
             </svg>
-            <button onClick={() => handleStatus(itemId, 'process')} style={{fontSize: '20px', fontWeight: '600', userSelect: 'none'}} className="option">GO</button>
-            <svg onClick={() => handleStartEdit(itemId)} className="option" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" viewBox="0 0 16 16">
+            <svg onClick={() => handleStatus(itemId, 'process')} className="option" height="35px" width="35px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" xml:space="preserve" fill="#FFFFFF"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g id="loop_x5F_alt2"> <g> <path d="M19.945,22l6.008-8L32,22h-4v2c0,3.309-2.691,6-6,6H10c-3.309,0-6-2.691-6-6v-2h4v2 c0,1.102,0.898,2,2,2h12c1.102,0,2-0.898,2-2v-2H19.945z"></path> <path d="M12.055,10l-6.008,8L0,10h4V8c0-3.309,2.691-6,6-6h12c3.309,0,6,2.691,6,6v2h-4V8 c0-1.102-0.898-2-2-2H10C8.898,6,8,6.898,8,8v2H12.055z"></path> </g> </g> </g> </g></svg>
+            <svg onClick={() => handleStartEdit(itemId)} className="option" xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" viewBox="0 0 16 16">
                 <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                 <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
             </svg>
-            <svg onClick={timer === 0 ? () => setHasTimer(true) : () => setHasTimer(false)} className="option" fill="#FFFFFF" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30px" height="30px" viewBox="0 0 559.98 559.98" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <path d="M279.99,0C125.601,0,0,125.601,0,279.99c0,154.39,125.601,279.99,279.99,279.99c154.39,0,279.99-125.601,279.99-279.99 C559.98,125.601,434.38,0,279.99,0z M279.99,498.78c-120.644,0-218.79-98.146-218.79-218.79 c0-120.638,98.146-218.79,218.79-218.79s218.79,98.152,218.79,218.79C498.78,400.634,400.634,498.78,279.99,498.78z"></path> <path d="M304.226,280.326V162.976c0-13.103-10.618-23.721-23.716-23.721c-13.102,0-23.721,10.618-23.721,23.721v124.928 c0,0.373,0.092,0.723,0.11,1.096c-0.312,6.45,1.91,12.999,6.836,17.926l88.343,88.336c9.266,9.266,24.284,9.266,33.543,0 c9.26-9.266,9.266-24.284,0-33.544L304.226,280.326z"></path> </g> </g> </g></svg>
-            <svg onClick={() => handleDelete(itemId)} className="option" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" viewBox="0 0 16 16">
+            <svg onClick={timer === 0 ? () => setHasTimer(true) : () => setHasTimer(false)} className="option" fill="#FFFFFF" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="35px" height="35px" viewBox="0 0 559.98 559.98" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <path d="M279.99,0C125.601,0,0,125.601,0,279.99c0,154.39,125.601,279.99,279.99,279.99c154.39,0,279.99-125.601,279.99-279.99 C559.98,125.601,434.38,0,279.99,0z M279.99,498.78c-120.644,0-218.79-98.146-218.79-218.79 c0-120.638,98.146-218.79,218.79-218.79s218.79,98.152,218.79,218.79C498.78,400.634,400.634,498.78,279.99,498.78z"></path> <path d="M304.226,280.326V162.976c0-13.103-10.618-23.721-23.716-23.721c-13.102,0-23.721,10.618-23.721,23.721v124.928 c0,0.373,0.092,0.723,0.11,1.096c-0.312,6.45,1.91,12.999,6.836,17.926l88.343,88.336c9.266,9.266,24.284,9.266,33.543,0 c9.26-9.266,9.266-24.284,0-33.544L304.226,280.326z"></path> </g> </g> </g></svg>
+            <svg onClick={() => handleDelete(itemId)} className="option" xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" viewBox="0 0 16 16">
                 <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
             </svg>
             </> : 

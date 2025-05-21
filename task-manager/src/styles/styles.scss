@@ -16,6 +16,7 @@ body {
     background-color: var(--color-background);
     color: var(--color-text);
     font-weight: 400;
+    transition: 0.2s;
 
     &::selection {
         background-color: black;

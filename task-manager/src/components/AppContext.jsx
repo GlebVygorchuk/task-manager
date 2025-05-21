@@ -13,6 +13,7 @@ export default function AppProvider({ children }) {
     const [deadlineDisabled, setDeadlineDisabled] = useState(false)
     const [timers, setTimers] = useState({})
     const [darkTheme, setDarkTheme] = useState(false)
+    const [operatedTask, setOperatedTask] = useState('')
 
     useEffect(() => {
         const deadlines = localStorage.getItem('deadlines')
@@ -93,6 +94,13 @@ export default function AppProvider({ children }) {
         return () => clearInterval(interval)
     }
 
+    function toggleOptions(task) {
+        setOperatedTask(prev => {
+            console.log(`ID from context - ${prev}`)
+            return task === prev ? '' : task
+        })
+    }
+
     return (
         <AppContext.Provider value={
             { 
@@ -102,13 +110,16 @@ export default function AppProvider({ children }) {
             deadlineDisabled, 
             timers,
             darkTheme,
+            operatedTask,
             setDeadlineDisabled, 
             setSelectedDate, 
             setTasks, 
             setSection,
             setTimers,
             startTaskTimer,
-            setDarkTheme
+            setDarkTheme,
+            setOperatedTask,
+            toggleOptions
             }}>
             {children}
         </AppContext.Provider>
