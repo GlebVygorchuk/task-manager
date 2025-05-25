@@ -42,6 +42,11 @@ export default function TimeScale() {
     }
 
     useEffect(() => {
+        setSelectedDate(dates[0]?.fullDate)
+        setActive(dates[0]?.id)
+    }, [dates])
+
+    useEffect(() => {
         const currentDate = new Date()
         const generatedDates = []
 

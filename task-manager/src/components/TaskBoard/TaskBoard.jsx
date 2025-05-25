@@ -9,7 +9,7 @@ import CategoryTasks from "../CategoryTasks"
 import { AppContext } from "../AppContext"
 
 export default function TaskBoard({ date, tasks, categories, loading }) {
-    const { section, darkTheme } = useContext(AppContext)
+    const { setSection, section, darkTheme } = useContext(AppContext)
     const [taskValue, setTaskValue] = useState('')
     const [categoryValue, setCategoryValue] = useState('')
     const [tasksArray, setTasksArray] = useState([])
@@ -92,7 +92,7 @@ export default function TaskBoard({ date, tasks, categories, loading }) {
 
     useEffect(() => {
         setCategory('')
-    }, [date])
+    }, [date, section])
 
     return (
         <div className="taskboard">
@@ -120,7 +120,7 @@ export default function TaskBoard({ date, tasks, categories, loading }) {
                     <input
                         onKeyDown={categoryValue !== '' ? (e) => handleEnterPress(e, addCategory) : null}
                         value={categoryValue}
-                        maxLength={30}
+                        maxLength={15}
                         onInput={(e) => setCategoryValue(e.target.value)} 
                         placeholder="Новая категория"
                         type="text" 

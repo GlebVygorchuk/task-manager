@@ -39,6 +39,15 @@ export default function MainPage() {
     }, [])
 
     useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, user => {
+            if (!user) {
+                navigate('/')
+            } 
+        })
+        return () => unsubscribe()
+    }, [navigate])
+
+    useEffect(() => {
         if (!userID) return
 
         async function cleanUp() {

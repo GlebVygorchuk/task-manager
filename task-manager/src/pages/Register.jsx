@@ -29,7 +29,7 @@ export default function Register() {
                 if (user.emailVerified) {
                     setLoading(true)
                     setTimeout(() => {
-                        window.location.replace("/main")
+                        navigate('/main')
                         clearInterval(interval)
                     }, 1000)
                 } 
@@ -67,7 +67,9 @@ export default function Register() {
                 alert(error.message)
             }
         }
-        startCountdown()
+        if (timer === 90) {
+            startCountdown()
+        }
     }
 
 
