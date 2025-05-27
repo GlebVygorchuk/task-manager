@@ -14,7 +14,7 @@
         }
 
         @include mobile-small {
-            padding: 20px 17.5px;
+            padding: 25px 17.5px;
             width: 300px;
         }
     }
@@ -38,7 +38,7 @@
         row-gap: 15px;
 
         @include mobile-small {
-            padding-inline: 15px;
+            padding-inline: 10px;
         }
     }
 
@@ -208,11 +208,6 @@
         top: -240%;
         font-size: 15px;
         border-radius: 7.5px;
-    }
-
-    @include mobile-small {
-        left: 0%;
-        top: -220%;
     }
 }
 

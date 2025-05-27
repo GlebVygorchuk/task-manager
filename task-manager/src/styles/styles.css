@@ -156,7 +156,7 @@
 }
 @media (max-width: 480px) {
   .registration__container {
-    padding: 20px 17.5px;
+    padding: 25px 17.5px;
     width: 300px;
   }
 }
@@ -181,7 +181,7 @@
 }
 @media (max-width: 480px) {
   .registration__form {
-    padding-inline: 15px;
+    padding-inline: 10px;
   }
 }
 .registration__input {
@@ -190,7 +190,7 @@
   font-size: 20px;
   color: var(--color-accent);
   font-family: "Comfortaa";
-  border-radius: var(--border-radius);
+  border-radius: 7.5px;
   border: 2px solid transparent;
   position: relative;
   transition: 0.3s;
@@ -380,12 +380,6 @@
     border-radius: 7.5px;
   }
 }
-@media (max-width: 480px) {
-  .advice {
-    left: 0%;
-    top: -220%;
-  }
-}
 
 .visible {
   transform: translateX(0);
@@ -429,7 +423,7 @@
   font-size: 20px;
   color: var(--color-accent);
   font-family: "Comfortaa";
-  border-radius: var(--border-radius);
+  border-radius: 7.5px;
   border: 2px solid transparent;
   position: relative;
   transition: 0.3s;
