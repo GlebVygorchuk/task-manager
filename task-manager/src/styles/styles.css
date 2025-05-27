@@ -375,7 +375,7 @@
 @media (max-width: 770px) {
   .advice {
     left: 0%;
-    top: -240%;
+    top: -255%;
     font-size: 15px;
     border-radius: 7.5px;
   }
