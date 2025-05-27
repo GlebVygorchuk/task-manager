@@ -5,7 +5,25 @@
     padding-bottom: 50px;
     
     &__container {
-        @include formContainerStyles()
+        @include formContainerStyles();
+
+        @include mobile {
+            padding: 30px 40px;
+            margin-top: 15vh;
+            border-radius: 10px;
+        }
+
+        @include mobile-small {
+            padding: 25px 25px;
+        }
+    }
+
+    &__name {
+        font-size: 45px;
+
+        @include mobile {
+            font-size: 35px;
+        }
     }
 
     &__form {
@@ -15,7 +33,11 @@
     }
 
     &__input {
-        @include inputStyles()
+        @include inputStyles();
+
+        @include mobile {
+            font-size: 17.5px;
+        }
     }
 
     &__button {
@@ -26,6 +48,14 @@
         &:hover {
             background-color: var(--color-main);
         }
+
+        @include mobile {
+            font-size: 20px;
+        }
+    }
+
+    @include mobile {
+        padding-inline: 200px;
     }
 }
 
@@ -87,6 +117,10 @@
     transition: 0.3s;
     padding: 5px;
     fill: rgb(127, 127, 127);
+
+    @include mobile {
+        left: 85%;
+    }
 }
 .active {
     fill: var(--color-accent);
@@ -102,10 +136,18 @@
     right: 12px;
     transition: 0.2s;
     cursor: pointer;
+
+    @include mobile {
+        right: 9px;
+    }
 }
 .hide {
     width: 0%;
     right: 29.25px;
+
+    @include mobile {
+        right: 28px;
+    }
 }
 
 .advice {
@@ -130,6 +172,13 @@
         padding-left: 10px;
         margin: 0;
         row-gap: 10px;
+    }
+
+    @include mobile {
+        left: 0%;
+        top: 110%;
+        font-size: 15px;
+        border-radius: 7.5px;
     }
 }
 

@@ -121,7 +121,7 @@ export default function Register() {
 
             <div className="registration__container">
 
-                <h1 style={{fontSize: '45px'}}>Регистрация</h1>
+                <h1 className="registration__name">Регистрация</h1>
 
                 <form className="registration__form">
 

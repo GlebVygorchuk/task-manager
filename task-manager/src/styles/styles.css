@@ -56,7 +56,7 @@
   row-gap: 10px;
 }
 .entrance__button {
-  font-size: 40px;
+  font-size: 35px;
   color: var(--color-accent);
   padding: 17.5px 27.5px;
   border-radius: var(--border-radius);
@@ -147,6 +147,26 @@
   margin-top: 7.5vh;
   animation: appear 0.5s forwards;
 }
+@media (max-width: 770px) {
+  .registration__container {
+    padding: 30px 40px;
+    margin-top: 15vh;
+    border-radius: 10px;
+  }
+}
+@media (max-width: 480px) {
+  .registration__container {
+    padding: 25px 25px;
+  }
+}
+.registration__name {
+  font-size: 45px;
+}
+@media (max-width: 770px) {
+  .registration__name {
+    font-size: 35px;
+  }
+}
 .registration__form {
   display: flex;
   flex-direction: column;
@@ -173,6 +193,11 @@
 .registration__input:focus {
   border: 2px solid var(--color-accent);
 }
+@media (max-width: 770px) {
+  .registration__input {
+    font-size: 17.5px;
+  }
+}
 .registration__button {
   margin-top: 10px;
   padding: 15px 25px;
@@ -186,6 +211,16 @@
 }
 .registration__button:hover {
   background-color: var(--color-main);
+}
+@media (max-width: 770px) {
+  .registration__button {
+    font-size: 20px;
+  }
+}
+@media (max-width: 770px) {
+  .registration {
+    padding-inline: 200px;
+  }
 }
 
 .loading-screen {
@@ -243,6 +278,11 @@
   padding: 5px;
   fill: rgb(127, 127, 127);
 }
+@media (max-width: 770px) {
+  .svg-eye {
+    left: 85%;
+  }
+}
 
 .active {
   fill: var(--color-accent);
@@ -259,10 +299,20 @@
   transition: 0.2s;
   cursor: pointer;
 }
+@media (max-width: 770px) {
+  .crossline {
+    right: 9px;
+  }
+}
 
 .hide {
   width: 0%;
   right: 29.25px;
+}
+@media (max-width: 770px) {
+  .hide {
+    right: 28px;
+  }
 }
 
 .advice {
@@ -287,6 +337,14 @@
   padding-left: 10px;
   margin: 0;
   row-gap: 10px;
+}
+@media (max-width: 770px) {
+  .advice {
+    left: 0%;
+    top: 110%;
+    font-size: 15px;
+    border-radius: 7.5px;
+  }
 }
 
 .visible {
