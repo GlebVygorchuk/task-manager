@@ -150,7 +150,7 @@
 @media (max-width: 770px) {
   .registration__container {
     padding: 30px 40px;
-    margin-top: 15vh;
+    margin-top: 17.5vh;
     border-radius: 10px;
   }
 }
@@ -208,11 +208,6 @@
 @media (max-width: 770px) {
   .registration__input {
     font-size: 17.5px;
-  }
-}
-@media (max-width: 480px) {
-  .registration__input {
-    font-size: 15px;
   }
 }
 .registration__button {
@@ -335,7 +330,7 @@
 }
 @media (max-width: 480px) {
   .crossline {
-    right: 11px;
+    right: 10px;
   }
 }
 
@@ -350,7 +345,7 @@
 }
 @media (max-width: 480px) {
   .hide {
-    right: 29px;
+    right: 28px;
   }
 }
 
@@ -388,7 +383,7 @@
 @media (max-width: 480px) {
   .advice {
     left: 0%;
-    top: -200%;
+    top: -220%;
   }
 }
 

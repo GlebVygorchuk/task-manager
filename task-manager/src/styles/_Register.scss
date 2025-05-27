@@ -9,7 +9,7 @@
 
         @include mobile {
             padding: 30px 40px;
-            margin-top: 15vh;
+            margin-top: 17.5vh;
             border-radius: 10px;
         }
 
@@ -49,9 +49,6 @@
             font-size: 17.5px;
         }
 
-        @include mobile-small {
-            font-size: 15px
-        }
     }
 
     &__button {
@@ -166,7 +163,7 @@
     }
 
     @include mobile-small {
-        right: 11px;
+        right: 10px;
     }
 }
 .hide {
@@ -178,7 +175,7 @@
     }
 
     @include mobile-small {
-        right: 29px;
+        right: 28px;
     }
 }
 
@@ -215,7 +212,7 @@
 
     @include mobile-small {
         left: 0%;
-        top: -200%;
+        top: -220%;
     }
 }
 
