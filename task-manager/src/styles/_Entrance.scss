@@ -15,6 +15,10 @@
         animation: appear 0.5s forwards;
         row-gap: 30px;
         opacity: 0;
+
+        @include mobile-small {
+            margin-top: 5vh;
+        }
     }
 
     &__greetings {
@@ -26,6 +30,18 @@
         text-align: center;
         line-height: 1.3;
         font-weight: 400;
+
+        @include mobile {
+            font-size: 30px;
+        }
+
+        @include mobile-small {
+            font-size: 25px;
+        }
+
+        @include mobile-xs {
+            font-size: 25px;
+        }
     }
 
     &__buttons-wrapper {
@@ -40,6 +56,34 @@
         color: var(--color-accent);
         padding: 17.5px 27.5px;
         border-radius: var(--border-radius);
+
+        @include mobile {
+            font-size: 30px;
+        }
+
+        @include mobile-small {
+            font-size: 25px;
+        }
+
+        @include mobile-xs {
+            font-size: 20px;
+        }
+    }
+
+    @include tablet {
+        padding-inline: 200px;
+    }
+
+    @include mobile {
+        padding-inline: 100px;
+    }
+
+    @include mobile-small {
+        padding-inline: 50px;
+    }
+
+    @include mobile-xs {
+        padding-inline: 25px;
     }
 }
 
