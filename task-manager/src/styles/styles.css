@@ -156,7 +156,7 @@
 }
 @media (max-width: 480px) {
   .registration__container {
-    padding: 25px 25px;
+    padding: 22.5px 17.5px;
   }
 }
 .registration__name {
@@ -165,6 +165,11 @@
 @media (max-width: 770px) {
   .registration__name {
     font-size: 35px;
+  }
+}
+@media (max-width: 480px) {
+  .registration__name {
+    font-size: 30px;
   }
 }
 .registration__form {
@@ -309,6 +314,11 @@
     right: 9px;
   }
 }
+@media (max-width: 480px) {
+  .crossline {
+    right: 11px;
+  }
+}
 
 .hide {
   width: 0%;
@@ -317,6 +327,11 @@
 @media (max-width: 770px) {
   .hide {
     right: 28px;
+  }
+}
+@media (max-width: 480px) {
+  .hide {
+    right: 29px;
   }
 }
 
@@ -346,7 +361,7 @@
 @media (max-width: 770px) {
   .advice {
     left: 0%;
-    top: -260%;
+    top: -240%;
     font-size: 15px;
     border-radius: 7.5px;
   }
