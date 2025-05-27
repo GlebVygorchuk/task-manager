@@ -20,9 +20,9 @@
   row-gap: 30px;
   opacity: 0;
 }
-@media (max-width: 480px) {
+@media (max-width: 770px) {
   .entrance__container {
-    margin-top: 5vh;
+    margin-top: 20vh;
   }
 }
 .entrance__greetings {
@@ -33,11 +33,20 @@
   opacity: 0;
   text-align: center;
   line-height: 1.3;
-  font-weight: 400;
+  font-weight: 300;
 }
 @media (max-width: 770px) {
   .entrance__greetings {
     font-size: 27.5px;
+  }
+}
+.entrance__name {
+  font-weight: 500;
+  font-size: 50px;
+}
+@media (max-width: 770px) {
+  .entrance__name {
+    font-size: 35px;
   }
 }
 .entrance__buttons-wrapper {
@@ -55,6 +64,16 @@
 @media (max-width: 770px) {
   .entrance__button {
     font-size: 25px;
+  }
+}
+.entrance__sandclock {
+  animation: rotate 3s infinite;
+  margin-left: 5px;
+}
+@media (max-width: 770px) {
+  .entrance__sandclock {
+    width: 30px;
+    height: 30px;
   }
 }
 @media (max-width: 1020px) {
