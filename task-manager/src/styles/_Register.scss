@@ -57,6 +57,10 @@
     @include mobile {
         padding-inline: 200px;
     }
+
+    @include mobile-small {
+        padding-inline: 100px;
+    }
 }
 
 .loading-screen {
@@ -176,7 +180,7 @@
 
     @include mobile {
         left: 0%;
-        top: 110%;
+        top: -260%;
         font-size: 15px;
         border-radius: 7.5px;
     }

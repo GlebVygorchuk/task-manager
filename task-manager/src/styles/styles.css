@@ -222,6 +222,11 @@
     padding-inline: 200px;
   }
 }
+@media (max-width: 480px) {
+  .registration {
+    padding-inline: 100px;
+  }
+}
 
 .loading-screen {
   width: 100%;
@@ -341,7 +346,7 @@
 @media (max-width: 770px) {
   .advice {
     left: 0%;
-    top: 110%;
+    top: -260%;
     font-size: 15px;
     border-radius: 7.5px;
   }
