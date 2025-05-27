@@ -32,15 +32,7 @@
         font-weight: 400;
 
         @include mobile {
-            font-size: 30px;
-        }
-
-        @include mobile-small {
-            font-size: 25px;
-        }
-
-        @include mobile-xs {
-            font-size: 25px;
+            font-size: 27.5px;
         }
     }
 
@@ -58,15 +50,7 @@
         border-radius: var(--border-radius);
 
         @include mobile {
-            font-size: 30px;
-        }
-
-        @include mobile-small {
             font-size: 25px;
-        }
-
-        @include mobile-xs {
-            font-size: 20px;
         }
     }
 

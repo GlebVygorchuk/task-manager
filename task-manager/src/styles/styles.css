@@ -37,17 +37,7 @@
 }
 @media (max-width: 770px) {
   .entrance__greetings {
-    font-size: 30px;
-  }
-}
-@media (max-width: 480px) {
-  .entrance__greetings {
-    font-size: 25px;
-  }
-}
-@media (max-width: 400px) {
-  .entrance__greetings {
-    font-size: 25px;
+    font-size: 27.5px;
   }
 }
 .entrance__buttons-wrapper {
@@ -64,17 +54,7 @@
 }
 @media (max-width: 770px) {
   .entrance__button {
-    font-size: 30px;
-  }
-}
-@media (max-width: 480px) {
-  .entrance__button {
     font-size: 25px;
-  }
-}
-@media (max-width: 400px) {
-  .entrance__button {
-    font-size: 20px;
   }
 }
 @media (max-width: 1020px) {
