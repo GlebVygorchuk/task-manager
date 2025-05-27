@@ -172,6 +172,7 @@ export default function Register() {
                         placeholder="Повторите пароль"
                         style={{width: "100%"}}
                         onInput={(e) => setPasswordCheck(e.target.value)}
+                        maxLength={25}
                         value={passwordCheck} 
                         type={visiblePasswords.check ? "text" : "password"} />
 

@@ -14,12 +14,14 @@
         }
 
         @include mobile-small {
-            padding: 25px 17.5px;
+            padding: 20px 17.5px;
+            width: 300px;
         }
     }
 
     &__name {
         font-size: 45px;
+        font-weight: 300;
 
         @include mobile {
             font-size: 35px;
@@ -34,6 +36,10 @@
         display: flex;
         flex-direction: column;
         row-gap: 15px;
+
+        @include mobile-small {
+            padding-inline: 15px;
+        }
     }
 
     &__input {
@@ -42,12 +48,17 @@
         @include mobile {
             font-size: 17.5px;
         }
+
+        @include mobile-small {
+            font-size: 15px
+        }
     }
 
     &__button {
         @include signInUpButtonStyles();
         color: var(--color-background);
         transition: 0.3s;
+        margin-top: 0;
 
         &:hover {
             background-color: var(--color-main);
@@ -55,6 +66,10 @@
 
         @include mobile {
             font-size: 20px;
+        }
+
+        @include mobile-small {
+            font-size: 15px;
         }
     }
 
@@ -125,9 +140,10 @@
     transition: 0.3s;
     padding: 5px;
     fill: rgb(127, 127, 127);
+    overflow: hidden;
 
     @include mobile {
-        left: 85%;
+        left: 83%;
     }
 }
 .active {

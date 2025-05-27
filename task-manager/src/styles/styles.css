@@ -156,11 +156,13 @@
 }
 @media (max-width: 480px) {
   .registration__container {
-    padding: 25px 17.5px;
+    padding: 20px 17.5px;
+    width: 300px;
   }
 }
 .registration__name {
   font-size: 45px;
+  font-weight: 300;
 }
 @media (max-width: 770px) {
   .registration__name {
@@ -176,6 +178,11 @@
   display: flex;
   flex-direction: column;
   row-gap: 15px;
+}
+@media (max-width: 480px) {
+  .registration__form {
+    padding-inline: 15px;
+  }
 }
 .registration__input {
   background-color: var(--color-background);
@@ -203,6 +210,11 @@
     font-size: 17.5px;
   }
 }
+@media (max-width: 480px) {
+  .registration__input {
+    font-size: 15px;
+  }
+}
 .registration__button {
   margin-top: 10px;
   padding: 15px 25px;
@@ -213,6 +225,7 @@
   box-shadow: var(--box-shadow);
   color: var(--color-background);
   transition: 0.3s;
+  margin-top: 0;
 }
 .registration__button:hover {
   background-color: var(--color-main);
@@ -220,6 +233,11 @@
 @media (max-width: 770px) {
   .registration__button {
     font-size: 20px;
+  }
+}
+@media (max-width: 480px) {
+  .registration__button {
+    font-size: 15px;
   }
 }
 @media (max-width: 770px) {
@@ -287,10 +305,11 @@
   transition: 0.3s;
   padding: 5px;
   fill: rgb(127, 127, 127);
+  overflow: hidden;
 }
 @media (max-width: 770px) {
   .svg-eye {
-    left: 85%;
+    left: 83%;
   }
 }
 
