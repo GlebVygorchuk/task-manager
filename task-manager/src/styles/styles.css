@@ -156,7 +156,7 @@
 }
 @media (max-width: 480px) {
   .registration__container {
-    padding: 22.5px 17.5px;
+    padding: 25px 17.5px;
   }
 }
 .registration__name {
@@ -169,7 +169,7 @@
 }
 @media (max-width: 480px) {
   .registration__name {
-    font-size: 30px;
+    font-size: 32.5px;
   }
 }
 .registration__form {
@@ -364,6 +364,12 @@
     top: -240%;
     font-size: 15px;
     border-radius: 7.5px;
+  }
+}
+@media (max-width: 480px) {
+  .advice {
+    left: 0%;
+    top: -180%;
   }
 }
 
