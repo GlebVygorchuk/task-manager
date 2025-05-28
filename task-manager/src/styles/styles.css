@@ -948,6 +948,11 @@ input {
     width: 60%;
   }
 }
+@media (max-width: 480px) {
+  .section-choose {
+    width: 100%;
+  }
+}
 
 .date {
   display: flex;
@@ -1083,6 +1088,7 @@ input {
 @media (max-width: 770px) {
   .taskboard__select_btn {
     font-size: 20px;
+    padding: 12.5px 5px;
   }
 }
 .taskboard__select .selected {
@@ -1109,6 +1115,12 @@ input {
 .taskboard__write-task:focus {
   border: 2px solid var(--color-accent);
 }
+@media (max-width: 770px) {
+  .taskboard__write-task {
+    width: 40%;
+    font-size: 17.5px;
+  }
+}
 .taskboard__add-task {
   padding-top: 0;
   padding-inline: 13px;
@@ -1127,7 +1139,8 @@ input {
   font-size: 20px;
   border-radius: 7.5px;
   transition: 0.3s;
-  padding-inline: 15px;
+  padding: 7.5px;
+  cursor: pointer;
 }
 .taskboard__wipe:hover {
   opacity: 0.6;
@@ -1157,6 +1170,7 @@ input {
   display: flex;
   -moz-column-gap: 5px;
        column-gap: 5px;
+  justify-content: center;
 }
 .taskboard__header__additional {
   display: flex;

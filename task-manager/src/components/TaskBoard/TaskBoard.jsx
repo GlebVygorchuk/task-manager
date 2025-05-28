@@ -114,9 +114,9 @@ export default function TaskBoard({ date, tasks, categories, loading }) {
                         disabled={taskValue === ''}
                         onClick={addTask} 
                         className="taskboard__add-task">+</button>
-                    </div>
-                    <div className="taskboard__header__additional">
-                        <button onClick={() => wipe(tasksArray)} className="taskboard__wipe">Очистить</button>
+                        <svg onClick={() => wipe(tasksArray)} className="taskboard__wipe" xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
+                        </svg>
                     </div>
                 </div> : null}
                 {section === 'categories' ?                             
@@ -134,9 +134,7 @@ export default function TaskBoard({ date, tasks, categories, loading }) {
                         onClick={addCategory} 
                         disabled={categoryValue === ''}
                         className="taskboard__add-task">+</button>
-                    </div>
-                        <div className="taskboard__header__additional">
-                        <div style={{display: 'flex', position: 'relative'}}>
+                                                <div style={{display: 'flex', position: 'relative'}}>
                         <button onClick={() => setChooseColor(prev => !prev)} style={{background: categoryColor, color: darkTheme && categoryColor === 'white' ? 'black' : 'white'}} className="taskboard__category__change-color">Цвет</button>
                         <div className={`taskboard__category__change-color__options ${chooseColor ? 'reveal' : ''}`}>
                             <div onClick={() => setColor('rgb(255, 187, 0)')} style={{backgroundColor:'rgb(255, 187, 0)'}} className="taskboard__category__change-color__option"></div>
@@ -149,7 +147,12 @@ export default function TaskBoard({ date, tasks, categories, loading }) {
                             <div onClick={() => setColor('rgb(219, 0, 219)')} style={{backgroundColor:'rgb(219, 0, 219)'}} className="taskboard__category__change-color__option"></div>
                         </div>
                         </div>
-                        <button onClick={() => wipe(categoriesArray)} className="taskboard__wipe">Очистить</button>
+                        <svg onClick={() => wipe(categoriesArray)} className="taskboard__wipe" xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
+                        </svg>
+                    </div>
+                        <div className="taskboard__header__additional">
+
                         </div>
 
                 </div> : null}

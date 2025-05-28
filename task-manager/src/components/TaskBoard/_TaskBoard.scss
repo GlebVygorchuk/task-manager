@@ -42,6 +42,7 @@
 
             @include mobile {
                 font-size: 20px;
+                padding: 12.5px 5px;
             }
         }
 
@@ -69,6 +70,11 @@
         &:focus {
             border: 2px solid var(--color-accent);
         }
+
+        @include mobile {
+            width: 40%;
+            font-size: 17.5px;
+        }
     }
 
     &__add-task {
@@ -91,7 +97,8 @@
         font-size: 20px;
         border-radius: 7.5px;
         transition: 0.3s;
-        padding-inline: 15px;
+        padding: 7.5px;
+        cursor: pointer;
 
         &:hover {
             opacity: 0.6;
@@ -120,6 +127,7 @@
         &__main {
             display: flex;
             column-gap: 5px;
+            justify-content: center;
         }
 
         &__additional {

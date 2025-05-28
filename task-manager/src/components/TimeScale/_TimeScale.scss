@@ -31,6 +31,10 @@
     @include tablet {
         width: 60%;
     }
+
+    @include mobile-small {
+        width: 100%;
+    }
 }
 
 .date {
