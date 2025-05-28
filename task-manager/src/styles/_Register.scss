@@ -6,11 +6,11 @@
     
     &__container {
         @include formContainerStyles();
+        border-radius: 10px;
 
         @include mobile {
             padding: 30px 40px;
             margin-top: 17.5vh;
-            border-radius: 10px;
         }
 
         @include mobile-small {
@@ -48,7 +48,6 @@
         @include mobile {
             font-size: 17.5px;
         }
-
     }
 
     &__button {

@@ -6,16 +6,47 @@
 
     &__container {
         @include formContainerStyles();
+
+        @include mobile {
+            padding: 30px 40px;
+            margin-top: 17.5vh;
+            border-radius: 10px;
+        }
+
+        @include mobile-small {
+            padding: 30px 10px;
+        }
+    }
+
+    &__name {
+        font-size: 45px;
+        font-weight: 300;
+
+        @include mobile {
+            font-size: 35px;
+        }
+
+        @include mobile-small {
+            font-size: 32.5px;
+        }
     }
 
     &__form {
         display: flex;
         flex-direction: column;
         row-gap: 15px;
+
+        @include mobile {
+            padding-inline: 15px;
+        }
     }
 
     &__input {
-        @include inputStyles()
+        @include inputStyles();
+
+        @include mobile {
+            font-size: 17.5px;
+        }
     }
 
     &__button {
@@ -26,6 +57,18 @@
         &:hover {
             background-color: var(--color-main);
         }
+
+        @include mobile {
+            font-size: 17.5px;
+        }
+    }
+
+    @include mobile {
+        padding-inline: 200px;
+    }
+
+    @include mobile-small {
+        padding-inline: 100px;
     }
 }
 
@@ -50,6 +93,10 @@
         margin-top: 2px;
         font-size: 19px;
         user-select: none;
+
+        @include mobile {
+            font-size: 17.5px;
+        }
     }
 }
 
@@ -81,6 +128,24 @@
     transition: 0.3s;
     transform: scale(0.85, 0.85);
     box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.247);
+
+    &__info {
+        font-size: 17px;
+
+        @include mobile {
+            font-size: 13px;
+        }
+    }
+
+    @include mobile {
+        margin-top: 25vh;
+        padding: 30px;
+        width: 280px;
+    }
+
+    @include mobile-small {
+        padding: 25px;
+    }
 }
 
 .show {

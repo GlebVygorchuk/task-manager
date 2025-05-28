@@ -75,7 +75,7 @@ export default function Login() {
 
             <div className="login__container">
 
-                <h1 style={{fontSize: '45px'}}>Вход</h1>
+                <h1 className="login__name">Вход</h1>
 
                 <form className="login__form">
 
@@ -122,10 +122,10 @@ export default function Login() {
                             <div className={showModal ? 'email-reset show' : 'email-reset'}>
                 <div onClick={() => setShowModal(false)} className="close-button"></div>
 
-                <p>{info}</p>
+                <p className="email-reset__info">{info}</p>
 
                 <input
-                style={{marginTop: '5px'}}
+                style={{marginTop: '-5px'}}
                 placeholder="Ваш E-Mail"
                 onClick={(e) => e.stopPropagation()}
                 onInput={(e) => {setEmail(e.target.value)}} 
@@ -133,7 +133,7 @@ export default function Login() {
                 type="email" 
                 className="login__input" />
 
-                <button onClick={handleReset} style={{marginTop: '0'}} className="login__button">Отправить</button>
+                <button onClick={handleReset} style={{marginTop: '-10px'}} className="login__button">Отправить</button>
             </div>
             </div>
             {loading ?         
