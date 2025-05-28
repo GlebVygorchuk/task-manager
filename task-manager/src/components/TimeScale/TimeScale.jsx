@@ -35,8 +35,8 @@ export default function TimeScale() {
 
         return (
             <div className="day-wrapper">
-                <p style={{fontSize: '25px'}} className="day">{date.getDate()}</p>
-                <p style={{fontSize: '12.5px'}} className="month">{months[date.getMonth()]}</p>
+                <p className="day">{date.getDate()}</p>
+                <p className="month">{months[date.getMonth()]}</p>
             </div>
         )
     }

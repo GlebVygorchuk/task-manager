@@ -35,6 +35,14 @@
             &:hover {
                 border: 2px solid var(--color-accent);
             }
+
+            @include tablet {
+                padding: 17.5px 10px;
+            }
+
+            @include mobile {
+                font-size: 20px;
+            }
         }
 
         .selected {
@@ -102,6 +110,22 @@
         display: flex;
         column-gap: 5px;
         animation: rev 0.5s forwards;
+
+        @include mobile {
+            flex-direction: column;
+            row-gap: 10px;
+            align-items: center;
+        }
+
+        &__main {
+            display: flex;
+            column-gap: 5px;
+        }
+
+        &__additional {
+            display: flex;
+            column-gap: 5px;
+        }
     }
 
     &__task-list {
@@ -365,12 +389,6 @@
     left: 15px;
     transition: 0.3s;
     animation: rev 0.3s forwards;
-}
-
-.section-choose {
-    display: flex;
-    column-gap: 10px;
-    width: 100%;
 }
 
 .task-complete {

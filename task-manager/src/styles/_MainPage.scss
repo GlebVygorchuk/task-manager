@@ -28,6 +28,10 @@ body {
             align-self: center;
             font-size: 40px;
             font-weight: 400;
+
+            @include mobile {
+                font-size: 35px;
+            }
         }
 
         &__profile {
@@ -91,6 +95,10 @@ body {
                 border: 2px solid var(--color-accent);
             }
         }
+
+        @include mobile {
+            padding: 15px 30px;
+        }
     }
 }
 
@@ -112,6 +120,10 @@ body {
     align-self: center;
     font-weight: 400;
     font-size: 21px;
+
+    @include tablet {
+        display: none;
+    }
 }
 
 .show-profile {

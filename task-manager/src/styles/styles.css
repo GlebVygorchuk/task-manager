@@ -76,7 +76,7 @@
     height: 30px;
   }
 }
-@media (max-width: 1020px) {
+@media (max-width: 1080px) {
   .entrance {
     padding-inline: 200px;
   }
@@ -659,6 +659,11 @@ body {
   font-size: 40px;
   font-weight: 400;
 }
+@media (max-width: 770px) {
+  .main__header__title {
+    font-size: 35px;
+  }
+}
 .main__header__profile {
   align-self: center;
   cursor: pointer;
@@ -719,6 +724,11 @@ body {
 .main__header__extra:hover {
   border: 2px solid var(--color-accent);
 }
+@media (max-width: 770px) {
+  .main__header {
+    padding: 15px 30px;
+  }
+}
 
 .selected {
   background-color: var(--color-accent) !important;
@@ -739,6 +749,11 @@ body {
   align-self: center;
   font-weight: 400;
   font-size: 21px;
+}
+@media (max-width: 1080px) {
+  .username {
+    display: none;
+  }
 }
 
 .show-profile {
@@ -913,6 +928,26 @@ input {
   -moz-column-gap: 5px;
        column-gap: 5px;
 }
+@media (max-width: 1080px) {
+  .time-scale {
+    flex-direction: column;
+    row-gap: 20px;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.section-choose {
+  display: flex;
+  -moz-column-gap: 10px;
+       column-gap: 10px;
+  width: 100%;
+}
+@media (max-width: 1080px) {
+  .section-choose {
+    width: 60%;
+  }
+}
 
 .date {
   display: flex;
@@ -932,6 +967,11 @@ input {
 }
 .date:hover {
   border: 2px solid var(--color-accent);
+}
+@media (max-width: 770px) {
+  .date {
+    padding: 12px 2px;
+  }
 }
 
 .chosen {
@@ -965,6 +1005,13 @@ input {
   background: transparent;
   margin-inline: 10px;
 }
+@media (max-width: 770px) {
+  .react-horizontal-scrolling-menu--scroll-container {
+    width: 270px;
+    -moz-column-gap: 3px;
+         column-gap: 3px;
+  }
+}
 
 .day-wrapper {
   display: flex;
@@ -974,7 +1021,21 @@ input {
 
 .day {
   color: var(--color-accent);
-  font-size: 20px;
+  font-size: 25px;
+}
+@media (max-width: 770px) {
+  .day {
+    font-size: 22.5px;
+  }
+}
+
+.month {
+  font-size: 15px;
+}
+@media (max-width: 770px) {
+  .month {
+    font-size: 13px;
+  }
 }
 
 @keyframes drop {
@@ -1013,6 +1074,16 @@ input {
 }
 .taskboard__select_btn:hover {
   border: 2px solid var(--color-accent);
+}
+@media (max-width: 1080px) {
+  .taskboard__select_btn {
+    padding: 17.5px 10px;
+  }
+}
+@media (max-width: 770px) {
+  .taskboard__select_btn {
+    font-size: 20px;
+  }
 }
 .taskboard__select .selected {
   background-color: var(--color-accent);
@@ -1074,6 +1145,23 @@ input {
   to {
     opacity: 1;
   }
+}
+@media (max-width: 770px) {
+  .taskboard__header {
+    flex-direction: column;
+    row-gap: 10px;
+    align-items: center;
+  }
+}
+.taskboard__header__main {
+  display: flex;
+  -moz-column-gap: 5px;
+       column-gap: 5px;
+}
+.taskboard__header__additional {
+  display: flex;
+  -moz-column-gap: 5px;
+       column-gap: 5px;
 }
 .taskboard__task-list {
   align-items: center;
@@ -1318,13 +1406,6 @@ input {
   left: 15px;
   transition: 0.3s;
   animation: rev 0.3s forwards;
-}
-
-.section-choose {
-  display: flex;
-  -moz-column-gap: 10px;
-       column-gap: 10px;
-  width: 100%;
 }
 
 .task-complete {

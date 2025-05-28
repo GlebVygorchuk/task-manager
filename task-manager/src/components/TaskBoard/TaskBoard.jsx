@@ -101,6 +101,7 @@ export default function TaskBoard({ date, tasks, categories, loading }) {
                
                 {section === 'tasks' ?                         
                 <div className="taskboard__header">
+                    <div className="taskboard__header__main">
                     <input 
                         onInput={(e) => setTaskValue(e.target.value)}
                         onKeyDown={taskValue !== '' ? (e) => handleEnterPress(e, addTask) : null} 
@@ -113,10 +114,14 @@ export default function TaskBoard({ date, tasks, categories, loading }) {
                         disabled={taskValue === ''}
                         onClick={addTask} 
                         className="taskboard__add-task">+</button>
-                    <button onClick={() => wipe(tasksArray)} className="taskboard__wipe">Очистить</button>
+                    </div>
+                    <div className="taskboard__header__additional">
+                        <button onClick={() => wipe(tasksArray)} className="taskboard__wipe">Очистить</button>
+                    </div>
                 </div> : null}
                 {section === 'categories' ?                             
                 <div className="taskboard__header">
+                    <div className="taskboard__header__main">
                     <input
                         onKeyDown={categoryValue !== '' ? (e) => handleEnterPress(e, addCategory) : null}
                         value={categoryValue}
@@ -129,6 +134,8 @@ export default function TaskBoard({ date, tasks, categories, loading }) {
                         onClick={addCategory} 
                         disabled={categoryValue === ''}
                         className="taskboard__add-task">+</button>
+                    </div>
+                        <div className="taskboard__header__additional">
                         <div style={{display: 'flex', position: 'relative'}}>
                         <button onClick={() => setChooseColor(prev => !prev)} style={{background: categoryColor, color: darkTheme && categoryColor === 'white' ? 'black' : 'white'}} className="taskboard__category__change-color">Цвет</button>
                         <div className={`taskboard__category__change-color__options ${chooseColor ? 'reveal' : ''}`}>
@@ -143,6 +150,7 @@ export default function TaskBoard({ date, tasks, categories, loading }) {
                         </div>
                         </div>
                         <button onClick={() => wipe(categoriesArray)} className="taskboard__wipe">Очистить</button>
+                        </div>
 
                 </div> : null}
             </div>
