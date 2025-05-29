@@ -853,6 +853,11 @@ body {
   background-color: var(--background-gradient);
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.247);
 }
+@media (max-width: 770px) {
+  .make-sure {
+    margin-top: 30vh;
+  }
+}
 
 .extra-option {
   display: flex;
@@ -1253,20 +1258,35 @@ input {
   grid-template-columns: 1fr 1fr;
   padding-inline: 140px;
   row-gap: 20px;
+  -moz-column-gap: 40px;
+       column-gap: 40px;
   margin-top: 20px;
   transition: all 0.3s;
+}
+@media (max-width: 1080px) {
+  .taskboard__task-list {
+    display: flex;
+    flex-direction: column;
+  }
 }
 .taskboard__task {
   position: relative;
   background: var(--background-gradient);
   color: var(--color-accent);
-  width: 400px;
+  width: 375px;
   padding: 5px;
-  font-size: 25px;
+  font-size: 22.5px;
   border-radius: var(--border-radius);
   transition: 0.2s;
   border: 2px solid transparent;
   overflow: hidden;
+}
+@media (max-width: 480px) {
+  .taskboard__task {
+    font-size: 20px;
+    width: 300px;
+    margin-right: 10px;
+  }
 }
 .taskboard-categories {
   padding-inline: 140px;
@@ -1552,9 +1572,14 @@ input {
 .task-index {
   color: var(--color-accent);
   position: absolute;
-  left: -37.5px;
-  font-size: 25px;
+  left: -32.5px;
+  font-size: 20px;
   font-weight: 400;
+}
+@media (max-width: 480px) {
+  .task-index {
+    display: none;
+  }
 }
 
 .content-wrapper {
@@ -1588,6 +1613,11 @@ input {
 .three-dots:hover {
   opacity: 0.5;
 }
+@media (max-width: 480px) {
+  .three-dots {
+    margin-right: 10px;
+  }
+}
 
 .button-wrapper {
   align-self: center;
@@ -1618,6 +1648,11 @@ input {
   z-index: 10;
   align-items: center;
   transform: translateX(20px);
+}
+@media (max-width: 480px) {
+  .task-options {
+    width: 96%;
+  }
 }
 
 .show-options {

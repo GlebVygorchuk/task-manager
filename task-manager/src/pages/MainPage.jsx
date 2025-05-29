@@ -183,7 +183,8 @@ export default function MainPage() {
                 </ul>
                 <button 
                 className="main__header__logout-btn" 
-                onClick={() => {
+                onClick={(e) => {
+                    e.stopPropagation()
                     setShowModal(true)
                     setShowProfile(false)
                 }}>Выйти</button>
