@@ -125,6 +125,7 @@ export default function TaskBoard({ date, tasks, categories, loading }) {
                     <input
                         onKeyDown={categoryValue !== '' ? (e) => handleEnterPress(e, addCategory) : null}
                         value={categoryValue}
+                        id="category-input"
                         maxLength={15}
                         onInput={(e) => setCategoryValue(e.target.value)} 
                         placeholder="Новая категория"

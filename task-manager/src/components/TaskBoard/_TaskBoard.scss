@@ -72,14 +72,14 @@
         }
 
         @include mobile {
-            width: 40%;
+            width: 80%;
             font-size: 17.5px;
         }
 
         @include mobile-small {
             padding: 7.5px 10px;
             font-size: 16px;
-            width: 35%;
+            width: 80%;
         }
     }
 
@@ -137,6 +137,8 @@
             flex-direction: column;
             row-gap: 10px;
             align-items: center;
+            width: 100%;
+            padding-inline: 20px;
         }
 
         &__main {
@@ -716,3 +718,8 @@
     font-family: 'Comfortaa';
 }
 
+#category-input {
+    @include mobile-small {
+        width: 50%;
+    }
+}
