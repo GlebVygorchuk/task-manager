@@ -654,6 +654,12 @@ body {
   align-self: center;
   fill: var(--color-accent);
 }
+@media (max-width: 480px) {
+  .main__header__name {
+    -moz-column-gap: 8px;
+         column-gap: 8px;
+  }
+}
 .main__header__title {
   align-self: center;
   font-size: 40px;
@@ -664,6 +670,11 @@ body {
     font-size: 35px;
   }
 }
+@media (max-width: 480px) {
+  .main__header__title {
+    font-size: 30px;
+  }
+}
 .main__header__profile {
   align-self: center;
   cursor: pointer;
@@ -671,6 +682,14 @@ body {
 }
 .main__header__profile svg {
   fill: var(--color-accent);
+  align-self: center;
+}
+@media (max-width: 480px) {
+  .main__header__profile svg {
+    width: 45px;
+    height: 45px;
+    margin-top: 2.5px;
+  }
 }
 .main__header__profile:hover {
   opacity: 0.5;
@@ -713,6 +732,12 @@ body {
   font-size: 17.5px;
   z-index: 10;
 }
+@media (max-width: 480px) {
+  .main__header__info {
+    right: 30px;
+    top: 20vh;
+  }
+}
 .main__header__extra {
   background-color: var(--background-gradient);
   padding: 10px 15px;
@@ -727,6 +752,11 @@ body {
 @media (max-width: 770px) {
   .main__header {
     padding: 15px 30px;
+  }
+}
+@media (max-width: 480px) {
+  .main__header {
+    padding: 10px 20px;
   }
 }
 
@@ -780,6 +810,7 @@ body {
   background-color: transparent;
   transition: 0.3s;
   top: 0;
+  left: 0;
 }
 
 .show-modal {
@@ -978,6 +1009,12 @@ input {
     padding: 12px 2px;
   }
 }
+@media (max-width: 480px) {
+  .date {
+    padding: 10px 0px;
+    min-width: 70px;
+  }
+}
 
 .chosen {
   background-color: var(--color-accent);
@@ -1017,6 +1054,11 @@ input {
          column-gap: 3px;
   }
 }
+@media (max-width: 480px) {
+  .react-horizontal-scrolling-menu--scroll-container {
+    width: 227px;
+  }
+}
 
 .day-wrapper {
   display: flex;
@@ -1033,6 +1075,11 @@ input {
     font-size: 22.5px;
   }
 }
+@media (max-width: 480px) {
+  .day {
+    font-size: 20px;
+  }
+}
 
 .month {
   font-size: 15px;
@@ -1040,6 +1087,11 @@ input {
 @media (max-width: 770px) {
   .month {
     font-size: 13px;
+  }
+}
+@media (max-width: 480px) {
+  .month {
+    font-size: 11px;
   }
 }
 
@@ -1121,6 +1173,13 @@ input {
     font-size: 17.5px;
   }
 }
+@media (max-width: 480px) {
+  .taskboard__write-task {
+    padding: 7.5px 10px;
+    font-size: 16px;
+    width: 35%;
+  }
+}
 .taskboard__add-task {
   padding-top: 0;
   padding-inline: 13px;
@@ -1133,6 +1192,11 @@ input {
 .taskboard__add-task:hover {
   opacity: 0.6;
 }
+@media (max-width: 480px) {
+  .taskboard__add-task {
+    font-size: 30px;
+  }
+}
 .taskboard__wipe {
   background-color: var(--color-accent);
   color: var(--color-background);
@@ -1144,6 +1208,12 @@ input {
 }
 .taskboard__wipe:hover {
   opacity: 0.6;
+}
+@media (max-width: 480px) {
+  .taskboard__wipe {
+    width: 30px;
+    height: 30px;
+  }
 }
 .taskboard__header {
   display: flex;
@@ -1303,6 +1373,11 @@ input {
 }
 .taskboard__category__change-color:hover {
   opacity: 0.6;
+}
+@media (max-width: 480px) {
+  .taskboard__category__change-color {
+    font-size: 17.5px;
+  }
 }
 .taskboard__category:hover .taskboard__category__underline {
   height: 3px;

@@ -58,6 +58,11 @@
     @include mobile {
         padding: 12px 2px;
     }
+
+    @include mobile-small {
+        padding: 10px 0px;
+        min-width: 70px;
+    }
 }
 
 .chosen {
@@ -97,6 +102,10 @@
         width: 270px;
         column-gap: 3px;
     }
+
+    @include mobile-small {
+        width: 227px;
+    }
 }
 
 .day-wrapper {
@@ -112,6 +121,10 @@
     @include mobile {
         font-size: 22.5px;
     }
+
+    @include mobile-small {
+        font-size: 20px;
+    }
 }
 
 .month {
@@ -119,5 +132,9 @@
 
     @include mobile {
         font-size: 13px;
+    }
+
+    @include mobile-small {
+        font-size: 11px;
     }
 }

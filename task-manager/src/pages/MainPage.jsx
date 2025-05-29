@@ -157,9 +157,14 @@ export default function MainPage() {
                     <svg xmlns="http://www.w3.org/2000/svg" width="50px" height="50px" viewBox="0 0 32 32" style={{enableBackground: 'new 0 0 32 32'}} xmlSpace="preserve"><path d="M16 31C7.729 31 1 24.271 1 16S7.729 1 16 1s15 6.729 15 15-6.729 15-15 15zm0-28C8.832 3 3 8.832 3 16s5.832 13 13 13 13-5.832 13-13S23.168 3 16 3z"/><circle cx="16" cy="11.368" r="3.368"/><path d="M20.673 24h-9.346c-.83 0-1.502-.672-1.502-1.502v-.987a5.404 5.404 0 0 1 5.403-5.403h1.544a5.404 5.404 0 0 1 5.403 5.403v.987c0 .83-.672 1.502-1.502 1.502z"/></svg>
                 </div>
             </div>
-                     
-            <div className={`main__header__info ${showProfile ? 'show-profile' : null}`}>
-                <div onClick={() => setShowProfile(false)} className="close-button"></div>
+
+            <div onClick={() => {
+            setShowExtra(false)
+            setShowModal(false)
+            setShowProfile(false)
+            }} 
+            className={showModal || showExtra || showProfile ? 'confirmation dark' : 'confirmation'}>
+                        <div className={`main__header__info ${showProfile ? 'show-profile' : null}`}>
                 <p>Имя: <span className="info-field">{userdata.nickname}</span></p>
                 <p>E-Mail: <span className="info-field">{userdata.email}</span></p>
                 <ul className="extra-list">
@@ -171,12 +176,20 @@ export default function MainPage() {
                 setAllTasks(prev => !prev)
                 setShowProfile(false)
             }} className='extra-option'>* все задачи</button>
-            <button onClick={() => setDarkTheme(prev => !prev)} className="extra-option">* тема - {darkTheme ? 'тёмная' : 'светлая'}</button>
+            <button onClick={(e) => {
+                e.stopPropagation()
+                setDarkTheme(prev => !prev)
+            }} className="extra-option">* тема - {darkTheme ? 'тёмная' : 'светлая'}</button>
                 </ul>
                 <button 
                 className="main__header__logout-btn" 
-                onClick={() => setShowModal(true)}>Выйти</button>
+                onClick={() => {
+                    setShowModal(true)
+                    setShowProfile(false)
+                }}>Выйти</button>
             </div> 
+            </div>         
+
         </header>
         
         <main className="main">

@@ -75,6 +75,12 @@
             width: 40%;
             font-size: 17.5px;
         }
+
+        @include mobile-small {
+            padding: 7.5px 10px;
+            font-size: 16px;
+            width: 35%;
+        }
     }
 
     &__add-task {
@@ -89,6 +95,10 @@
         &:hover {
             opacity: 0.6;
         }
+
+        @include mobile-small {
+            font-size: 30px;
+        }
     }
 
     &__wipe {
@@ -102,6 +112,11 @@
 
         &:hover {
             opacity: 0.6;
+        }
+
+        @include mobile-small {
+            width: 30px;
+            height: 30px;
         }
     }
 
@@ -270,6 +285,10 @@
 
             &:hover {
                 opacity: 0.6;
+            }
+
+            @include mobile-small {
+                font-size: 17.5px;
             }
         }
 

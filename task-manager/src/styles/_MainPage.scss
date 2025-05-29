@@ -22,6 +22,10 @@ body {
                 align-self: center;
                 fill: var(--color-accent);
             }
+
+            @include mobile-small {
+                column-gap: 8px;
+            }
         }
 
         &__title {
@@ -32,6 +36,10 @@ body {
             @include mobile {
                 font-size: 35px;
             }
+
+            @include mobile-small {
+                font-size: 30px;
+            }
         }
 
         &__profile {
@@ -41,6 +49,13 @@ body {
 
             svg {
                 fill: var(--color-accent);
+                align-self: center;
+
+                @include mobile-small {
+                    width: 45px;
+                    height: 45px;
+                    margin-top: 2.5px;
+                }
             }
 
             &:hover {
@@ -81,6 +96,11 @@ body {
             top: 70px;
             font-size: 17.5px;
             z-index: 10;
+
+            @include mobile-small {
+                right: 30px;
+                top: 20vh;
+            }
         }
 
         &__extra {
@@ -98,6 +118,10 @@ body {
 
         @include mobile {
             padding: 15px 30px;
+        }
+
+        @include mobile-small {
+            padding: 10px 20px;
         }
     }
 }
@@ -148,6 +172,7 @@ body {
     background-color: transparent;
     transition: 0.3s;
     top: 0;
+    left: 0;
 }
 
 .show-modal {
