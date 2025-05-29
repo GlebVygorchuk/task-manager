@@ -194,6 +194,13 @@
 
     &-categories {
         padding-inline: 140px;
+
+        @include mobile {
+            padding-inline: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
     }
 
     &__categories-list {
@@ -202,6 +209,16 @@
         grid-template-columns: 1fr 1fr;
         column-gap: 30px;
         row-gap: 20px;
+
+        @include tablet {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        @include mobile {
+            margin-top: 0;
+        }
     }
 
     &__category {
@@ -336,6 +353,17 @@
             &:hover {
                 transform: scale(1.050, 1.050);
             }
+        }
+
+        @include mobile {
+            font-size: 35px;
+            padding: 5px 30px;
+            min-height: 90px;
+        }
+
+        @include mobile-small {
+            font-size: 30px;
+            padding: 0px 25px;
         }
     }
 }
