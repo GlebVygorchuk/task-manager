@@ -13,6 +13,17 @@ export default function Entrance() {
         console.log(userID)
     }, [userID])
 
+    useEffect(() => {
+        const unsub = onAuthStateChanged(auth, () => {
+            console.log(auth.currentUser)
+            if (auth.currentUser) {
+                navigate('/main')
+            } 
+        })
+
+        return () => unsub()
+    }, [auth])
+
     return (
         <section className="entrance">
             <div className="entrance__container">

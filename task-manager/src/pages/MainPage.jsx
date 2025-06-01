@@ -143,6 +143,14 @@ export default function MainPage() {
         document.body.setAttribute('data-theme', darkTheme ? 'dark' : 'light')
     }, [darkTheme])
 
+    useEffect(() => {
+        const unsub = onAuthStateChanged(auth, () => {
+            console.log(auth.currentUser.displayName)
+        })
+
+        return () => unsub()
+    }, [auth])
+
     return (
         <>
         <header className="main__header" style={darkTheme ? {borderBottom: '1px solid rgb(44, 44, 44)'} : {borderBottom: '1px solid rgb(215, 215, 215)'}}>
