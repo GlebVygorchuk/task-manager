@@ -111,7 +111,10 @@ export default function CategoryTasks({ title, onReturn, date, categoryId}) {
             })}
         </ul>
     </div>}
-    <button onClick={onReturn} className="category-tasks__return-btn">&lt; назад</button>
+    <div className="category-tasks__return-btn__wrapper">
+        <button onClick={onReturn} className="category-tasks__return-btn">&lt; назад</button>
+    </div>
+    
     </>
     )
 }

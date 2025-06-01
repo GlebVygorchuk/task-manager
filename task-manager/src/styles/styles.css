@@ -1302,10 +1302,14 @@ input {
 }
 @media (max-width: 770px) {
   .taskboard-categories {
-    padding-inline: 50px;
+    padding-inline: 70px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+  }
+}
+@media (max-width: 480px) {
+  .taskboard-categories {
+    padding-inline: 20px;
   }
 }
 .taskboard__categories-list {
@@ -1325,7 +1329,8 @@ input {
 }
 @media (max-width: 770px) {
   .taskboard__categories-list {
-    margin-top: 0;
+    margin-top: -10px;
+    row-gap: 12.5px;
   }
 }
 .taskboard__category {
@@ -1551,20 +1556,27 @@ input {
 .category-tasks__return-btn:hover {
   opacity: 0.6;
 }
+.category-tasks__return-btn__wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: none;
+  top: 0;
+  left: 0;
+}
 @media (max-width: 770px) {
-  .category-tasks__return-btn {
+  .category-tasks__return-btn__wrapper {
     position: fixed;
     top: 90%;
-    left: 40%;
-    font-size: 20px;
   }
 }
-@media (max-width: 480px) {
+@media (max-width: 770px) {
   .category-tasks__return-btn {
-    position: fixed;
-    top: 90%;
-    left: 35%;
-    font-size: 20px;
+    font-size: 25px;
+    position: relative;
+    left: 0;
+    top: 0;
   }
 }
 .category-tasks__create-task {

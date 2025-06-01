@@ -198,10 +198,13 @@
         padding-inline: 140px;
 
         @include mobile {
-            padding-inline: 50px;
+            padding-inline: 70px;
             display: flex;
             flex-direction: column;
-            align-items: center;
+        }
+
+        @include mobile-small {
+            padding-inline: 20px;
         }
     }
 
@@ -219,7 +222,8 @@
         }
 
         @include mobile {
-            margin-top: 0;
+            margin-top: -10px;
+            row-gap: 12.5px;
         }
     }
 
@@ -455,18 +459,26 @@
             opacity: 0.6;
         }
 
-        @include mobile {
-            position: fixed;
-            top: 90%;
-            left: 40%;
-            font-size: 20px;
+        &__wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: none;
+            top: 0;
+            left: 0;
+
+            @include mobile {
+                position: fixed;
+                top: 90%;
+            }
         }
 
-        @include mobile-small {
-            position: fixed;
-            top: 90%;
-            left: 35%;
-            font-size: 20px;
+        @include mobile {
+            font-size: 25px;
+            position: relative;
+            left: 0;
+            top: 0;
         }
     }
 
