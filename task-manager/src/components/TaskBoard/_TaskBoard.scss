@@ -412,6 +412,7 @@
 .category-tasks {
     opacity: 0;
     animation: drop 0.3s forwards;
+    padding-bottom: 50px;
 
     &__header {
         display: flex;
@@ -455,11 +456,17 @@
         }
 
         @include mobile {
-            top: 20px;
-            left: 220px;
-            font-size: 14px;
-            padding: 7.5px 15px;
-            border-radius: 10px;
+            position: fixed;
+            top: 90%;
+            left: 40%;
+            font-size: 20px;
+        }
+
+        @include mobile-small {
+            position: fixed;
+            top: 90%;
+            left: 35%;
+            font-size: 20px;
         }
     }
 

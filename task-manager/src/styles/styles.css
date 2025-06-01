@@ -1508,6 +1508,7 @@ input {
 .category-tasks {
   opacity: 0;
   animation: drop 0.3s forwards;
+  padding-bottom: 50px;
 }
 .category-tasks__header {
   display: flex;
@@ -1552,11 +1553,18 @@ input {
 }
 @media (max-width: 770px) {
   .category-tasks__return-btn {
-    top: 20px;
-    left: 220px;
-    font-size: 14px;
-    padding: 7.5px 15px;
-    border-radius: 10px;
+    position: fixed;
+    top: 90%;
+    left: 40%;
+    font-size: 20px;
+  }
+}
+@media (max-width: 480px) {
+  .category-tasks__return-btn {
+    position: fixed;
+    top: 90%;
+    left: 35%;
+    font-size: 20px;
   }
 }
 .category-tasks__create-task {
