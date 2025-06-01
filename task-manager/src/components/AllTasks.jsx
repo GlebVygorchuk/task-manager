@@ -96,7 +96,7 @@ export default function AllTasks() {
  
     return (
         <div style={{display: 'flex', alignItems: 'center', flexDirection: "column", paddingBottom: '50px'}} className="all-tasks">
-            <h1 style={{color: darkTheme ? 'white' : 'black',fontSize: '50px', marginTop: '30px', marginBottom: '5px'}}>Все задачи</h1>
+            <h1 className="all-tasks-title" style={{color: darkTheme ? 'white' : 'black', marginTop: '30px', marginBottom: '5px'}}>Все задачи</h1>
             <ul style={{width: '77.5%'}} className="taskboard__task-list">
             {Array.isArray(tasks) ? (
                 tasks.map(task => {

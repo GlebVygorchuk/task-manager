@@ -91,6 +91,7 @@
         background-color: var(--color-accent);
         transition: 0.3s;
         border-radius: 7.5px;
+        height: 50px;
 
         &:hover {
             opacity: 0.6;
@@ -98,6 +99,7 @@
 
         @include mobile-small {
             font-size: 30px;
+            height: 45px;
         }
     }
 
@@ -417,11 +419,23 @@
         padding-inline: 50px;
         column-gap: 30px;
         justify-content: center;
+
+        @include mobile {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            row-gap: 10px;
+        }
     }
 
     &__title {
-        font-size: 40px;
+        font-size: 60px;
         font-weight: 400;
+
+        @include mobile {
+            align-self: center;
+            font-size: 50px;
+        }
     }
 
     &__return-btn {
@@ -433,11 +447,19 @@
         background-color: black;
         font-size: 17.5px;
         padding: 10px 20px;
-        border-radius: 15px;
+        border-radius: 10px;
         transition: 0.3s;
 
         &:hover {
             opacity: 0.6;
+        }
+
+        @include mobile {
+            top: 20px;
+            left: 220px;
+            font-size: 14px;
+            padding: 7.5px 15px;
+            border-radius: 10px;
         }
     }
 
@@ -447,6 +469,15 @@
         column-gap: 5px;
         margin-top: 15px;
         align-items: center;
+
+        @include mobile {
+            margin-top: 0;
+            width: 80%;
+        }
+
+        @include mobile-small {
+            width: 100%;
+        }
     }
 }
 
@@ -749,5 +780,17 @@
 #category-input {
     @include mobile-small {
         width: 50%;
+    }
+}
+
+.all-tasks-title {
+    font-size: 50px;
+
+    @include mobile {
+        font-size: 45px;
+    }
+
+    @include mobile {
+        font-size: 40px;
     }
 }
