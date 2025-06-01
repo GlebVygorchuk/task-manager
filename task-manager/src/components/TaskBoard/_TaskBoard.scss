@@ -737,6 +737,7 @@
 
     @include mobile {
         left: 320px;
+        padding: 3px;
     }
 
     @keyframes slideLeft {

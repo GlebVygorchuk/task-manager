@@ -1840,6 +1840,7 @@ input {
 @media (max-width: 770px) {
   #confirm-edit {
     left: 320px;
+    padding: 3px;
   }
 }
 @keyframes slideLeft {
