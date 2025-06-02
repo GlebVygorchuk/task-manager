@@ -1,16 +1,26 @@
 import { ScrollMenu, VisibilityContext} from "react-horizontal-scrolling-menu"
-import { useContext, useRef, useState } from "react"
+import { useContext, useState } from "react"
 import { AppContext } from "../AppContext"
 import { useEffect } from "react"
 
-const Arrow = ({ direction, onClick }) => {
+const Arrow = ({ direction }) => {
     const { scrollPrev, scrollNext } = useContext(VisibilityContext)
 
     return (
-        <button onClick={direction === 'left' ? () => scrollPrev() : () => scrollNext()} className={`arrow ${direction}`}>
+        <button 
+        onClick={direction === 'left' ? () => scrollPrev() : () => scrollNext()} 
+        className={`arrow ${direction}`}>
+
             {direction === 'left' 
-            ? <svg style={{alignSelf: 'center'}} width='30px' height='30px' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25"><path d="M24 12.001H2.914l5.294-5.295-.707-.707L1 12.501l6.5 6.5.707-.707-5.293-5.293H24v-1z" data-name="Left"/></svg>
-            : <svg style={{alignSelf: 'center'}} width='30px' height='30px' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25"><path d="m17.5 5.999-.707.707 5.293 5.293H1v1h21.086l-5.294 5.295.707.707L24 12.499l-6.5-6.5z" data-name="Right"/></svg>}
+            
+            ? <svg 
+            style={{alignSelf: 'center'}} 
+            width='30px' height='30px' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25"><path d="M24 12.001H2.914l5.294-5.295-.707-.707L1 12.501l6.5 6.5.707-.707-5.293-5.293H24v-1z" data-name="Left"/></svg>
+            
+            : <svg 
+            style={{alignSelf: 'center'}} 
+            width='30px' height='30px' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25"><path d="m17.5 5.999-.707.707 5.293 5.293H1v1h21.086l-5.294 5.295.707.707L24 12.499l-6.5-6.5z" data-name="Right"/></svg>}
+        
         </button>
     )
 }
@@ -35,8 +45,11 @@ export default function TimeScale() {
 
         return (
             <div className="day-wrapper">
+
                 <p className="day">{date.getDate()}</p>
+
                 <p className="month">{months[date.getMonth()]}</p>
+
             </div>
         )
     }
@@ -51,30 +64,38 @@ export default function TimeScale() {
         const generatedDates = []
 
         for (let i = 0; i < 30; i++)  {
+
             const current = new Date(currentDate)
+
             current.setDate(current.getDate() + i)
+
             const dateItem = {
                 id: i + 1, 
                 fullDate: current.toISOString().split('T')[0], 
                 day: <FormattedDate date={current}/>
             }
+
             generatedDates.push(dateItem)
+
             setTasks(prev => ({
                 ...prev,
                 [dateItem.fullDate]: []
             }))
+
         }
         setDates(generatedDates)
     }, [])
 
     return (
         <div className="time-scale">
+            
             <ScrollMenu
             transitionDuration={1500} 
             LeftArrow={<Arrow direction={'left'} />} 
             RightArrow={<Arrow direction={'right'} />}>
 
                 {dates.map((current, index) => (
+                    
                     <DateItem 
                     itemId={index} 
                     key={index} 
@@ -84,21 +105,27 @@ export default function TimeScale() {
                         setActive(current.id)
                         setSelectedDate(current.fullDate)
                     }} />
+
                 ))}
 
             </ScrollMenu>
+
             <div className="section-choose">
-                    <button 
-                    onClick={() => setSection('tasks')} 
-                    className={section === 'tasks' ? "taskboard__select_btn complete" : "taskboard__select_btn"}>
+                
+                <button 
+                onClick={() => setSection('tasks')} 
+                className={section === 'tasks' ? "taskboard__select_btn complete" : "taskboard__select_btn"}>
                     Задачи
-                    </button>
-                    <button 
-                    onClick={() => setSection('categories')} 
-                    className={section === 'categories' ? "taskboard__select_btn complete" : "taskboard__select_btn"}>
+                </button>
+
+                <button 
+                onClick={() => setSection('categories')} 
+                className={section === 'categories' ? "taskboard__select_btn complete" : "taskboard__select_btn"}>
                     Категории
-                    </button>
+                </button>
+
             </div>
+
         </div>
     )
 }

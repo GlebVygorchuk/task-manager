@@ -50,13 +50,17 @@ export default function AllTasks() {
                         setTasks(sortedTasks)
                     })
                 })
+
                 unsubs.push(fetchTasks)
 
                 const categoriesCollection = collection(database, 'users', userID, 'allTasks', date, 'categories')
                 const categoriesSnapshot = await getDocs(categoriesCollection)
                 for (const category of categoriesSnapshot.docs) {
+
                     const categoryTasksCollection = collection(database, 'users', userID, 'allTasks', date, 'categories', category.id, 'category-tasks')
+                    
                     const fetchCategoryTasks = onSnapshot(categoryTasksCollection, snapshot => {
+                        
                         snapshot.docChanges().forEach(change => {
                             const data = change.doc.data()
                             const id = change.doc.id
@@ -79,8 +83,11 @@ export default function AllTasks() {
                             const sorted = mapValues.sort((a, b) => a - b)
                             setTasks(sorted)
                         })
+
                     })
+
                     unsubs.push(fetchCategoryTasks)
+
                 }
             }
         }
@@ -95,12 +102,19 @@ export default function AllTasks() {
     }
  
     return (
-        <div style={{display: 'flex', alignItems: 'center', flexDirection: "column", paddingBottom: '50px'}} className="all-tasks">
+        <div 
+        style={{display: 'flex', alignItems: 'center', flexDirection: "column", paddingBottom: '50px'}} 
+        className="all-tasks">
+
             <h1 className="all-tasks-title" style={{color: darkTheme ? 'white' : 'black', marginTop: '30px', marginBottom: '5px'}}>Все задачи</h1>
+            
             <ul style={{width: '77.5%'}} className="taskboard__task-list">
+
             {Array.isArray(tasks) ? (
+
                 tasks.map(task => {
                     return (
+                        
                         <TaskItem
                         content={task.task}
                         index={tasks.indexOf(task) + 1}
@@ -113,10 +127,14 @@ export default function AllTasks() {
                         section={'all tasks'}
                         date={task.date}
                         key={`${task.id} - ${task.date}`}/>
+
                     )
                 })
+
             ) : null}
+
             </ul>
+            
         </div>
     )
 }

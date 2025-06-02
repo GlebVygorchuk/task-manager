@@ -1613,6 +1613,11 @@ input {
   transition: 0.3s;
   animation: rev 0.3s forwards;
 }
+@media (max-width: 480px) {
+  .deadline-bar {
+    max-width: 80%;
+  }
+}
 
 .task-complete {
   background-color: var(--color-accent);

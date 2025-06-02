@@ -15,6 +15,7 @@ export default function AppProvider({ children }) {
     const [darkTheme, setDarkTheme] = useState(false)
     const [operatedTask, setOperatedTask] = useState('')
 
+
     useEffect(() => {
         const deadlines = localStorage.getItem('deadlines')
         const theme = localStorage.getItem('dark-theme')
@@ -23,10 +24,12 @@ export default function AppProvider({ children }) {
         setDarkTheme(JSON.parse(theme)) 
     }, [])
 
+
     useEffect(() => {
         localStorage.setItem('dark-theme', darkTheme)
         localStorage.setItem('deadlines', deadlineDisabled)
     }, [darkTheme, deadlineDisabled])
+
 
     const startTaskTimer = async ({ userID, date, taskId, categoryId, time}) => {
         const taskKey = `${categoryId || 'no-category'}-${taskId}`
@@ -35,8 +38,6 @@ export default function AppProvider({ children }) {
         if (timers[taskKey]?.intervalId) {
             clearInterval(timers[taskKey].intervalId)
         }
-
-        console.log(duration)
 
         const docRef = categoryId === undefined 
         ? doc(database, 'users', userID, 'allTasks', date, 'tasks', taskId)
@@ -54,6 +55,7 @@ export default function AppProvider({ children }) {
         await updateDoc(docRef, { status: 'process' })
 
         const interval = setInterval(() => {
+
             setTimers(prev => {
                 const current = prev[taskKey]
                 if (!current) return prev
@@ -72,6 +74,7 @@ export default function AppProvider({ children }) {
                         }
                     }
                 }
+
                 return {
                     ...prev, 
                     [taskKey]: {
@@ -79,6 +82,7 @@ export default function AppProvider({ children }) {
                         remaining: current.remaining - 1
                     }
                 }
+                
             })
             
         }, 1000)
@@ -94,12 +98,14 @@ export default function AppProvider({ children }) {
         return () => clearInterval(interval)
     }
 
+
     function toggleOptions(task) {
         setOperatedTask(prev => {
             console.log(`ID from context - ${prev}`)
             return task === prev ? '' : task
         })
     }
+
 
     return (
         <AppContext.Provider value={
