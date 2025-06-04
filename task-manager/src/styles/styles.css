@@ -1330,8 +1330,8 @@ input {
 }
 @media (max-width: 770px) {
   .taskboard__categories-list {
-    margin-top: -10px;
-    row-gap: 12.5px;
+    margin-top: 5px;
+    row-gap: 17.5px;
   }
 }
 .taskboard__category {
