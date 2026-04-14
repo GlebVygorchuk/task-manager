@@ -23,3 +23,7 @@
 
 ## 📄 Лицензия  
 MIT License © 2025 GlebVygorchuk 
+
+# Другие проекты
+Сайт по срочному выкупу недвижимости: https://rieltor-74.ru/
+Сайт по реставрации ванн: https://uralvanna.ru/
